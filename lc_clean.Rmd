@@ -1,0 +1,419 @@
+---
+title: "Lia Cook Weave vs Photo: Data Cleansing"
+output: lc_clean.md
+  html_document: lc_clean.HTML
+    keep_md: true
+---
+
+Lia Cook Weave vs Photo: Data Cleansing
+===========================================
+### By Bradley Shanrock-Solberg 20-December 2015
+Synopsis
+--------
+
+Surveys from the Houston and Pittsburgh Weave vs Photo experiments were entered into three spreadsheets and, in the case of Houston emotion words, a large series of text files.
+
+Formats were inconsistent and in some cases the data was not transcribed correctly.  The two Houston spreadsheets were identical, so only one was used.  When data was not entered in the survey, it is captured as NA.
+
+The following R code was used to clean up the data and reduce it to two data frames (pdata for Pittsburgh, hdata for Houston)
+
+Data Processing
+----------------------------------
+
+Load data, ensure that only one houston data matters,
+compare format to Pittsburgh
+
+```{R}
+houston1 <- read.csv(skip=1, "rawdata/Houston Data-1csv.csv")
+houston2 <- read.csv(skip=1, "rawdata/Houston Data-resizecsv.csv")
+identical(houston1,houston2)
+str(houston1)
+
+pitt1 <- read.csv(skip=1, "rawdata/LiaCookPittsburghDataPhotovWovenFace-1csv.csv",
+                  stringsAsFactors = FALSE)
+str(pitt1)
+```
+
+Merge formats into consistent, eliminate columns with lots of NA data, change numbers to factors where appropriate,
+
+```{R}
+pdata <- pitt1[, c(1:9, 11, 13, 15, 17:19)]
+names(pdata) <- c("ID", "FirstViewed", "Photo_Word", "Photo_Intensity",
+                  "Photo_Neg_Pos", "Weave_Word", "Weave_Intensity",
+                  "Weave_Neg_Pos", "Art", "Science", 
+                  names(pdata[11:14]),"Education")
+# subject ID was repeated for FirstViewed = 2, instead of getting a unique
+# value (unlike Houston data).  Fix
+length(unique(pdata$ID))
+table(pdata$FirstViewed,pdata$ID)
+pdata[pdata$FirstViewed == 2, "ID"] <- 200:396
+dim(pdata)[1] ==  length(unique(pdata$ID))
+pdata$FirstViewed <- ifelse(pdata$FirstViewed == 1, "Photo", "Weave")
+pdata$FirstViewed <- factor(pdata$FirstViewed, order <- c("Photo", "Weave"))
+# Now just check the data ranges to be sure nothing is out of bounds,
+# and round partial values down to integers
+table(pdata$Photo_Intensity)
+pdata$Photo_Intensity <- floor(pdata$Photo_Intensity)
+table(pdata$Weave_Intensity)
+pdata$Weave_Intensity <- floor(pdata$Weave_Intensity)
+table(pdata$Photo_Neg_Pos)
+pdata$Photo_Neg_Pos <- floor(pdata$Photo_Neg_Pos)
+table(pdata$Weave_Neg_Pos)
+pdata$Weave_Neg_Pos <- floor(pdata$Weave_Neg_Pos)
+# for the experience questions, treat no response as a "No"
+table(pdata$Art)
+pdata$Art <- ifelse(pdata$Art == 1, "Yes", "No")
+pdata$Art <- factor(pdata$Art, ordered <- c("Yes", "No"))
+pdata[is.na(pdata$Art), "Art"] <- "No"
+table(pdata$Science)
+pdata$Science <- ifelse(pdata$Science == 1, "Yes", "No")
+pdata$Science <- factor(pdata$Science, ordered <- c("Yes", "No"))
+pdata[is.na(pdata$Science), "Science"] <- "No"
+table(pdata$Photography)
+pdata$Photography <- ifelse(pdata$Photography == 1, "Yes", "No")
+pdata$Photography <- factor(pdata$Photography, ordered <- c("Yes", "No"))
+pdata[is.na(pdata$Photography), "Photography"] <- "No"
+table(pdata$Weaving)
+pdata$Weaving <- ifelse(pdata$Weaving == 1, "Yes", "No")
+pdata$Weaving <- factor(pdata$Weaving, ordered <- c("Yes", "No"))
+pdata[is.na(pdata$Weaving), "Weaving"] <- "No"
+# The age is a very wide spread, and there are 31 unknown entries.  Rather
+# than make assumptions such as mean or median, which will might fuzz the
+# results in the age 41 range I'd rather leave out the observations which
+# are NA in any analysis involving age
+table(pdata$Age)
+sum(is.na(pdata$Age))
+mean(pdata$Age[!is.na(pdata$Age)])
+median(pdata$Age[!is.na(pdata$Age)])
+# Gender might be left blank by intent (eg, a transgendered person), but again
+# I'd rather leave it out of gender-based analysis because the unknown value
+# is nearly 10% of the total and could skew results if assigned incorrectly
+ sum(is.na(pdata$Gender))
+ sum(is.na(pdata$Gender))/dim(pdata)[1]
+# The gender entry of "7", by contrast is almost certainly a data entry error
+# checking the paper, it looks like this should be "F"
+# (7 can look like a 1 or a 7, but I'll flag it as NA until we get paper confirmation
+ table(pdata$Gender)
+ pdata$Gender <- ifelse(pdata$Gender == 1, "Male", ifelse(pdata$Gender %in% c(2,7), "Female", NA))
+ pdata$Gender <- factor(pdata$Gender, ordered <- c("Male", "Female"))
+# Education is a coded value that corresponds roughly to years, with 12 = High School
+ table(pdata$Education)
+ table(pdata$Age[is.na(pdata$Education)])
+ table(pdata$Education[pdata$Age == 9])
+# Set education for the two 9 year olds to 4
+ pdata$Education[pdata$Age == 9] <- 4
+ table(pdata$Education)
+ table(pdata$Age[is.na(pdata$Education)])
+# Reduce factors to the following:
+# "Gr1-5", "Gr6-8", "Gr9-11", "High_School", "Some_College", 
+# "AA_Degree", "BA_BS", "MA_MS", "PHD_MD"
+pdata$Education <- ifelse(pdata$Education < 6, "Gr1-5",
+                   ifelse(pdata$Education < 9, "Gr6-8",
+                   ifelse(pdata$Education < 12, "Gr9-11",
+                   ifelse(pdata$Education < 13, "High_School",
+                   ifelse(pdata$Education < 14, "Some_College",
+                   ifelse(pdata$Education < 16, "AA_Degree",
+                   ifelse(pdata$Education < 18, "BA_BS",
+                   ifelse(pdata$Education < 21, "MA_MS",  "PHD_MD"))))))))
+pdata$Education <- factor(pdata$Education, ordered <- c("Gr1-5", "Gr6-8", "Gr9-11", 
+            "High_School", "Some_College", "AA_Degree", "BA_BS", "MA_MS", "PHD_MD"))
+table(pdata$Education)
+## now group ages into factors of 10 years each
+pdata$AgeRange <- ifelse(pdata$Age <13 , "Child",
+                  ifelse(pdata$Age <20 , "Teenage",
+                  ifelse(pdata$Age <30 , "Twenties",
+                  ifelse(pdata$Age <40 , "Thirties",
+                  ifelse(pdata$Age <50 , "Fourties",
+                  ifelse(pdata$Age <60 , "Fifties",
+                  ifelse(pdata$Age <70 , "Sixties",
+                  ifelse(pdata$Age <80 , "Seventies",
+                  ifelse(pdata$Age <90 , "Eighties", "Over 90")))))))))
+pdata$AgeRange <- factor(pdata$AgeRange, ordered <- c("Child", "Teenage",
+                  "Twenties", "Thirties", "Fourties", "Fifties", "Sixties",
+                  "Seventies", "Eighties", "Over 90"))
+
+
+```
+
+Now create Houston data in same format.  As the word columns are missing we'll start by just cloning the structure of the pdata table, then add the emotion word columns later.
+
+```{R}
+hdata <- pdata[1 == 2, ]
+dim(houston1)[1] == length(unique(houston1$ID.Number))
+for (i in 1:dim(houston1)[1]){
+ hdata[i,"ID"] <- houston1$ID.Number[i]
+} # end loop to create subject records
+## set First Piece
+table(houston1$First.piece)
+sum(is.na(houston1$First.piece))
+hdata$FirstViewed <- as.factor(ifelse(houston1$First.piece == 1, "Photo", "Weave"))
+table(hdata$FirstViewed)
+## set Emotion Intensity
+# Check the data ranges to be sure nothing is out of bounds
+table(houston1$First_Image_Rate_Intensity_Emotion)
+table(houston1$Second_Image_Rate_Intensity_Emotion)
+# Reorganize the data by A and B, rather than First and Second
+
+hdata[hdata$FirstViewed == "Photo", 
+      "Photo_Intensity"] <- houston1[houston1$First.piece == 1, 
+                                        "First_Image_Rate_Intensity_Emotion"]
+hdata[hdata$FirstViewed == "Weave", 
+      "Photo_Intensity"] <- houston1[houston1$First.piece == 2, 
+                                        "Second_Image_Rate_Intensity_Emotion"]
+hdata[hdata$FirstViewed == "Weave", 
+      "Weave_Intensity"] <- houston1[houston1$First.piece == 2, 
+                                        "First_Image_Rate_Intensity_Emotion"]
+hdata[hdata$FirstViewed == "Photo", 
+      "Weave_Intensity"] <- houston1[houston1$First.piece == 1, 
+                                        "Second_Image_Rate_Intensity_Emotion"]
+sum(is.na(hdata$Photo_Intensity)) + sum(is.na(hdata$Weave_Intensity)) ==
+  sum(is.na(houston1$First_Image_Rate_Intensity_Emotion)) + 
+    sum(is.na(houston1$Second_Image_Rate_Intensity_Emotion))
+## set Neg/Pos ratio
+# Check the data ranges to be sure nothing is out of bounds
+table(houston1$First_Image_Rate_Intensity_NegPosReact)
+table(houston1$Second_Image_Rate_Intensity_NegPosReact)
+hdata[hdata$FirstViewed == "Photo", 
+      "Photo_Neg_Pos"] <- houston1[houston1$First.piece == 1, 
+                                        "First_Image_Rate_Intensity_NegPosReact"]
+hdata[hdata$FirstViewed == "Weave", 
+      "Photo_Neg_Pos"] <- houston1[houston1$First.piece == 2, 
+                                        "Second_Image_Rate_Intensity_NegPosReact"]
+hdata[hdata$FirstViewed == "Weave", 
+      "Weave_Neg_Pos"] <- houston1[houston1$First.piece == 2, 
+                                        "First_Image_Rate_Intensity_NegPosReact"]
+hdata[hdata$FirstViewed == "Photo", 
+      "Weave_Neg_Pos"] <- houston1[houston1$First.piece == 1, 
+                                        "Second_Image_Rate_Intensity_NegPosReact"]
+sum(is.na(hdata$Photo_Neg_Pos)) + sum(is.na(hdata$Weave_Neg_Pos)) ==
+  sum(is.na(houston1$First_Image_Rate_Intensity_NegPosReact)) + 
+    sum(is.na(houston1$Second_Image_Rate_Intensity_NegPosReact))
+# There is one value in data set to intensity = 12.  Reduce to 10
+hdata[hdata$Weave_Intensity == 12 & 
+      !(is.na(hdata$Weave_Intensity )), ]$Weave_Intensity <- 10
+# reduce partial values to integers
+hdata$Photo_Intensity <- floor(hdata$Photo_Intensity)
+hdata$Weave_Intensity <- floor(hdata$Weave_Intensity)
+hdata$Photo_Neg_Pos <- floor(hdata$Photo_Neg_Pos)
+hdata$Weave_Neg_Pos <- floor(hdata$Weave_Neg_Pos)
+# for the experience questions, treat no response as a "No"
+table(houston1$Art_Experience)
+# the "8" is an outlier.  Look at the whole record
+ houston1[houston1$Art_Experience == 8 & !is.na(houston1$Art_Experience), ]
+# it is clear that this record was shifted one column, starting with 
+# Second_Image_Rate_Intensity_NegPosReact and ending with Photography Years.  
+# correct values should be:
+hdata[hdata$ID == 137, "Weave_Neg_Pos"] <- 8
+# then Art should be "Yes" (= 1 in "years", set to 8 in database)
+hdata$Art <- ifelse(houston1$Art_Experience %in% c(1,8), "Yes", "No")
+hdata$Art <- factor(hdata$Art, ordered <- c("Yes", "No"))
+hdata[is.na(hdata$Art), "Art"] <- "No"
+# then Science should be "NO" if value = 3 (was 2 in "years" offset value)
+table(houston1$Scientific_Experiments)
+# the basic formula already sets values other than 1 to "No"
+hdata$Science <- ifelse(houston1$Scientific_Experiments == 1, "Yes", "No")
+hdata$Science <- factor(hdata$Science, ordered <- c("Yes", "No"))
+hdata[is.na(hdata$Art), "Science"] <- "No"
+# in Photography, the shifted value is NA, so we have to add it later
+table(houston1$Photography_Experience)
+hdata$Photography <- ifelse(houston1$Photography_Experience == 1, "Yes", "No")
+hdata[hdata$ID == 137, "Photography"] <- "Yes"
+hdata$Photography <- factor(hdata$Photography, ordered <- c("Yes", "No"))
+hdata[is.na(hdata$Photography), "Photography"] <- "No"
+# the weaving entry was no longer shifted, so the rest will proceed normally
+table(houston1$Weaving_Experience)
+hdata$Weaving <- ifelse(houston1$Weaving_Experience == 1, "Yes", "No")
+hdata$Weaving <- factor(hdata$Weaving, ordered <- c("Yes", "No"))
+hdata[is.na(hdata$Weaving), "Weaving"] <- "No"
+# The age is a very wide spread, and there are 53 unknown entries.  Rather
+# than make assumptions such as mean or median, which will might fuzz the
+# results in the age 47-52 range I'd rather leave out the observations which
+# are NA in any analysis involving age
+hdata$Age <- houston1$Age
+table(hdata$Age)
+sum(is.na(hdata$Age))
+mean(hdata$Age[!is.na(hdata$Age)])
+median(hdata$Age[!is.na(hdata$Age)])
+# This time over 10% declined to state gender.  
+# I'll exclude those from gender-based statistics
+ hdata$Gender <- houston1$Gender
+ sum(is.na(hdata$Gender))
+ sum(is.na(hdata$Gender))/dim(hdata)[1]
+# The gender entry of "7", by contrast is almost certainly a data entry error
+# Paper check showed "7" was actually "F"
+ table(hdata$Gender)
+ hdata$Gender <- ifelse(hdata$Gender == 1, "Male", 
+                       ifelse(hdata$Gender %in% c(2,7), "Female", NA))
+ hdata$Gender <- factor(hdata$Gender, ordered <- c("Male", "Female"))
+
+# Education has nobody in the age range where I can predict education by age,
+# so will leave the NA records alone and ignore when doing statistics by education
+ hdata$Education <- houston1$education
+ table(hdata$Education)
+ table(hdata$Age[is.na(hdata$Education)])
+# Categories are otherwise the same as with the Pittsburgh data
+# Reduce factors to the following:
+# "Gr1-5", "Gr6-8", "Gr9-11", "High_School", "Some_College", "AA_Degree", 
+# "BA_BS", "MA_MS", "PHD_MD"
+hdata$Education <- ifelse(hdata$Education < 6, "Gr1-5",
+                   ifelse(hdata$Education < 9, "Gr6-8",
+                   ifelse(hdata$Education < 12, "Gr9-11",
+                   ifelse(hdata$Education < 13, "High_School",
+                   ifelse(hdata$Education < 14, "Some_College",
+                   ifelse(hdata$Education < 16, "AA_Degree",
+                   ifelse(hdata$Education < 18, "BA_BS",
+                   ifelse(hdata$Education < 21, "MA_MS",  "PHD_MD"))))))))
+hdata$Education <- factor(hdata$Education, ordered <- c("Gr1-5", "Gr6-8", "Gr9-11",  
+           "High_School", "Some_College", "AA_Degree", "BA_BS", "MA_MS", "PHD_MD"))
+table(hdata$Education)
+# add in date range information
+hdata$AgeRange <- ifelse(hdata$Age <13 , "Child",
+                  ifelse(hdata$Age <20 , "Teenage",
+                  ifelse(hdata$Age <30 , "Twenties",
+                  ifelse(hdata$Age <40 , "Thirties",
+                  ifelse(hdata$Age <50 , "Fourties",
+                  ifelse(hdata$Age <60 , "Fifties",
+                  ifelse(hdata$Age <70 , "Sixties",
+                  ifelse(hdata$Age <80 , "Seventies",
+                  ifelse(hdata$Age <90 , "Eighties", "Over 90")))))))))
+hdata$AgeRange <- factor(hdata$AgeRange, ordered <- c("Child", "Teenage",
+                  "Twenties", "Thirties", "Fourties", "Fifties", "Sixties",
+                  "Seventies", "Eighties", "Over 90"))
+## basic processing of the Word variables to eliminate NA and case
+pdata$Photo_Word <- ifelse(is.na(pdata$Photo_Word),  "", 
+                           tolower(pdata$Photo_Word))
+pdata$Weave_Word <- ifelse(is.na(pdata$Weave_Word),  "", 
+                           tolower(pdata$Weave_Word))
+```
+
+Finally add in the emotion words, from the large number of text files in the raw data.
+
+```{R}
+for (i in hdata$ID) {
+ if (hdata$FirstViewed[i] == "Photo") {
+  pfname <- paste("rawdata/", i, "_Photo_First_Question_3b.txt", sep="")
+  wfname <- paste("rawdata/", i, "_Photo_First_Question_6b.txt", sep="")
+ } else {
+  wfname <- paste("rawdata/", i, "_Weave_First_Question_3b.txt", sep="")
+  pfname <- paste("rawdata/", i, "_Weave_First_Question_6b.txt", sep="")
+ } # end set filename
+ if (file.exists(pfname)) {
+   hdata[hdata$ID ==i, "Photo_Word"] <- scan(pfname, character(0))[1]
+ } # 
+ if (file.exists(wfname)) {
+     hdata[hdata$ID ==i, "Weave_Word"] <- scan(wfname, character(0))[1]
+ } # 
+} # end loop through subjects
+## basic processing of the Word variables to eliminate NA and case
+hdata$Photo_Word <- ifelse(is.na(hdata$Photo_Word),  "", 
+                           tolower(hdata$Photo_Word))
+hdata$Weave_Word <- ifelse(is.na(hdata$Weave_Word),  "", 
+                           tolower(hdata$Weave_Word))
+```
+
+### Check for significance of printing errors
+(see file "rawdata/printing_errors.txt")
+in Pittsburgh, the referenced ID's go from 1-199 for A and
+001-197 for B.  The "B" are in range 200-396 in pdata, so
+we adjust by adding 199 to the number provided in the error file
+
+```{R}
+pperr <- c(1:2,5:6,8:26,28:47,77,82,85:86,89,91:99,100:101,
+           103:108,114:118,122:129,132,141,146:148,158:159,
+           165:171,173:187,189,190,199:200,202:205,209:218,
+           220:221,233:238,240:267,281,298,302:325,331,339,
+           353,357,359:360,362:369,371:375,377:392,394:396)
+hperr <- c(42:53,58:63,69,72:90,117,119:121,159:160,
+           307:313,315:328,330:335,342:359,381,393:399,391)
+
+t.test(pdata[pperr, ]$Photo_Intensity, pdata[-pperr, ]$Photo_Intensity)$p.value
+t.test(pdata[pperr, ]$Weave_Intensity, pdata[-pperr, ]$Weave_Intensity)$p.value
+t.test(pdata[pperr, ]$Photo_Neg_Pos, pdata[-pperr, ]$Photo_Neg_Pos)$p.value
+t.test(pdata[pperr, ]$Weave_Neg_Pos, pdata[-pperr, ]$Weave_Neg_Pos)$p.value
+t.test(hdata[hperr, ]$Photo_Intensity, hdata[-hperr, ]$Photo_Intensity)$p.value
+t.test(hdata[hperr, ]$Photo_Intensity, hdata[-hperr, ]$Weave_Intensity)$p.value
+t.test(hdata[hperr, ]$Photo_Neg_Pos, hdata[-hperr, ]$Photo_Neg_Pos)$p.value
+t.test(hdata[hperr, ]$Weave_Neg_Pos, hdata[-hperr, ]$Weave_Neg_Pos)$p.value
+
+```
+Conclusion is we can include the recods from the printing error, as none of the
+emotional intensity or neg_pos values were significantly different in the population
+with the printing error and the population without the printing error.              
+
+### Add insights gained from Statistical Analysis
+Correct for FirstViewed bias - statistical analysis shows that 
+Weave_Pos_Neg should be adjusted if FirstViewed = Weave in both
+Pittsburgh and Houston
+```{R}
+pAdj_Neg_Pos <- pdata[pdata$FirstViewed == "Weave", ]$Weave_Neg_Pos - 1
+pAdj_Neg_Pos[pAdj_Neg_Pos < 0 & !is.na(pAdj_Neg_Pos)] <- 0
+pdata$Weave_Adj_Neg_Pos <- pdata$Weave_Neg_Pos
+pdata[pdata$FirstViewed == "Weave", ]$Weave_Adj_Neg_Pos <- pAdj_Neg_Pos
+hAdj_Neg_Pos <- hdata[hdata$FirstViewed == "Weave", ]$Weave_Neg_Pos - 1
+hAdj_Neg_Pos[hAdj_Neg_Pos < 0 & !is.na(hAdj_Neg_Pos)] <- 0
+hdata$Weave_Adj_Neg_Pos <- hdata$Weave_Neg_Pos
+hdata[hdata$FirstViewed == "Weave", ]$Weave_Adj_Neg_Pos <- hAdj_Neg_Pos
+```
+
+Merge Photo and Weave words that are similar.  In some cases I had to go to
+the detailed reactions on the survey to interpret the word.  wordmap.csv
+contains the relevant mappings
+```{R}
+wordmap <- read.csv("rawdata/wordmap.csv", stringsAsFactors = FALSE)
+pdata$Adj_Photo_Word <- pdata$Photo_Word
+ppidx <- pdata[pdata$Photo_Word %in% wordmap$baseword, ]$ID
+for (i in ppidx) {
+  pdata[i, "Adj_Photo_Word"] <- wordmap[wordmap$baseword == 
+                                        pdata[i, "Photo_Word"], "adjword"]
+}
+pdata$Adj_Weave_Word <- pdata$Weave_Word
+pwidx <- pdata[pdata$Weave_Word %in% wordmap$baseword, ]$ID
+for (i in pwidx) {
+  pdata[i, "Adj_Weave_Word"] <- wordmap[wordmap$baseword == 
+                                        pdata[i, "Weave_Word"], "adjword"]
+}
+hdata$Adj_Photo_Word <- hdata$Photo_Word
+hpidx <- hdata[hdata$Photo_Word %in% wordmap$baseword, ]$ID
+for (i in hpidx) {
+  hdata[i, "Adj_Photo_Word"] <- wordmap[wordmap$baseword == 
+                                        hdata[i, "Photo_Word"], "adjword"]
+}
+hdata$Adj_Weave_Word <- hdata$Weave_Word
+hwidx <- hdata[hdata$Weave_Word %in% wordmap$baseword, ]$ID
+for (i in hwidx) {
+  hdata[i, "Adj_Weave_Word"] <- wordmap[wordmap$baseword == 
+                                        hdata[i, "Weave_Word"], "adjword"]
+}
+
+```
+
+Reduce the data set the positive and negative reactions, plus age factors
+for use in graphic visualisations (again based on statistical factor analysis)
+```{R}
+pgrdata <- pdata[, c("Weave_Adj_Neg_Pos", "Photo_Neg_Pos", "Age", 
+                     "Adj_Photo_Word", "Adj_Weave_Word")]
+pgrdata <- pgrdata[!is.na(pgrdata$Weave_Adj_Neg_Pos), ]
+pgrdata <- pgrdata[!is.na(pgrdata$Photo_Neg_Pos), ]
+pgrdata <- pgrdata[!is.na(pgrdata$Age), ]
+pgrdata$Weave_Minus_Photo <- pgrdata$Weave_Adj_Neg_Pos - pgrdata$Photo_Neg_Pos
+pgrdata$Age_Breakpoint <- as.factor(ifelse(pgrdata$Age < 50, "Under50", "50+")) 
+
+hgrdata <- hdata[, c("Weave_Adj_Neg_Pos", "Photo_Neg_Pos", "Age", 
+                     "Adj_Photo_Word", "Adj_Weave_Word")]
+hgrdata <- hgrdata[!is.na(hgrdata$Weave_Adj_Neg_Pos), ]
+hgrdata <- hgrdata[!is.na(hgrdata$Photo_Neg_Pos), ]
+hgrdata <- hgrdata[!is.na(hgrdata$Age), ]
+hgrdata$Weave_Minus_Photo <- hgrdata$Weave_Adj_Neg_Pos - hgrdata$Photo_Neg_Pos
+hgrdata$Age_Breakpoint <- as.factor(ifelse(hgrdata$Age < 30, "Under30", "30+"))
+```
+
+
+### Data processing is complete
+pdata and hdata are used by the statistical analysis
+pgrdata and hgrdata are used for the visualizations
+```{R}
+str(pdata)
+str(pgrdata)
+str(hdata)
+str(hgrdata)
+```

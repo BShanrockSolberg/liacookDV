@@ -1,0 +1,330 @@
+In the following, Red indicates a stronger positive reaction to Photo,
+Cyan a stronger positive reaction to Weave, Purple an equal reaction.
+
+When age groups are compared, younger is on the left, older is on the right
+
+When comparing age groups, the line thicknesses are pro-rated to what
+they would be if sample sizes were the same in both groups.  This makes
+the difference in response a lot easier to see.
+
+The images are presented overa stylized "Face" with light and dark regions vaguely similar to the photograps, so the impact of the colors, lines and shapes
+could be more easily seen.  These graphs all enforce a 4/3 aspect ratio.
+
+## Matplots
+
+I'm fairly happy with how the matplots turned out, you could tweak
+line thickness or color choices but the basic idea seems sound.
+
+### Pittsburgh, full data set
+
+```{R echo = FALSE}
+source("lc.compare.R")
+
+psum <- dim(pgrdata)[1]
+pysum <- dim(pgrdata[pgrdata$Age < 50, ])[1]
+posum <- dim(pgrdata[pgrdata$Age >= 50, ])[1]
+par(mfcol = c(1,1), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "Snow2", 
+     mai = c(0,0,0,0), col.lab = "Snow2", tcl = 0)
+lc.matplot(pgrdata$Photo_Neg_Pos, pgrdata$Weave_Adj_Neg_Pos)
+```
+
+### Pittsburgh, under 50 (left) vs over 50 (right)
+
+The difference here is that the right side has almost no blue,
+the thicnkess of the blue lines are very narrow.
+
+```{R echo = FALSE}
+par(mfcol = c(1,2), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "Snow2", 
+     mai = c(0,0,0,0), col.lab = "Snow2", tcl = 0)
+lc.matplot(pgrdata[pgrdata$Age < 50, ]$Photo_Neg_Pos,
+           pgrdata[pgrdata$Age < 50, ]$Weave_Adj_Neg_Pos, 
+           face = .66, thick = psum/pysum) 
+lc.matplot(pgrdata[pgrdata$Age >= 50, ]$Photo_Neg_Pos,
+           pgrdata[pgrdata$Age >= 50, ]$Weave_Adj_Neg_Pos, 
+           face = .66, thick = psum/posum) 
+```    
+
+### Houston, full data set
+
+```{R echo = FALSE}
+hsum <- dim(hgrdata)[1]
+hysum <- dim(hgrdata[hgrdata$Age < 30, ])[1]
+hosum <- dim(hgrdata[hgrdata$Age >= 30, ])[1]
+par(mfcol = c(1,1), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "Snow2", 
+     mai = c(0,0,0,0), col.lab = "Snow2", tcl = 0)
+lc.matplot(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos)
+``` 
+
+### Houston, under 30 (left) vs over 30 (right)
+
+Houston's under 30 subjects had a much more uniform response
+than the other categories, which show in the very thick lines.
+
+Again the older population is defined more by lack of much blue
+than thick red lines - their exact response varied quite a bit.
+
+```{R echo = FALSE}
+par(mfcol = c(1,2), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "Snow2", 
+     mai = c(0,0,0,0), col.lab = "Snow2", tcl = 0)
+lc.matplot(hgrdata[hgrdata$Age < 30, ]$Photo_Neg_Pos,
+           hgrdata[hgrdata$Age < 30, ]$Weave_Adj_Neg_Pos, 
+           face = .66, thick = hsum/hysum) 
+lc.matplot(hgrdata[hgrdata$Age >= 30, ]$Photo_Neg_Pos,
+           hgrdata[hgrdata$Age >= 30, ]$Weave_Adj_Neg_Pos, 
+           face = .66, thick = hsum/hosum) 
+``` 
+
+## Spot Graphs
+
+The spot sizes were prorated in the age group data sets to appear
+the same relative size as if both populations were the same.
+
+I think there probably is a better shape than "circle" for this
+"hollow" versions of the various shapes are also possible but I think
+if you go down that road the + or x or * shapes are probably better
+and likely easier to weave.  I have a memory that diagonals are hard,
+so the square or "+" shapes might be of interest.  
+
+I believe the color coded tickmarks are superior than trying to put
+a grid on as well.
+
+Starts with just the spots like the original graphs, allowing focus on the
+data differences and see how that ties in with what
+the matplots show.  All of the graphical options are then listed
+with a single plot, so they're easier to compare.
+
+### Pittsburgh, full data set
+
+```{R echo = FALSE}
+par(mfcol = c(1,1), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "dimgrey", 
+     mai = c(.5,1,.5,.5), col.lab = "dimgrey", tcl = 0)
+
+lc.spots(pgrdata$Photo_Neg_Pos, pgrdata$Weave_Adj_Neg_Pos
+     , size = 1.85)
+```
+
+### Pittsburgh, under 50 (left) vs over 50 (right)
+
+```{R echo = FALSE}
+par(mfcol = c(1,2), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "dimgrey", 
+     mai = c(1,.2,1,.2), col.lab = "dimgrey", tcl = 0)
+
+lc.spots(pgrdata[pgrdata$Age < 50, ]$Photo_Neg_Pos,
+           pgrdata[pgrdata$Age < 50, ]$Weave_Adj_Neg_Pos, 
+           face = .66, size = 1.55*psum/pysum)  
+
+lc.spots(pgrdata[pgrdata$Age >= 50, ]$Photo_Neg_Pos,
+           pgrdata[pgrdata$Age >= 50, ]$Weave_Adj_Neg_Pos, 
+           face = .66, size = 1.55*psum/posum) 
+```
+
+### Houston, full data set
+
+```{R echo = FALSE}
+par(mfcol = c(1,1), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "dimgrey", 
+     mai = c(.5,1,.5,.5), col.lab = "dimgrey", tcl = 0)
+
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos
+     , size = 1.85)
+
+```
+
+### Houston, under 30 (left) vs over 30 (right)
+
+```{R echo = FALSE}
+par(mfcol = c(1,2), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "dimgrey", 
+     mai = c(1.5,.2,1.5,.2), col.lab = "dimgrey", tcl = 0)
+
+lc.spots(hgrdata[hgrdata$Age < 30, ]$Photo_Neg_Pos,
+           hgrdata[hgrdata$Age < 30, ]$Weave_Adj_Neg_Pos, 
+           face = .66, size = 1.55*hsum/hysum)  
+
+lc.spots(hgrdata[hgrdata$Age >= 30, ]$Photo_Neg_Pos,
+           hgrdata[hgrdata$Age >= 30, ]$Weave_Adj_Neg_Pos, 
+           face = .66, size = 1.55*hsum/hosum) 
+```
+
+## Graphic options
+
+Uses the Pittsburgh Spots full population as the example.
+
+Thicknesses of lines on the +, x, * or other similar line-shapes
+can be adjusted in my graphics program, I just went with the defaults
+to illustrate the idea.  The sizing that was ok for spots might not
+be right for a line-drawing (it might need to be bigger to show up
+well if it isn't a solid shape).
+
+### Gridlines
+
+```{R echo = FALSE}
+
+par(mfcol = c(1,1), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "dimgrey", 
+     mai = c(.5,1,.5,.5), col.lab = "dimgrey", tcl = 0)
+
+lc.spots(pgrdata$Photo_Neg_Pos, pgrdata$Weave_Adj_Neg_Pos, grid=TRUE
+     , size = 1.85)
+```
+### Shapes
+
+Some of the line shapes are interesting although they might be hard
+to weave.  
+
+```{R echo = FALSE}
+
+par(mfcol = c(1,1), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "dimgrey", size = 2,
+     mai = c(.5,1,.5,.5), col.lab = "dimgrey", tcl = 0)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 3
+     , size = 1.85)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 4
+     , size = 1.85)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 7
+     , size = 1.85)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 8
+     , size = 1.85)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 11
+     , size = 1.85)
+```
+
+```{R echo = FALSE}
+par(mfcol = c(1,1), bg = "dimgrey", las=1, col = "dimgrey", 
+     col.main = "Snow2", col.axis = "dimgrey", 
+     mai = c(.5,1,.5,.5), col.lab = "dimgrey", tcl = 0)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 12
+     , size = 1.85)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 15
+     , size = 1.85)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 17
+     , size = 1.85)
+lc.spots(hgrdata$Photo_Neg_Pos, hgrdata$Weave_Adj_Neg_Pos, ptype = 18
+     , size = 1.85)
+```
+
+There were some interesting differences in the word choices, but
+delving deeper into the text I found a number where more than one
+emotion was present (eg, Anger and Loneliness) so these words 
+are clearly just the more dominant of the two.
+
+The lc_clean program performed scrubbing of similar words or synonyms to make the 
+groupings easier to see (so Sad and Sadness were both mapped to Sad)
+
+## Word Pairings
+
+These are a few simple tables showing the largest shifts in
+reaction by individual subjects.  A positive number indicates 
+the Weave has a more positive response, a negative number 
+indicates the Photo has a more positive response.
+
+The idea of these charts is to see what changed emotionally during
+the largest shifts.
+
+### Pittsburgh Photo More Positive
+```{R echo = FALSE}
+library(stats)
+pwsort <- pgrdata[, c("Adj_Photo_Word", "Adj_Weave_Word", "Weave_Minus_Photo")]
+names(pwsort) <- c("Photo", "Weave", "Change")
+
+head(pwsort[order(pwsort$Change),],20)
+```
+### Pittsburgh Weave More Positive
+```{R echo = FALSE}
+head(pwsort[order(pwsort$Change, decreasing = TRUE),],20)
+```
+
+### Houston Photo More Positive
+```{R echo = FALSE}
+hwsort <- hgrdata[, c("Adj_Photo_Word", "Adj_Weave_Word", "Weave_Minus_Photo")]
+names(hwsort) <- c("Photo", "Weave", "Change")
+
+head(hwsort[order(hwsort$Change),],20)
+```
+### Houston Weave More Positive
+```{R echo = FALSE}
+head(hwsort[order(hwsort$Change, decreasing = TRUE),],20)
+```
+
+## Wordclouds
+
+In the following, we stay with the Red-Blue convention, using
+Red for Photo Words and Blue for Weave Words.
+
+All of these plots are 4x4, with left side Photo, right side Word,
+top and bottom being something different, as indicated by labels.
+
+When sample sizes are different, the smaller samples are pro-rated
+so size will be similar in both sets of graphs
+
+### Pittsburgh (top) vs Houston (bottom)
+```{R echo = FALSE}
+library(wordcloud)
+library(tm)
+par(mfcol=c(2,2), bg="snow2")
+wordcloud(pgrdata$Adj_Photo_Word, colors = "#FF0000")
+wordcloud(hgrdata$Adj_Photo_Word, colors = "#FF0000")
+wordcloud(pgrdata$Adj_Weave_Word, colors = "#55CCFF")
+wordcloud(hgrdata$Adj_Weave_Word, colors = "#55CCFF")
+```
+
+### Pittsburgh under 50 (top) vs 50+ (bottom)
+```{R echo = FALSE}
+par(mfcol=c(2,2), bg="snow2")
+wordcloud(pgrdata[pgrdata$Age < 50, ]$Adj_Photo_Word, 
+          colors = "#FF0000")
+wordcloud(replicate(2,pgrdata[pgrdata$Age >= 50, ]$Adj_Photo_Word),
+          colors = "#FF0000")
+wordcloud(pgrdata[pgrdata$Age < 50, ]$Adj_Weave_Word,
+          colors = "#55CCFF")
+wordcloud(replicate(2,pgrdata[pgrdata$Age >= 50, ]$Adj_Weave_Word),
+          colors = "#55CCFF")
+```
+
+### Houston under 30 (top) vs 30+ (bottom)
+```{R echo = FALSE}
+par(mfcol=c(2,2), bg="snow2")
+wordcloud(replicate(4, hgrdata[hgrdata$Age < 30, ]$Adj_Photo_Word),
+          colors = "#FF0000", min.freq=5)
+wordcloud(hgrdata[hgrdata$Age >= 30, ]$Adj_Photo_Word,
+          colors = "#FF0000")
+wordcloud(replicate(4, hgrdata[hgrdata$Age < 30, ]$Adj_Weave_Word),
+          colors = "#55CCFF", min.freq=5)
+wordcloud(hgrdata[hgrdata$Age >= 30, ]$Adj_Weave_Word,
+          colors = "#55CCFF")
+```
+
+### Pittsburgh Weave more Negative (top) vs Weave More Positive (bottom)
+```{R echo = FALSE}
+par(mfcol=c(2,2), bg="snow2")
+wordcloud(pgrdata[pgrdata$Weave_Minus_Photo < 0, ]$Adj_Photo_Word, 
+          colors = "#FF0000")
+wordcloud(replicate(2,pgrdata[pgrdata$Weave_Minus_Photo > 0, ]$Adj_Photo_Word),
+          colors = "#FF0000")
+wordcloud(pgrdata[pgrdata$Weave_Minus_Photo < 0, ]$Adj_Weave_Word,
+          colors = "#55CCFF")
+wordcloud(replicate(2,pgrdata[pgrdata$Weave_Minus_Photo > 0, ]$Adj_Weave_Word),
+          colors = "#55CCFF")
+```
+
+### Houston Weave more Negative (top) vs Weave More Positive (bottom)
+```{R echo = FALSE}
+par(mfcol=c(2,2), bg="snow2")
+wordcloud(hgrdata[hgrdata$Weave_Minus_Photo < 0, ]$Adj_Photo_Word, 
+          colors = "#FF0000")
+wordcloud(replicate(2,hgrdata[hgrdata$Weave_Minus_Photo > 0, ]$Adj_Photo_Word),
+          colors = "#FF0000")
+wordcloud(hgrdata[hgrdata$Weave_Minus_Photo < 0, ]$Adj_Weave_Word,
+          colors = "#55CCFF")
+wordcloud(replicate(2,hgrdata[hgrdata$Weave_Minus_Photo > 0, ]$Adj_Weave_Word),
+          colors = "#55CCFF")
+```
+
+
+

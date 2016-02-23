@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Lia Cook Weave vs Photo: Statistics</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Lia Cook Weave vs Photo: Statistics</h1>
+
+<h3>By Bradley Shanrock-Solberg 3-Jan-2016</h3>
+
+<h2>Synopsis</h2>
+
+<p>The primary goal of the study was to look for whether a print of the photo vs a weave of the photo caused changes in emotional intensity (0-10 scale, 10 = high) and whether the emotion felt was a negative or positive emotion (negative = 0, positive = 10).</p>
+
+<p>The experiment was controlled so that roughly half of the subjects saw the photo first, and the other half the weave first.</p>
+
+<p>The subjects varied widely in experience with science, art, weaving and photography, and had a broad range of age and education, although of course all were the sort of people who would show up to an art exhibit and participate in a survey.</p>
+
+<p>The tests showed that the most consistent factor was that if Photo was viewed first, a larger relative negative emotion would be felt when the Weave was viewed.  The reverse was not true.</p>
+
+<p>The Pittsburgh test showed an increase in emotional intensity for the Weave for age groups 30-50.</p>
+
+<p>The Houston test showed an increase in positive response to the Weave for age groups 30-50, and an increase in negative emotional response to the Weave for people with prior Art experience.</p>
+
+<p>When these significant effects were fitted to a model attempting to explain the response, the Pittsburgh intensity response by age showed no patterns between tests and did not provide a satisfactory model compared to &ldquo;noise&rdquo;.  The negative-positive response, by contrast seemed to provide a better fit if age was considered in addition to the First Viewed factor.  In both tests, the Child and Age 40-49 cohorts showed stronger positive emotions to Weave compared to all other age groups.</p>
+
+<p>After adjusting the data for the bias caused by First Viewed, key age breakpoints emerged in both studies,</p>
+
+<ul>
+<li>In Pittsburgh, subjects over 50 responded more negatively to the Weave than those under 50</li>
+<li>In Houston, subjects over 30 responded more negatively to the Weave than those under 30</li>
+<li>The Pittsburgh subjects had significantly more under 30 than Houston, and Houston had significantly more over 50 than Pittsburgh, explaining the differences seen in their overall reaction</li>
+<li>As the art was different in Pittsburgh vs Houston, there is no way to generalize results further across both location</li>
+</ul>
+
+<p>The three key populations of each study will be used as a basis for data visualizations:</p>
+
+<ul>
+<li>Total population by location</li>
+<li>Population Older Than Key Age Breakpoint for Location</li>
+<li>Population Younger than Key Age Breakpoint for location</li>
+</ul>
+
+<h2>Approach</h2>
+
+<p>First, a small series of paired student T-tests were done to establish whether there was any significant difference in responses for individuals between the photo and the weave.  </p>
+
+<p>Second the difference in Weave response minus Photo response was measured, as that captures the individual response, with a positive number indicating a better response to the Weave, negative a better response for Photo.  This number allows a unpaired t-tests  of change in response among subsets, comparing different age groups, or experience to see if the response was different.</p>
+
+<p>Finally a linear model attempting to fit the responses to a curve was created, eliminating parameters that did not show any impact in the T-tests and the fit was checked using Analysis of Variance (ANOVA) to see if adding parameters improved the fit.</p>
+
+<h2>Student T-Test of Equivalence</h2>
+
+<p>When significant differences were found, a histogram of the views is shown.
+pdata = Pittsburgh data, hdata = Houston Data.  Different photographs were used in both, the same image is used in Photo and Weave for the test.</p>
+
+<p>If p-value is below .05, the hypothesis that both values are the same is considered to be disproved.</p>
+
+<p>The function lc.dhist is shown in the appendix at the end of this document.</p>
+
+<h3>Photo vs Weave Paired Tests, Entire Population</h3>
+
+<pre><code class="r">t.test(pdata$Photo_Intensity, pdata$Weave_Intensity, 
+       paired = TRUE)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.5622718
+</code></pre>
+
+<pre><code class="r">t.test(hdata$Photo_Intensity, hdata$Weave_Intensity, 
+       paired = TRUE)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.659176
+</code></pre>
+
+<pre><code class="r">t.test(pdata$Photo_Neg_Pos, pdata$Weave_Neg_Pos, 
+       paired = TRUE)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.02502811
+</code></pre>
+
+<pre><code class="r">t.test(hdata$Photo_Neg_Pos, hdata$Weave_Neg_Pos, 
+       paired = TRUE)$p.value
+</code></pre>
+
+<pre><code>## [1] 1.297192e-07
+</code></pre>
+
+<pre><code class="r">par(bg = &quot;snow2&quot;, mfcol = c(2,1), las=1, col = &quot;Black&quot;,
+  col.main = &quot;Black&quot;,col.axis = &quot;Black&quot;,col.lab = &quot;Black&quot;,tcl = 0)
+lc.dhist(pdata$Photo_Neg_Pos, pdata$Weave_Neg_Pos, &quot;Photo&quot;, 
+  &quot;Weave&quot;, &quot;Pittsburgh Negative to Positive&quot;, hpair = TRUE)
+lc.dhist(hdata$Photo_Neg_Pos, hdata$Weave_Neg_Pos, &quot;Photo&quot;, 
+  &quot;Weave&quot;, &quot;Houston Negative to Positive&quot;, hpair = TRUE)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-2"/> </p>
+
+<h3>Photo vs Weave Tests, by First Viewed</h3>
+
+<p>Negative to Positive emotions were significantly different by First Viewed in both tests.</p>
+
+<p>Note that the Intensity had a better P-value in Houston even though it isn&#39;t considered significant.  We will see this again in some of the age numbers.</p>
+
+<pre><code class="r">t.test(pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Intensity - 
+  pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Photo_Intensity, 
+  pdata[pdata$FirstViewed == &quot;Photo&quot;, ]$Weave_Intensity - 
+  pdata[pdata$FirstViewed == &quot;Photo&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.925227
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Intensity - 
+  hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Photo_Intensity, 
+  hdata[hdata$FirstViewed == &quot;Photo&quot;, ]$Weave_Intensity - 
+  hdata[hdata$FirstViewed == &quot;Photo&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2762711
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Neg_Pos - 
+  pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Photo_Neg_Pos, 
+  pdata[pdata$FirstViewed == &quot;Photo&quot;, ]$Weave_Neg_Pos - 
+  pdata[pdata$FirstViewed == &quot;Photo&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.003478992
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Neg_Pos - 
+  hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Photo_Neg_Pos, 
+  hdata[hdata$FirstViewed == &quot;Photo&quot;, ]$Weave_Neg_Pos - 
+  hdata[hdata$FirstViewed == &quot;Photo&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 9.155094e-07
+</code></pre>
+
+<pre><code class="r">par(bg = &quot;snow2&quot;, mfcol = c(2,1), las=1, col = &quot;Black&quot;,
+  col.main = &quot;Black&quot;,col.axis = &quot;Black&quot;,col.lab = &quot;Black&quot;,tcl = 0)
+lc.dhist(pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Neg_Pos - 
+  pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Photo_Neg_Pos, 
+  pdata[pdata$FirstViewed == &quot;Photo&quot;, ]$Weave_Neg_Pos - 
+  pdata[pdata$FirstViewed == &quot;Photo&quot;, ]$Photo_Neg_Pos, &quot;Photo First&quot;,
+  &quot;Weave First&quot;, &quot;Pittsburgh Negative to Positive (Weave# - Photo#)&quot;)
+lc.dhist(hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Neg_Pos - 
+  hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Photo_Neg_Pos, 
+  hdata[hdata$FirstViewed == &quot;Photo&quot;, ]$Weave_Neg_Pos - 
+  hdata[hdata$FirstViewed == &quot;Photo&quot;, ]$Photo_Neg_Pos, &quot;Photo First&quot;,
+  &quot;Weave First&quot;, &quot;Houston Negative to Positive (Weave# - Photo#)&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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8ZSRG+689GE1BXz7dHvSKIXUGM21Et3p/bDgqSC8RRpl9qAeCaS+oI1S2jhdZHF3fvDhgknng5QXveMWXAecDfyUfXwIKGk/HlocBFL8NEp9AVG/qrTM2ZtmRez1oBfETgDPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVADPVAuDF6J7HdLnGnF/0dyHTfzShdZfuLpkcfJdylL8pCxEIeVPlLHQOhXVTzgMv7J+zLV3+U42QOlVivJFC8oNZ4JPrDgC+EiuqDp2sns4W0Q7LlGcLG/yT7zlVxXxle/BYlwpkt4B2IYRijDkfSv7nqGaqrwPKSq3zvEu0eI68G91KL7NL/rlexHi+q2bYWerT5evcRePxuPV5MtnUX4r96vQdrW7+qkhaCidreyXbqL5OCE1kciqoGhxyvElH+Iun8rsKe86PJPdBBRyfNz1j981VRjqCCqr6k08/Zgb75fh2TXAHAQdtT9xkzfi4eiGM94lWlwL/l0F+LbAlzrh0jTTyq6TG/ey+Fnun/pDoVMuOqHsSKnytEdh2UrZL91E83FCaiJxwIeLU536Uc5X1cEP1b1X9Vub3QQUcOzB6YVRtUcV2cYT7BFtfOt5Sh98YSofTWq8S7S4NrBLdSheLPBCnyqbz3b2VbfZuOvxU7vrDv/TH+7KsM7/1sU0ZdzVEHyq3M7WL72L6ebU2UWSKO7SZKsOVt3rRGYCCjiW1U+oa276w61usdtFXczG22tAsMPNy1hS412ixbXgLd7S9Ky4PJxY28OhA68HVZ2sVdT5vyr/c7845f1Ux1xq78ZWeqW3Md3kQCSU4i7ipQ7PizoqL3Z2E5Dv+Cv1T1f7QBj+hzoQ4+01oOtgq8Mtw1GkxrtEi2un+rpLnFY9rqWe4ayuFr3I1bvqxg68sMC/xN0d8eoYeVWDwukMt3RpFW6lWpFQiruJUo3ou7jW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" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<h3>Photo vs Weave Tests, by Art Experience</h3>
+
+<p>In the Houston test only, the Art experience showed as significant for positive/negative.</p>
+
+<p>The Houston sample was slightly biased in favor of Photo for Art=Yes, but probably not enough to explain the difference.</p>
+
+<p>For comparison, a graph of the Pittsburgh pos-neg test is shown, even though it was not significant.</p>
+
+<pre><code class="r">t.test(pdata[pdata$Art == &quot;Yes&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Art == &quot;Yes&quot;, ]$Photo_Intensity, 
+         pdata[pdata$Art == &quot;No&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Art == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2254987
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Art == &quot;Yes&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Art == &quot;Yes&quot;, ]$Photo_Intensity, 
+         hdata[hdata$Art == &quot;No&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Art == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.8908291
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Art == &quot;Yes&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Art == &quot;Yes&quot;, ]$Photo_Intensity, 
+         pdata[pdata$Art == &quot;No&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Art == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2254987
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Art == &quot;Yes&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Art == &quot;Yes&quot;, ]$Photo_Neg_Pos, 
+         hdata[hdata$Art == &quot;No&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Art == &quot;No&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.02703577
+</code></pre>
+
+<pre><code class="r">table(hdata$FirstViewed, hdata$Art)
+</code></pre>
+
+<pre><code>##        
+##         Yes  No
+##   Photo 113 107
+##   Weave 105 103
+</code></pre>
+
+<pre><code class="r">par(bg = &quot;snow2&quot;, mfcol = c(2,1), las=1, col = &quot;Black&quot;,
+  col.main = &quot;Black&quot;,col.axis = &quot;Black&quot;,col.lab = &quot;Black&quot;,tcl = 0)
+lc.dhist(pdata[pdata$Art == &quot;Yes&quot;, ]$Weave_Intensity - 
+  pdata[pdata$Art == &quot;Yes&quot;, ]$Photo_Intensity, 
+  pdata[pdata$Art == &quot;No&quot;, ]$Weave_Intensity - 
+  pdata[pdata$Art == &quot;No&quot;, ]$Photo_Intensity, &quot;Art Yes&quot;, &quot;Art No&quot;, 
+         &quot;Pittsburgh Negative to Positive (Weave# - Photo#)&quot;)
+lc.dhist(hdata[hdata$Art == &quot;Yes&quot;, ]$Weave_Neg_Pos - 
+  hdata[hdata$Art == &quot;Yes&quot;, ]$Photo_Neg_Pos, 
+  hdata[hdata$Art == &quot;No&quot;, ]$Weave_Neg_Pos - 
+  hdata[hdata$Art == &quot;No&quot;, ]$Photo_Neg_Pos, &quot;Art Yes&quot;, &quot;Art No&quot;,
+         &quot;Houston Negative to Positive (Weave# - Photo#)&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAANlBMVEUAAABJR0dhX190cXGEgYGRjo6cmZmnpKSwra26trbCvr7LxsbSzs7Z1dXh3Nzu6en/AAD//wAn0AmFAAAACXBIWXMAAAsSAAALEgHS3X78AAAVOElEQVR4nO2di5ajKhBF0aTzTrjz/z97AUFBUCuKqKmzVyZJaxWUbN9JTwsJWCK2LgBsA8QzBeKZAvFMgXimQDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnynzxQvNn3kj5Okv71M2ezA9+eEzmmOaHQ4LewwqTfU80J5+1rMVHykpUUn5EPVZaR2Ue6TLizvo1N9n1c3IBFI9a1I+2VlFdvFeTOC5goXhXlumlp3IyP/ihnsyZWpJothgduKkC64v8E0/5Vk285XOwmRBlMloB2zJSFaayL3U/M9WTmfcy75/m/aV9fa0s3vRu3ogW+T4JcX6bbbiq7tJbJ9QAVmqR7lX9tj/WJtIu4s2G6jXZrPIu8H0W4vRu+tAhjQQtpYu1g2TWeW+DsRW2U7vipppTiQ95E1d5V2F3edXludm2oFTi7aofgwPlltjW06/ZZj+sT28B3ErQ6fpTgi92pTir6pT09vWuq53SR1A8kJkWX+vnkyv0EYjXa69eK6vmR/Uizq6xuvqYqKdbk9vAk55Qd6ZUFzqj8mLdwNgpz16F7dSuuKnm1KC+VPJZDfBNVX1WP7WzbUGJxOSW5g2UXWJXT69ml/0Sl16mjMVXrnOpxev3dft6EWqXP+F+6a7+4qTK9uljZ1/VdnIKxF/kR43aVRVmf3y6JVELroa30awH/E92gYp30MdVbYJ3NbeLdaOkpujt4NSrsJ3aFTfZ3MnOVgOshjeozBWUSKzNY3Cg7BJ79QQ1u+xoAZLD754aLuLRvp5N3rj5heIvsi/+qjapm2zG+BPMakY9nm4XQ21Ubr8g9JrcBsrX9RQkfNTAnHRjbWw4El2jXoXWsSuO1txJPNQWelJr5cmfbQuKEz+1fnS9D5QRv2kKcdnRArj3nuie+Iv1bF7P1UutkeOno8t29e0br4zbuda7s2ZkoqUcFq+GsRMvvMCHuIZbvFpHHmajCAbDEykSFTZTveIozel9pt5xnZsN1s52BcWJYQOteH/EXNfhGHyC7GgB+sXJcFevK7kHr73klL7RuaOZA+LbKTe3q3+6fbue5+3qZbiIV+F2qDIIrMT7GSY8RHP518a29fR29dI11ZtKbe5hDr76IHz3ZruC4sTbTT/GBkqO7Orb7JT4Pv7Jnd4z+a+1KvpRZouv9HmbeTJnPme3hj7tqVAn/qbe10nx0pzKNac6Zy9Qn5FVro8moWpW9Ta2mWZPHYV/Uiy7OHdadvZKHm7OnCi93Raorui62a6gOPH80o+xgZLdMr76NbfZ3Snv8PB7J5R6+zBD7F5vbuzH9I3OHc30l+dZqWLN0+fPXTHdq0qvf+oSqn504r3LOdkTf2+e7U2I7nJOXwPp8yLdfJNwsUe+NlbaEqLLOTvPTu2Kk1PNXc3qUzUnXU2Ym+0KihMTt29S4tt6wppd9ktc+wuQwN3AEfoEtBHuXuWt6kZhgPniZ9LcDomHZ37gOrzFYzpoHR7ivX4nxcWf/VPVLIErUfdvxBTjeirQSXHx6qyk25/mCVyHF/HufH7q6DRhBcqLB7sA4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnCsQzBeKZAvFMgXimLBEvspFtcRYtyMZVlGWR+D0UkaX//zRbV1EWiJcQXzJ3nYbm9g/xxXLXaWhu/xBfLHedhub2D/HFctdpaG7/EF8sd52G5vYP8cVy12lobv8QXyx3nYZIncW3jiB+bu7Ce3BlxTeW/xkgflluM3LR4InwjehlZSniayDesKZ40UbY8RUDPUJ8edYXL9r/8c39bA4NuYr4Gog3FBAvup28FS9k2DHEl2dF8ZFl4T32KJ7Vh7Nrim+GMRDfbPU7Fe9N+X0Kb/EQvxfWu47vHdfds4D4XbDenbtAvPCn7PWsHuIL5K7TEKkziNdAvIT4krnrNETqDOI1EC8hPh1gT8wSdzYg/sBMLefATdZe7sDHsiJ4I3pJ9CKyAvEGynISxP/79y8etujTuaH+IL4864v3P50LruK7/QPEl2d6OUXrazh3VLxoI73PZYMmIb48K27xidMD0Zv+RRHZgHjDmuL7n8458XbXv/9d/U5+mXcVMp3Vf7vFhy3sVnzi+PUr5LmOp306F+/qIX4zlizUeG4gPjB8mLN6iM+fu05DpM4gXgPxEuJL5q7TEKkziNdAvIT4krnrNETqDOI1EC8hvmTuOg2ROoN4DcRLiC+Zu05DpM4o4u19SIhP52Yj2+JQqiaJj4N+jF1s8UWBeAPES4gvmbsdEG+AeAnxJXO3A+INEC8hvmTudkC8AeIlUfxmNx7WAeIlVfzAfd2DAvES4tMBBX5bdnX8HTTEG6YWQTT/RCr0OIv/tVOItzEQD/Hf5e4DiI8gLIKQEJ8MOjQQLyF+JALi2YkX7TPEcxIf/zI7PXc/QHzEr9+58781CfEePy9+nlOIXyu3FBA/AMTPDzo0ED8/6NBA/PygQwPx84MODcTPDzo0ED8/6NBA/PygQwPx84MODcTPDzo0EL8g6Mhfsof4pUEH/SvUEL80COJ3CcQPAPFLgyB+l0D8ABC/NOi/Y57bQ/zSoINe2kP80iCILwzt9gnEDzBdb3uXakbumtBOrSB+gMl6w78O+l3uqkD8IqbqFbv9FSqIXwRxVw/xEP9N7ppA/CIgfmkQxBcG4hcB8UuDfls8ruP5iV8ndzkJ8Yn/dXQv4nf3Sc5viY9F7Eb83nYLEL80COILA/GLgPilQRBfGIhfBMQvDYL4wkD8IiB+aRDEF8YN+8DfINhSfHgLKfqf9nbB8cWPutlI/HgFuwDilwZBfGEgfhEQvzQI4gsD8Ys4ivj4Y81dik+cwkP8IuzwRVP2Jp5SwS6A+KVBED+7mS9+By66WwPxM9mD+GhjHg7KMOwQb4D4pUE/Ln7Fb9kmDt/xtyZ/SXzi2PbFdzEzfW2T2IBIha4nftVh3158vIsj7fVsaJ59B8QvDYL4xP55YtKivO0b376C1CQiS8SDAwPxTIF4pkA8U5Zcx4MDA51MgXimQDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQz5Ss4ttvCE2ERQGJbw4lWkl+vSjR1HR/icUmfvxIDcvVEiGKOOrJrDyM/PmafpeTAlNBqVaj9YXUVHpNoNgihk3H0FoiRBFHPdVyJsb+fE2/S5L48Qg7kRYoej/NFT9Yx3RV37ciKWVRR31e/980Nk98vHUnjwdx2hzxA/1nE5+sKo7JtIc5jHjSb+XoENLeP3FEHyhscgJ9I5wMIYiPFzAdRjvGH0E8cYunbLnpwZtereaIb7/dPhk0pdQFLY0S3eH9sOKpIqKTNMreg7omkMaCtpXSttMsJ3e/Lz7dMOl4MJVFH7iM5wG/Jn7OdXxKKOl6PHVykJgST6P0l4D6q0p5jt60KOKoJ7MAOyCeKRDPFIhnCsQzBeKZAvFMgXimQDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnCsQzBeKZAvFMgXimQDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnCsQzBeKZAvFMgXimQDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UxaLF6J7HuJ1Hkl/0NKHQ+LWheYv3d1kc/JZy1p8pKxEJeVH1GOldVTmkS4j7qxfc5NdPycXQPGoRf3ovX/WorrYvPHBbIujBI02QBA/MleYgZ2dnp4tRgduamDqi/wTT/lWTbzlc7CZEGUyWgHbMlIVprIvdT8z1ZOZ9wreP83rxeZdKAXnFK9WO7POmh/00/skxPkt7VrYzVbvTu92EW8242Hny3tVv036Wei4Jl09GglaShcr+627al5BSbYSaRoabU4lPuRNXOVdhd3lVZfnZtuCUom3q37EQ2PKUGtQbbp39fRrttkP69NbgHgr/lNiL3alcO/Pqsqnjbn1dzwD3khRYw204pvV7umJr/WEk11Mb3Yz2abX1cdLfzVvKj3lpCfUnSnVns6ovFg3MF3rwbi1U20lgfh0c2ogXyr5rAb1Zob01c22BSUSk7tYT7xaHtVkW09yRHTwpZcpY/GV69x7fzavZn/x0WsqxRvR73ADbWEns/qdPPFCHyrte3/2uV099eavhrdJ1wP+p99cVWAz/900Y9u4qk3wruZ2sXHrXU2XoM+ukonmTna2GlQ1pEFlrqBEYm0eqaExh95Ls8ThEHU1u+xoAZID7p7C9xdztqReiN5oYSMNtOI939KNrDjdgvra1aETrzeqZrKmauZ/zPzX9RS091EDc2qybayMWm9rusiBSijNncRDrZ4ntVae/Nm2oDjxU+tH1/tAGfGbphCXHS1AN8DegHeB3vuL3dIr2jlJzl19MyTBUt3Otd7DeUMtwsr1qxrGTrzwxD/ENdzi1TryMBtFMBhh69Jr3JvqVUJp7iJqtUVfxVn458quoDgxbMDXElQYj8EnyI4WoF+cTO/qdUV3M+VhX6e90cJGGmjFe/uxZ7uv7oY6PhK42VfhdqiGdldfifczNPUQzeVfG9tW0NvVS9dUbyq1uYc5+OqD8N2b7QqKE283/UgOjfR6HNjVt9kp8X1SJ3d6D+XmvoZTg+JoYSMNtOLDc6BmOYU5p6n0pYl3IiR7i1h16Sr6pl5qPUWfkVXCpjcJVbOqt7HNNL916TXeK8lu8RPNmROlt9sC1RVdN9sVFCeeX/qRHBrpLXFbT1hzm+1qGBPvj6N7f2n3CjVVaEbx/rVT/TD7sb/mIupZmVPa/tVem3hvnpubEN7lnL4G0udFOt0dyZojXxsr+61L6Y+bm+oqMaM/3tzVrD5Vc9LVhLnZrqA4MXH7JiW+rSes2WW/xLW/AAncTRtz8GneV9HBYpLF4vPT3DehXY2uwNvtNcvzEO9ife1Q/Nk/p92Aun8jphjXU7m+dihenaB0O94NeBHvzuenJp6Y5WCP4kEBIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnyhLxIhvZFmfRgmxcRVkWid9DEVn6/0+zdRVlgXgJ8SVz12lobv8QXyx3nYbm9g/xxXLXaWhu/xBfLHedhub2D/GDIamrHYg/MNNL2/zadSoU4g8MxEuIHwggiF94D27rIYf4ZABF/H8WkQ4Q0fN3RawMxCfnzxYv2girXAz0uPWQQ3xifrP/XiBetP/xm7fzECLd0DZA/GDIEvGi28nbZvqtbT3kED8cMn4dnxQfWRbeA+I3Js+du7T4/lHC7vghfg+sKV7GWzzE74VM4hPX8b3juntOnSpuPeQQnzM3EC/8KTir3wHrid+iobn9Q3yx3HUamts/xBfLXaehuf1DfLHcdRqa2z/EF8tdp6G5/TfiWX27fr3LOT+gd1Kfs4gcWPH/NFvXUopM4v9ZEvfqu8jkDf+lReQA4ufmjon3P50LruK7/cPWgw3xc3NHxbefzsngSx3e9r/1YEP83Nyk+FiwFL3pGYrIAcTPzU2Lj7/DIbzp2NVvykZbfNjC1oMN8XNzaZ/Oxbt6iN+Mkp/OtdNwVr89k8sZWfoiN1sRKwPx6fm9AzU5N1sRawPxgzEQ/2tAvIT4gQjvbtu3udmKWBeIH4yB+F8D4uWw+J38N3yrgLN6OSI+8cnTr4DreAnxX+dmI9vizFwQiC+WuysgvlzurvhC/D52URmAePmd+F/ZB0C8hPiSubsC4svl7gqIL5e7KyC+XO6ugPhyubsC4svlbk1wzxDiy+VuTeAU4svlbg3Eb5S7Nd+Lt8cGiGcn/re+pgPxEuJL5m4NxG+UuzUQPxlQ4KtXGwDxhPmrf9lyAyCeFgPxEP9d7l6ZcOpftLMVLyRD8d4UiJ+Ru1sgnhYB8cPij/nF2+nLufYZ4gfEH3InMHk5F/3fZPTcPbOS+ONs/bhzJ7OKb4JKLslMIF5CfMnc7SBdokP8WrnbQXIK8WvlbgfEGyBeQnzJ3O2AeAPES4gvmbsdEG+AeAnxJXPLMvT7UhBfPLcsXzuF+LVyywLxERAvIb5kblkgPgLiJcSXzC3LOuKF/0HfoPidfjcD4uV88f8N5QV973MnMF1Qu3bPyN2ExCYG8RGTBYV/CPq73G2gHYYhfmo+xLMUL/cuPt6x70C8X1Ni0h44vvhI8w7E+xUMXgZuC8RLiB+JgHiI/ya3ABA/j8Nfx0+IH7y5BvHb5GZjSvwSpxCfPzcbED+P44pPfERiZxxD/MZ/c+/A4uNhtzMOIv5fNKkkEL80COILEH9bNvUB+d7FJ35ftzwHE59j2LcXHzdeHohfGgTxBYD4bED80iCILwDEZwPilwZBfAEgPhs7Fp+4p8lI/Np3dPcsPh4ZTuJt44uHcaj9jXLjxvybckO3tn5WfGLnZhtfa7vfj3jKJvG74qPNO9F4ViB+adCPi1/xq1e0b0cNBEH8TIhNilRoLvF7GfbtK4hGBeIhPjMZxQufeEpi0qK87RvfvoLUJCJLxIMDA/FMgXimQDxTllzHgwMDnUyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPlLxfkW6epz7IiwMS3xxKtJL8elGiqen+EotN/PiRGparJUIUcdSTWXkY+ZsG/S4nBaaCUq1G6wupqfSaQLFFDJuOobVEiCKOeqrlTIz9TYN+lyTx4xF2Ii1Q9H6aK36wjumqvm9FUsqijvq8/r9pbJ74eOtOHg/itDniB/rPJj5ZVRyTaQ9zGPGk38rRIaS9f+KIPlDY5AT6RjgZQhAfL2A6jHaMP4J44hZP2XLTgze9Ws0R3367fTJoSqkLWholusP7YcVTRUQnaZS9B3VNII0FbSulbadZTu5+X3y6YdLxYCqLPnAZzwN+Tfyc6/iUUNL1eOrkIDElnkbpLwH1V5XyHL1pUcRRT2YBdkA8UyCeKRDPFIhnCsQzBeKZAvFMgXimQDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnCsQzBeKZAvFMgXimQDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimfI/n7M96fyzxBkAAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<h3>Photo vs Weave Tests, by Other Experience or Gender</h3>
+
+<p>No significant results were found by Gender or experience other than Art, above. </p>
+
+<pre><code class="r">t.test(pdata[pdata$Science == &quot;Yes&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Science == &quot;Yes&quot;, ]$Photo_Intensity, 
+         pdata[pdata$Science == &quot;No&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Science == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.5658245
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Science == &quot;Yes&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Science == &quot;Yes&quot;, ]$Photo_Intensity, 
+         hdata[hdata$Science == &quot;No&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Science == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.149371
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Science == &quot;Yes&quot;, ]$Weave_Neg_Pos - 
+         pdata[pdata$Science == &quot;Yes&quot;, ]$Photo_Neg_Pos, 
+         pdata[pdata$Science == &quot;No&quot;, ]$Weave_Neg_Pos - 
+         pdata[pdata$Science == &quot;No&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2387336
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Science == &quot;Yes&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Science == &quot;Yes&quot;, ]$Photo_Neg_Pos, 
+         hdata[hdata$Science == &quot;No&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Science == &quot;No&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.4366248
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Photography == &quot;Yes&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Photography == &quot;Yes&quot;, ]$Photo_Intensity, 
+         pdata[pdata$Photography == &quot;No&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Photography == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.88071
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Photography == &quot;Yes&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Photography == &quot;Yes&quot;, ]$Photo_Intensity, 
+         hdata[hdata$Photography == &quot;No&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Photography == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2390773
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Photography == &quot;Yes&quot;, ]$Weave_Neg_Pos - 
+         pdata[pdata$Photography == &quot;Yes&quot;, ]$Photo_Neg_Pos, 
+         pdata[pdata$Photography == &quot;No&quot;, ]$Weave_Neg_Pos - 
+         pdata[pdata$Photography == &quot;No&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.5317751
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Photography == &quot;Yes&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Photography == &quot;Yes&quot;, ]$Photo_Neg_Pos, 
+         hdata[hdata$Photography == &quot;No&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Photography == &quot;No&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.4204544
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Weaving == &quot;Yes&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Weaving == &quot;Yes&quot;, ]$Photo_Intensity, 
+         pdata[pdata$Weaving == &quot;No&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Weaving == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.9759896
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Weaving == &quot;Yes&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Weaving == &quot;Yes&quot;, ]$Photo_Intensity, 
+         hdata[hdata$Weaving == &quot;No&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Weaving == &quot;No&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.8787385
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Weaving == &quot;Yes&quot;, ]$Weave_Neg_Pos - 
+         pdata[pdata$Weaving == &quot;Yes&quot;, ]$Photo_Neg_Pos, 
+         pdata[pdata$Weaving == &quot;No&quot;, ]$Weave_Neg_Pos - 
+         pdata[pdata$Weaving == &quot;No&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.737954
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Weaving == &quot;Yes&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Weaving == &quot;Yes&quot;, ]$Photo_Neg_Pos, 
+         hdata[hdata$Weaving == &quot;No&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Weaving == &quot;No&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1822051
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Gender == &quot;Female&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Gender == &quot;Female&quot;, ]$Photo_Intensity, 
+         pdata[pdata$Gender == &quot;Male&quot;, ]$Weave_Intensity - 
+         pdata[pdata$Gender == &quot;Male&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.9677467
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Gender == &quot;Female&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Gender == &quot;Female&quot;, ]$Photo_Intensity, 
+         hdata[hdata$Gender == &quot;Male&quot;, ]$Weave_Intensity - 
+         hdata[hdata$Gender == &quot;Male&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.3318743
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Gender == &quot;Female&quot;, ]$Weave_Neg_Pos - 
+         pdata[pdata$Gender == &quot;Female&quot;, ]$Photo_Neg_Pos, 
+         pdata[pdata$Gender == &quot;Male&quot;, ]$Weave_Neg_Pos - 
+         pdata[pdata$Gender == &quot;Male&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.5731305
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Gender == &quot;Female&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Gender == &quot;Female&quot;, ]$Photo_Neg_Pos, 
+         hdata[hdata$Gender == &quot;Male&quot;, ]$Weave_Neg_Pos - 
+         hdata[hdata$Gender == &quot;Male&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.7305199
+</code></pre>
+
+<h3>Photo vs Weave Tests, by Education</h3>
+
+<p>This is a bit of a challenge using simple correlation.  The data was presented roughly in terms of years of education, but using years as a continuous variable is misleading, as education measures more of a kind of life experience, and High School, BA, MA and PhD experiences are all qualitatively different.  I chose to measure a sliding window of education, as in &ldquo;less than BA_BS&rdquo; or &ldquo;BA_BS or greater&rdquo;.</p>
+
+<p>I did not find any breakpoint where education caused a meaningful difference in responses. </p>
+
+<pre><code class="r">t.test(pdata[pdata$Education == &quot;PHD_MD&quot;, ]$Weave_Intensity - 
+  pdata[pdata$Education == &quot;PHD_MD&quot;, ]$Photo_Intensity, 
+  pdata[pdata$Education != &quot;PHD_MD&quot;, ]$Weave_Intensity - 
+  pdata[pdata$Education != &quot;PHD_MD&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.8276931
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Education == &quot;PHD_MD&quot;, ]$Weave_Intensity - 
+  hdata[hdata$Education == &quot;PHD_MD&quot;, ]$Photo_Intensity, 
+  hdata[hdata$Education != &quot;PHD_MD&quot;, ]$Weave_Intensity - 
+  hdata[hdata$Education != &quot;PHD_MD&quot;, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.09409021
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Education == &quot;PHD_MD&quot;, ]$Weave_Neg_Pos - 
+  pdata[pdata$Education == &quot;PHD_MD&quot;, ]$Photo_Neg_Pos, 
+  pdata[pdata$Education != &quot;PHD_MD&quot;, ]$Weave_Neg_Pos - 
+  pdata[pdata$Education != &quot;PHD_MD&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1645582
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Education == &quot;PHD_MD&quot;, ]$Weave_Neg_Pos - 
+  hdata[hdata$Education == &quot;PHD_MD&quot;, ]$Photo_Neg_Pos, 
+  hdata[hdata$Education != &quot;PHD_MD&quot;, ]$Weave_Neg_Pos - 
+  hdata[hdata$Education != &quot;PHD_MD&quot;, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.06455513
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Education %in% c(&quot;PHD_MD&quot;,
+    &quot;MA_MS&quot;), ]$Weave_Intensity - 
+  pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;), ]$Photo_Intensity, 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;)), ]$Weave_Intensity - 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;)), ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2549556
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;), ]$Weave_Intensity - 
+  hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;), ]$Photo_Intensity, 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;)), ]$Weave_Intensity - 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;)), ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1881859
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;), ]$Weave_Neg_Pos - 
+  pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;), ]$Photo_Neg_Pos, 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;)), ]$Weave_Neg_Pos - 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;)), ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.04767669
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;), ]$Weave_Neg_Pos - 
+  hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;), ]$Photo_Neg_Pos, 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;)), ]$Weave_Neg_Pos - 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, 
+    &quot;MA_MS&quot;)), ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.220246
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+   &quot;BA_BS&quot;), ]$Weave_Intensity - 
+ pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;,
+   &quot;BA_BS&quot;), ]$Photo_Intensity, 
+ pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;,
+   &quot;BA_BS&quot;)), ]$Weave_Intensity - 
+ pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+   &quot;BA_BS&quot;)), ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.07284711
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+   &quot;BA_BS&quot;), ]$Weave_Intensity - 
+  hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+   &quot;BA_BS&quot;), ]$Photo_Intensity, 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;,
+   &quot;BA_BS&quot;)), ]$Weave_Intensity - 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+   &quot;BA_BS&quot;)), ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.09342675
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;,
+    &quot;BA_BS&quot;), ]$Weave_Neg_Pos - 
+  pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;,
+    &quot;BA_BS&quot;), ]$Photo_Neg_Pos, 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+    &quot;BA_BS&quot;)), ]$Weave_Neg_Pos - 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+    &quot;BA_BS&quot;)), ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.167375
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;,
+   &quot;BA_BS&quot;), ]$Weave_Neg_Pos - 
+  hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+   &quot;BA_BS&quot;), ]$Photo_Neg_Pos, 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+   &quot;BA_BS&quot;)), ]$Weave_Neg_Pos - 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, 
+   &quot;BA_BS&quot;)), ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.193524
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;, 
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;), ]$Weave_Intensity - 
+  pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;), ]$Photo_Intensity, 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;)), ]$Weave_Intensity - 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;)), ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1280007
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;), ]$Weave_Intensity - 
+  hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;, 
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;), ]$Photo_Intensity, 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;, 
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;)), ]$Weave_Intensity - 
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;)), ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.3154093
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;), ]$Weave_Neg_Pos - 
+  pdata[pdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;, 
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;), ]$Photo_Neg_Pos, 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;, 
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;)), ]$Weave_Neg_Pos - 
+  pdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;)), ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.5322263
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;), ]$Weave_Neg_Pos -
+  hdata[hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;), ]$Photo_Neg_Pos,
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;)), ]$Weave_Neg_Pos -
+  hdata[!(hdata$Education %in% c(&quot;PHD_MD&quot;, &quot;MA_MS&quot;, &quot;BA_BS&quot;,
+    &quot;AA_Degree&quot;, &quot;Some_College&quot;)), ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2750464
+</code></pre>
+
+<h3>Photo vs Weave Tests, by Age</h3>
+
+<p>As with Education, I chose to use floating age ranges.  Age did show some windows where responses were significantly different, in Intensity during the Houston study and Negative to Positive in the Pittsburgh study.</p>
+
+<p>Where differences were found, I graphed the distribution.  </p>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 13, ]$Weave_Intensity - 
+         pdata[pdata$Age &lt; 13, ]$Photo_Intensity, 
+         pdata[pdata$Age &gt;= 13, ]$Weave_Intensity - 
+         pdata[pdata$Age &gt;= 13, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.453364
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 13, ]$Weave_Intensity - 
+         hdata[hdata$Age &lt; 13, ]$Photo_Intensity, 
+         hdata[hdata$Age &gt;= 13, ]$Weave_Intensity - 
+         hdata[hdata$Age &gt;= 13, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2594169
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 13, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &lt; 13, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age &gt;= 13, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &gt;= 13, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1757316
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 13, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &lt; 13, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age &gt;= 13, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &gt;= 13, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.7296242
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 20, ]$Weave_Intensity - 
+         pdata[pdata$Age &lt; 20, ]$Photo_Intensity, 
+         pdata[pdata$Age &gt;= 20, ]$Weave_Intensity - 
+         pdata[pdata$Age &gt;= 20, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.4851194
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 20, ]$Weave_Intensity - 
+         hdata[hdata$Age &lt; 20, ]$Photo_Intensity, 
+         hdata[hdata$Age &gt;= 20, ]$Weave_Intensity - 
+         hdata[hdata$Age &gt;= 20, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1111077
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 20, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &lt; 20, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age &gt;= 20, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &gt;= 20, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1277415
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 20, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &lt; 20, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age &gt;= 20, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &gt;= 20, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1004278
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 30, ]$Weave_Intensity - 
+         pdata[pdata$Age &lt; 30, ]$Photo_Intensity, 
+         pdata[pdata$Age &gt;= 30, ]$Weave_Intensity - 
+         pdata[pdata$Age &gt;= 30, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2509063
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 30, ]$Weave_Intensity - 
+         hdata[hdata$Age &lt; 30, ]$Photo_Intensity, 
+         hdata[hdata$Age &gt;= 30, ]$Weave_Intensity - 
+         hdata[hdata$Age &gt;= 30, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2647076
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 30, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &lt; 30, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age &gt;= 30, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &gt;= 30, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.09510396
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 30, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &lt; 30, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age &gt;= 30, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &gt;= 30, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.02153339
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 40, ]$Weave_Intensity - 
+         pdata[pdata$Age &lt; 40, ]$Photo_Intensity, 
+         pdata[pdata$Age &gt;= 40, ]$Weave_Intensity - 
+         pdata[pdata$Age &gt;= 40, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2497028
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 40, ]$Weave_Intensity - 
+         hdata[hdata$Age &lt; 40, ]$Photo_Intensity, 
+         hdata[hdata$Age &gt;= 40, ]$Weave_Intensity - 
+         hdata[hdata$Age &gt;= 40, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.01162412
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 40, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &lt; 40, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age &gt;= 40, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &gt;= 40, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.09927879
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 40, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &lt; 40, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age &gt;= 40, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &gt;= 40, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1121829
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 50, ]$Weave_Intensity - 
+         pdata[pdata$Age &lt; 50, ]$Photo_Intensity, 
+         pdata[pdata$Age &gt;= 50, ]$Weave_Intensity - 
+         pdata[pdata$Age &gt;= 50, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.4349126
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 50, ]$Weave_Intensity - 
+         hdata[hdata$Age &lt; 50, ]$Photo_Intensity, 
+         hdata[hdata$Age &gt;= 50, ]$Weave_Intensity - 
+         hdata[hdata$Age &gt;= 50, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.008915856
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 50, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &lt; 50, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age &gt;= 50, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &gt;= 50, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.0005617621
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 50, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &lt; 50, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age &gt;= 50, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &gt;= 50, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1457427
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 60, ]$Weave_Intensity - 
+         pdata[pdata$Age &lt; 60, ]$Photo_Intensity, 
+         pdata[pdata$Age &gt;= 60, ]$Weave_Intensity - 
+         pdata[pdata$Age &gt;= 60, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1321959
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 60, ]$Weave_Intensity - 
+         hdata[hdata$Age &lt; 60, ]$Photo_Intensity, 
+         hdata[hdata$Age &gt;= 60, ]$Weave_Intensity - 
+         hdata[hdata$Age &gt;= 60, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.6446794
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 60, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &lt; 60, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age &gt;= 60, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &gt;= 60, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1002371
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 60, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &lt; 60, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age &gt;= 60, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &gt;= 60, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.4674595
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 70, ]$Weave_Intensity - 
+         pdata[pdata$Age &lt; 70, ]$Photo_Intensity, 
+         pdata[pdata$Age &gt;= 70, ]$Weave_Intensity - 
+         pdata[pdata$Age &gt;= 70, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1053448
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 70, ]$Weave_Intensity - 
+         hdata[hdata$Age &lt; 70, ]$Photo_Intensity, 
+         hdata[hdata$Age &gt;= 70, ]$Weave_Intensity - 
+         hdata[hdata$Age &gt;= 70, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.8656434
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 70, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &lt; 70, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age &gt;= 70, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &gt;= 70, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2183284
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 70, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &lt; 70, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age &gt;= 70, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &gt;= 70, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.6046225
+</code></pre>
+
+<p>The interesting ranges are between age 30-50.<br/>
+Intensity increases only in the Houston test, with no &ldquo;Weave &lt; Photo&rdquo; outliers and several &ldquo;Photo &gt; Weave&rdquo; outliers.</p>
+
+<pre><code class="r">par(bg = &quot;snow2&quot;, mfcol = c(2,1), las=1, col = &quot;Black&quot;,
+  col.main = &quot;Black&quot;,col.axis = &quot;Black&quot;,col.lab = &quot;Black&quot;, tcl = 0)
+lc.dhist(pdata[pdata$Age &lt; 50 &amp; pdata$Age &gt;= 30, ]$Weave_Intensity - 
+         pdata[pdata$Age &lt; 50 &amp; pdata$Age &gt;= 30, ]$Photo_Intensity, 
+         pdata[pdata$Age &gt;= 50 | pdata$Age &lt; 30,  ]$Weave_Intensity - 
+         pdata[pdata$Age &gt;= 50 | pdata$Age &lt; 30,  ]$Photo_Intensity,  
+           &quot;30 to 49&quot;, &quot;30- or 50+&quot;,
+           &quot;Pittsburgh Intensity (Weave# - Photo#)&quot;)
+lc.dhist(hdata[hdata$Age &lt; 50 &amp; hdata$Age &gt;= 30, ]$Weave_Intensity - 
+         hdata[hdata$Age &lt; 50 &amp; hdata$Age &gt;= 30, ]$Photo_Intensity, 
+         hdata[hdata$Age &gt;= 50 | hdata$Age &lt; 30, ]$Weave_Intensity - 
+         hdata[hdata$Age &gt;= 50 | hdata$Age &lt; 30, ]$Photo_Intensity,  
+           &quot;30 to 49&quot;, &quot;30- or 50+&quot;,
+           &quot;Houston Intensity (Weave# - Photo#)&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-8"/> </p>
+
+<p>By contrast, the Negative to Positive response only shows significant in the Pittsburgh test, with a stronger positive reaction to the Weave in that range.</p>
+
+<pre><code class="r">par(bg = &quot;snow2&quot;, mfcol = c(2,1), las=1, col = &quot;Black&quot;,
+  col.main = &quot;Black&quot;,col.axis = &quot;Black&quot;,col.lab = &quot;Black&quot;, tcl = 0)
+lc.dhist(pdata[pdata$Age &lt; 50 &amp; pdata$Age &gt;= 30, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &lt; 50 &amp; pdata$Age &gt;= 30, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age &gt;= 50 | pdata$Age &lt; 30, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age &gt;= 50 | pdata$Age &lt; 30, ]$Photo_Neg_Pos,  
+          &quot;30 to 49&quot;, &quot;30- or 50+&quot;,
+           &quot;Pittsburgh Negative to Positive (Weave# - Photo#)&quot;)
+lc.dhist(hdata[hdata$Age &lt; 50 &amp; hdata$Age &gt;= 30, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &lt; 50 &amp; hdata$Age &gt;= 30, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age &gt;= 50 | hdata$Age &lt; 30, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age &gt;= 50 | hdata$Age &lt; 30, ]$Photo_Neg_Pos,  
+           &quot;30 to 49&quot;, &quot;30- or 50+&quot;,  
+           &quot;Houston Negative to Positive (Weave# - Photo#)&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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uLwfFnwuiGCRljN75J4JWX2RN0rzxmmRxd33g6cDZ10PUl75HVdwHfBt4Jfs4ymgWftxanFAlIRlOfURyv1TpTJX7zyrzF4nvSB2AnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimAnimWg1eiOE5pud5xv2e5x43CaMLrR+6umQ4+WhlK/6kbEQj5Z9o51Ib1JgHnUZY2TTnzrt9JBugdG9Fe/cNVfRbK5qL+zWL6S7gZ44K07GL3enDYrbjUh3TXuSPeMiXCvGSj2iYsRTJ4ATs06AypLwv7dSTqskce3qvhbyZH2frd8lJuCT4hzoVH+4X/fQ6qWxe0p6Fw2H16vTqm3izHnd7XP427cu4n4W269zVo4OgoQy2chrdZfMcpWQzkSbQbDjleFcdeZW/yuxXXnV67rBNiHK8XfUj7BqThjqDWlO9y2eas/W+W55eA8JR/KPAXuxJ8auzUzqrXJz9bTrxRLhlWc0F6ME/TIIPD3yrC062md7hrti6t82f5/7sXjS65KQL2oGUiqc9Gs/WdcwQ3WXzHKVkMxmBp8OpTn0q57Pq4Jvq3rP6rT9sEyIcySnWA9+YAdnnQ/aINr5MPGUIvnGVm1zVFN+xV/bmZPiz50KSW5bVXIA+sZM5FU8eeKEvlfa1f/is2+zc9fjp3J9d8ic13C72+KsLY2Nc1RD8VUcH2zD6kNNlVOeQSSLcyR5WHay6d5SZS4hwbM2D6hpz6b10LR530ZCz8w4aQHa4e9IjXXRTpj4Zu/ovmUQLgvd4S9ez4nQb5dqfDgN4Pai6Yq2mO/5njj+vp1G8P9Uxp87b2sogep/TRUYyyQl3End1ep7UWXnyD9uEQse/Vj+G2iNphC+6RJx30IChg70OHwzPzVOdgV3FdjXS5K1JSk71XZeMWnU7t3qG87pajDPXP1U3DuCFB/4uruMRr86RuxkUo84Y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" alt="plot of chunk unnamed-chunk-9"/> </p>
+
+<h2>Linear Models</h2>
+
+<p>To explore further the effects noticed in the correlation, we&#39;ll try to fit a curve using the significant factors discovered in the T-tests.</p>
+
+<p>In the linear models below, &ldquo;wmp&rdquo; means &ldquo;Weave Number minus Photo Number&rdquo;.</p>
+
+<h3>Linear Model Intensity by Age Range</h3>
+
+<p>This effect was only noticed in the Houston study.  Rather than using the sliding windows, we&#39;ll attempt to fit it using the AgeRange
+factors (generally 10 year chunks, except for Child and Teen, which have a breakpoint at 13 years).</p>
+
+<pre><code class="r">pint &lt;- pdata[, c(&quot;Age&quot;, &quot;AgeRange&quot;)]
+pint$wmp &lt;- pdata$Weave_Intensity - pdata$Photo_Intensity
+pint &lt;- pint[!is.na(pint$wmp) &amp; !is.na(pint$AgeRange), ]
+pifit &lt;- lm(formula = wmp ~ AgeRange -1, data = pint)
+summary(pifit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ AgeRange - 1, data = pint)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8.4744 -1.4744 -0.0581  1.4737  7.1190 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)  
+## AgeRangeChild      -0.4737     0.5376  -0.881   0.3789  
+## AgeRangeTeenage     0.4688     0.4142   1.132   0.2586  
+## AgeRangeTwenties   -0.5256     0.2653  -1.981   0.0484 *
+## AgeRangeThirties   -0.1190     0.3616  -0.329   0.7422  
+## AgeRangeFourties    0.1163     0.3573   0.325   0.7451  
+## AgeRangeFifties    -0.1842     0.2688  -0.685   0.4936  
+## AgeRangeSixties     0.1304     0.3455   0.378   0.7060  
+## AgeRangeSeventies   0.6923     0.6499   1.065   0.2875  
+## AgeRangeEighties    4.0000     2.3433   1.707   0.0887 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.343 on 341 degrees of freedom
+## Multiple R-squared:  0.03086,    Adjusted R-squared:  0.005278 
+## F-statistic: 1.206 on 9 and 341 DF,  p-value: 0.2899
+</code></pre>
+
+<p>While this model can&#39;t be used to fit the graph (overall P = .2899), there is some interesting structure in the 40s - there is a big shift from negative intensity for Weave compared to Photo to a positive intensity.  This effect also exists in the Teen and 70s, but the number of subjects is much smaller in those age ranges.</p>
+
+<pre><code class="r">hint &lt;- hdata[, c(&quot;Age&quot;, &quot;AgeRange&quot;)]
+hint$wmp &lt;- hdata$Weave_Intensity - hdata$Photo_Intensity
+hint &lt;- hint[!is.na(hint$wmp) &amp; !is.na(hint$AgeRange), ]
+hifit &lt;- lm(formula = wmp ~ AgeRange -1, data = hint)
+summary(hifit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ AgeRange - 1, data = hint)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.1200 -1.4342  0.0455  1.5658  8.8800 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)  
+## AgeRangeChild      1.23077    0.65721   1.873   0.0619 .
+## AgeRangeTeenage    0.50000    0.55852   0.895   0.3713  
+## AgeRangeTwenties   0.12000    0.33511   0.358   0.7205  
+## AgeRangeThirties   0.80851    0.34564   2.339   0.0199 *
+## AgeRangeFourties   0.13158    0.38440   0.342   0.7323  
+## AgeRangeFifties   -0.56579    0.27181  -2.082   0.0381 *
+## AgeRangeSixties   -0.04545    0.25260  -0.180   0.8573  
+## AgeRangeSeventies  0.11538    0.46471   0.248   0.8041  
+## AgeRangeEighties   1.00000    1.18479   0.844   0.3992  
+## AgeRangeOver 90   -2.00000    2.36959  -0.844   0.3992  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.37 on 351 degrees of freedom
+## Multiple R-squared:  0.04328,    Adjusted R-squared:  0.01602 
+## F-statistic: 1.588 on 10 and 351 DF,  p-value: 0.1084
+</code></pre>
+
+<p>This model works better for Houston, but still doesn&#39;t quite make the 90% mark (p = .1084) but again there are some interesting shifts in intensity, stronger for Weave in the 30s and weaker for Weave in the 50s.</p>
+
+<p>There does seem to be some variation in response by age, but it is not consistent or predictable.</p>
+
+<h3>Linear Model Negative to Positive by FirstViewed, Art and AgeRange</h3>
+
+<p>There were 3 factors that affected Positive to Negative, so models based on each as primary and in combination must be tested.
+For combinations, an Analysis of Variance (ANOVA) test will be done to see if adding either or both of the other factors improves the overall model.</p>
+
+<pre><code class="r"># FirstViewed and Art have no NA values, but when 
+#   combining with AgeRange must filter out NA values 
+pnp &lt;- pdata[, c(&quot;FirstViewed&quot;, &quot;Art&quot;, &quot;AgeRange&quot;)]
+pnp$wmp &lt;- pdata$Weave_Neg_Pos - pdata$Photo_Neg_Pos
+pnp &lt;- pnp[!is.na(pnp$wmp), ]
+pnpR &lt;- pnp[!is.na(pnp$AgeRange), ]
+
+pFfit &lt;- lm(formula = wmp ~ FirstViewed -1, data = pnp)
+summary(pFfit)$coefficients
+</code></pre>
+
+<pre><code>##                    Estimate Std. Error    t value     Pr(&gt;|t|)
+## FirstViewedPhoto -0.6774194  0.1837245 -3.6871477 0.0002606423
+## FirstViewedWeave  0.0855615  0.1832326  0.4669557 0.6408057111
+</code></pre>
+
+<pre><code class="r">pAfit &lt;- lm(formula = wmp ~ Art -1, data = pnp)
+summary(pAfit)$coefficients
+</code></pre>
+
+<pre><code>##          Estimate Std. Error   t value   Pr(&gt;|t|)
+## ArtYes -0.2771739  0.1868559 -1.483357 0.13882871
+## ArtNo  -0.3121693  0.1843677 -1.693189 0.09125896
+</code></pre>
+
+<pre><code class="r">## pFfit is better than PA fit
+#   see if adding Art to First Viewed improves the model
+pFAfit &lt;- lm(formula = wmp ~ FirstViewed + Art -1, data = pnp)
+anova(pFfit, pFAfit)
+</code></pre>
+
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: wmp ~ FirstViewed - 1
+## Model 2: wmp ~ FirstViewed + Art - 1
+##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+## 1    371 2329.3                           
+## 2    370 2329.0  1   0.26582 0.0422 0.8373
+</code></pre>
+
+<pre><code class="r">pRfit &lt;- lm(formula = wmp ~ AgeRange -1, data = pnpR)
+summary(pRfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ AgeRange - 1, data = pnpR)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.2391 -1.7517  0.1538  1.2381  9.0000 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## AgeRangeChild      0.61111    0.59347   1.030 0.303872    
+## AgeRangeTeenage   -0.06061    0.43831  -0.138 0.890107    
+## AgeRangeTwenties  -0.15385    0.28510  -0.540 0.589804    
+## AgeRangeThirties  -0.23810    0.38852  -0.613 0.540400    
+## AgeRangeFourties   0.72093    0.38398   1.878 0.061297 .  
+## AgeRangeFifties   -1.00000    0.28882  -3.462 0.000604 ***
+## AgeRangeSixties   -0.76087    0.37124  -2.050 0.041176 *  
+## AgeRangeSeventies -1.07692    0.69834  -1.542 0.123972    
+## AgeRangeEighties   0.00000    2.51790   0.000 1.000000    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.518 on 341 degrees of freedom
+## Multiple R-squared:  0.06534,    Adjusted R-squared:  0.04067 
+## F-statistic: 2.649 on 9 and 341 DF,  p-value: 0.005605
+</code></pre>
+
+<pre><code class="r"># This is actually pretty good, but still not as good as pFFit 
+# (overall P-value is .005 vs about .001, similar std error).
+pF1fit &lt;-   lm(formula = wmp ~ FirstViewed -1, data = pnpR)
+pFRfit &lt;-   lm(formula = wmp ~ FirstViewed + 
+                               AgeRange -1, data = pnpR)
+pFRAfit &lt;-   lm(formula = wmp ~ FirstViewed + 
+                               AgeRange + Art -1, data = pnpR)
+anova(pF1fit, pFRfit, pFRAfit)
+</code></pre>
+
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: wmp ~ FirstViewed - 1
+## Model 2: wmp ~ FirstViewed + AgeRange - 1
+## Model 3: wmp ~ FirstViewed + AgeRange + Art - 1
+##   Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  
+## 1    348 2220.8                              
+## 2    340 2114.1  8    106.71 2.1388 0.03182 *
+## 3    339 2114.1  1      0.02 0.0032 0.95482  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</code></pre>
+
+<pre><code class="r"># best model is a combination of First Viewed and Age Range. 
+# In order to see the coeffiecients of the age factor more clearly,
+# make the Age Range the first parameter in the lm call
+pFRfit &lt;- lm(formula = wmp ~ AgeRange + FirstViewed -1, data = pnpR)
+summary(pFRfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ AgeRange + FirstViewed - 1, data = pnpR)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.5997 -1.5079  0.1668  1.4003  9.3968 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## AgeRangeChild      0.06664    0.61973   0.108  0.91443    
+## AgeRangeTeenage   -0.33475    0.44522  -0.752  0.45265    
+## AgeRangeTwenties  -0.49213    0.30761  -1.600  0.11057    
+## AgeRangeThirties  -0.59709    0.40600  -1.471  0.14231    
+## AgeRangeFourties   0.23003    0.41952   0.548  0.58384    
+## AgeRangeFifties   -1.39678    0.31989  -4.367 1.68e-05 ***
+## AgeRangeSixties   -1.15420    0.39412  -2.929  0.00364 ** 
+## AgeRangeSeventies -1.30889    0.69665  -1.879  0.06112 .  
+## AgeRangeEighties  -0.75388    2.50841  -0.301  0.76395    
+## FirstViewedWeave   0.75388    0.27211   2.771  0.00590 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.494 on 340 degrees of freedom
+## Multiple R-squared:  0.08597,    Adjusted R-squared:  0.05909 
+## F-statistic: 3.198 on 10 and 340 DF,  p-value: 0.0006048
+</code></pre>
+
+<p>For Pittsburgh, age range improved the model without increasing the standard error.  Lets see if the same is true for Houston, and whether Art has an impact.</p>
+
+<pre><code class="r">hnp &lt;- hdata[, c(&quot;FirstViewed&quot;, &quot;Art&quot;, &quot;AgeRange&quot;)]
+hnp$wmp &lt;- hdata$Weave_Neg_Pos - hdata$Photo_Neg_Pos
+hnp &lt;- pnp[!is.na(hnp$wmp), ]
+hnpR &lt;- pnp[!is.na(hnp$AgeRange), ]
+
+hFfit &lt;- lm(formula = wmp ~ FirstViewed -1, data = hnp)
+summary(hFfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ FirstViewed - 1, data = hnp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.1084 -1.3333 -0.1084  1.6667  8.8916 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## FirstViewedPhoto  -0.6667     0.1915  -3.481 0.000564 ***
+## FirstViewedWeave   0.1084     0.1961   0.553 0.580581    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.526 on 338 degrees of freedom
+##   (51 observations deleted due to missingness)
+## Multiple R-squared:  0.03546,    Adjusted R-squared:  0.02975 
+## F-statistic: 6.213 on 2 and 338 DF,  p-value: 0.00224
+</code></pre>
+
+<pre><code class="r">hAfit &lt;- lm(formula = wmp ~ Art -1, data = hnp)
+summary(hAfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ Art - 1, data = hnp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.7407 -1.6854  0.2593  1.3146  9.2593 
+## 
+## Coefficients:
+##        Estimate Std. Error t value Pr(&gt;|t|)
+## ArtYes  -0.2593     0.2008  -1.291    0.198
+## ArtNo   -0.3146     0.1915  -1.642    0.101
+## 
+## Residual standard error: 2.556 on 338 degrees of freedom
+##   (51 observations deleted due to missingness)
+## Multiple R-squared:  0.01275,    Adjusted R-squared:  0.006907 
+## F-statistic: 2.182 on 2 and 338 DF,  p-value: 0.1144
+</code></pre>
+
+<pre><code class="r">hRfit &lt;- lm(formula = wmp ~ AgeRange -1, data = hnpR)
+summary(hRfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ AgeRange - 1, data = hnpR)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.1493 -1.8030  0.1389  1.2626  8.8507 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)   
+## AgeRangeChild      1.07692    0.71251   1.511  0.13176   
+## AgeRangeTeenage    0.03333    0.46903   0.071  0.94339   
+## AgeRangeTwenties  -0.19697    0.31622  -0.623  0.53385   
+## AgeRangeThirties  -0.45946    0.42234  -1.088  0.27754   
+## AgeRangeFourties   0.86111    0.42816   2.011  0.04523 * 
+## AgeRangeFifties   -0.85075    0.31385  -2.711  0.00711 **
+## AgeRangeSixties   -1.00000    0.41137  -2.431  0.01566 * 
+## AgeRangeSeventies -0.72727    0.77458  -0.939  0.34855   
+## AgeRangeEighties   0.00000    2.56899   0.000  1.00000   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.569 on 291 degrees of freedom
+##   (20 observations deleted due to missingness)
+## Multiple R-squared:  0.07042,    Adjusted R-squared:  0.04167 
+## F-statistic: 2.449 on 9 and 291 DF,  p-value: 0.0106
+</code></pre>
+
+<pre><code class="r"># similar pattern to Pittsburgh.  
+# Lets just jump ahead and look at the stats for FirstViewed+Age)
+hFRfit &lt;-   lm(formula = wmp ~ AgeRange + FirstViewed -1, 
+               data = hnpR)
+summary(hFRfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ AgeRange + FirstViewed - 1, data = hnpR)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.5873 -1.4392  0.2335  1.5211  9.3021 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## AgeRangeChild       0.5296     0.7272   0.728 0.467046    
+## AgeRangeTeenage    -0.2335     0.4716  -0.495 0.620904    
+## AgeRangeTwenties   -0.5608     0.3355  -1.672 0.095654 .  
+## AgeRangeThirties   -0.8441     0.4367  -1.933 0.054200 .  
+## AgeRangeFourties    0.3176     0.4608   0.689 0.491319    
+## AgeRangeFifties    -1.3021     0.3453  -3.771 0.000197 ***
+## AgeRangeSixties    -1.4105     0.4291  -3.287 0.001136 ** 
+## AgeRangeSeventies  -0.8890     0.7664  -1.160 0.247038    
+## AgeRangeEighties   -0.8895     2.5533  -0.348 0.727822    
+## FirstViewedWeave    0.8895     0.3008   2.957 0.003364 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.535 on 290 degrees of freedom
+##   (20 observations deleted due to missingness)
+## Multiple R-squared:  0.09762,    Adjusted R-squared:  0.06651 
+## F-statistic: 3.137 on 10 and 290 DF,  p-value: 0.0007956
+</code></pre>
+
+<p>What&#39;s interesting about the models is that FirstViewed is clearly biasing the results, 
+but that there clearly a significant age factor.  This level of resolution indicates
+a much more negative response to Weave by people in their 50s and 60s, inboth the Houston
+and Pittsburgh studies than other age groups. There might be some other age groups or 
+better age categories that would more clearly nail down this difference, but to see it
+in the data, we need to correct for the FirstViewedWeave bias.</p>
+
+<p>Given the integer scale of 0-11, the data is only reliable to one significant digit,
+so we will shift the FirstViewedWeave &ldquo;wmp&rdquo;  data by -1 (as it showed as +.75388 in 
+Pittsburgh and +.9418 in Houston)</p>
+
+<h3>Linear Model Negative to Positive by AgeRange, adjusting for FirstViewed</h3>
+
+<pre><code class="r"># Adjust the values of the Weave_Neg_Pos by 1 when FirstViewed == &quot;Weave&quot;, but not lower than 0
+# This must be done in the raw data first if we want to graph relationships that the linear model
+# exposes later, and also allows for the floor of zero on negative/positive before looking at 
+# the difference between photo and weave.  Just in case the age ranges aren&#39;t the best groupings,
+# the raw age will also be pulled for the adjusted model.
+
+pAdj_Neg_Pos &lt;- pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Neg_Pos - 1
+pAdj_Neg_Pos[pAdj_Neg_Pos &lt; 0 &amp; !is.na(pAdj_Neg_Pos)] &lt;- 0
+pdata$Weave_Adj_Neg_Pos &lt;- pdata$Weave_Neg_Pos
+pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Adj_Neg_Pos &lt;- pAdj_Neg_Pos
+panp &lt;- pdata[, c(&quot;Age&quot;, &quot;AgeRange&quot;)]
+panp$wmp &lt;- pdata$Weave_Adj_Neg_Pos - pdata$Photo_Neg_Pos
+panp &lt;- panp[!is.na(panp$wmp), ]
+panp &lt;- panp[!is.na(panp$AgeRange), ]
+pAdjfit &lt;- lm(formula = wmp ~ AgeRange -1, data = panp)
+
+# do the same for Houston
+hAdj_Neg_Pos &lt;- hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Neg_Pos - 1
+hAdj_Neg_Pos[hAdj_Neg_Pos &lt; 0 &amp; !is.na(hAdj_Neg_Pos)] &lt;- 0
+hdata$Weave_Adj_Neg_Pos &lt;- hdata$Weave_Neg_Pos
+hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Adj_Neg_Pos &lt;- hAdj_Neg_Pos
+hanp &lt;- hdata[, c(&quot;Age&quot;, &quot;AgeRange&quot;)]
+hanp$wmp &lt;- hdata$Weave_Adj_Neg_Pos - hdata$Photo_Neg_Pos
+hanp &lt;- hanp[!is.na(hanp$wmp), ]
+hanp &lt;- hanp[!is.na(hanp$AgeRange), ]
+hAdjfit &lt;- lm(formula = wmp ~ AgeRange -1, data = hanp)
+
+summary(pAdjfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ AgeRange - 1, data = panp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.7174 -1.5000  0.1691  1.5000  9.5000 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## AgeRangeChild     -0.05556    0.58293  -0.095 0.924130    
+## AgeRangeTeenage   -0.42424    0.43053  -0.985 0.325123    
+## AgeRangeTwenties  -0.60256    0.28003  -2.152 0.032118 *  
+## AgeRangeThirties  -0.71429    0.38162  -1.872 0.062101 .  
+## AgeRangeFourties   0.11628    0.37716   0.308 0.758039    
+## AgeRangeFifties   -1.50000    0.28369  -5.287 2.22e-07 ***
+## AgeRangeSixties   -1.28261    0.36465  -3.517 0.000495 ***
+## AgeRangeSeventies -1.30769    0.68594  -1.906 0.057435 .  
+## AgeRangeEighties  -1.00000    2.47318  -0.404 0.686218    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.473 on 341 degrees of freedom
+## Multiple R-squared:  0.1353, Adjusted R-squared:  0.1124 
+## F-statistic: 5.926 on 9 and 341 DF,  p-value: 1.052e-07
+</code></pre>
+
+<pre><code class="r">summary(hAdjfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ AgeRange - 1, data = hanp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.5581 -1.5581  0.1579  1.4898  7.4898 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## AgeRangeChild      -0.8462     0.7752  -1.092 0.275792    
+## AgeRangeTeenage    -0.1667     0.6588  -0.253 0.800425    
+## AgeRangeTwenties   -0.4898     0.3993  -1.227 0.220773    
+## AgeRangeThirties   -1.6087     0.4121  -3.904 0.000114 ***
+## AgeRangeFourties   -1.1579     0.4534  -2.554 0.011084 *  
+## AgeRangeFifties    -1.4868     0.3206  -4.638 5.00e-06 ***
+## AgeRangeSixties    -1.4419     0.3014  -4.784 2.55e-06 ***
+## AgeRangeSeventies  -1.7308     0.5481  -3.158 0.001731 ** 
+## AgeRangeEighties    1.5000     1.3975   1.073 0.283861    
+## AgeRangeOver 90    -3.0000     2.7950  -1.073 0.283861    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.795 on 347 degrees of freedom
+## Multiple R-squared:  0.1896, Adjusted R-squared:  0.1663 
+## F-statistic: 8.119 on 10 and 347 DF,  p-value: 8.228e-12
+</code></pre>
+
+<p>With this adjustment, the differences are more dramatic.</p>
+
+<p>In Pittsburgh, there was a strong and significant negative reaction to Weave in 
+the age 50-70 range relative to the other age groups, where in Houston this band
+of ages extended to the thirties. </p>
+
+<p>The following plot is intended to get a sense of how much data we have for each date
+range, vs the differences we are seeing in the model.</p>
+
+<pre><code class="r"> boxplot(panp$wmp ~ panp$AgeRange)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-15"/> </p>
+
+<pre><code class="r"> table(panp$AgeRange)
+</code></pre>
+
+<pre><code>## 
+##     Child   Teenage  Twenties  Thirties  Fourties   Fifties   Sixties 
+##        18        33        78        42        43        76        46 
+## Seventies  Eighties   Over 90 
+##        13         1         0
+</code></pre>
+
+<pre><code class="r"> boxplot(hanp$wmp ~ hanp$AgeRange)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAAsSAAALEgHS3X78AAALw0lEQVR4nO2ci3bbNhAFqf//6Z7UL8mUTOxLWODOtE5yQuAuxBEFwEV93ECSY/YAYA6IFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFyUi/oDOFIoP9IVqEC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCjrizf+1wf4YH3xk8qtDuJFQbwoiBdlH/FgAvGiIF6UfcTzPjOBeFEQLwriRUG8KPuIBxOIFwXxouwjnveZCcSLgnhREC8K4kXpL37145NNx99e/JGWNIeu40d8MV3Hv4/4jnf3hvhAzOAc2fHu/oM5vpiWt7cviBcF8aLsIx5MIF4UxIuyj3jeZyYQLwriRUG8KIgXZR/xYALxoiBelH3E8z4zgXhREC8K4kUJi///TNnT40Xbi296qGqMDPHH85YL35Uhuh6jHKNA/Mo/Rtryk7DfKz77Z3THxR87PvEjY5/yxKcVTFjc/f/222yOHzvJP+FDrZP4ir6zy7X9tEJ8bTnE10Vn09ZVTxAvyj7iwQTin9J27MzxtbQdO+JryyG+LjobxGcGIb4ZiJ9dbnUQL8o+4sEE4p/SduzM8bW0HTvia8shvi46G8RnBiG+GYifXW51EC/KPuIvyDye/DvrRVj2iehUZMR/MjiosWaZrQZhjneC+LGghcSnWkB8XXQ2iM8M2k78jLBMED+73OogXpR9xI8xYUJoeR8QH2nG4i69bxmIHwtaSDzbucwgxL+t5BiIry3Xcpr6B+Jnl1sdxIuyj/gx2Md/gvhAMxZ36X3LQPxY0ELi2c5lBiH+bSXHQHxtuZbT1D8QP7vc6nQWbzuevKr4i7Pap8tJZ7Y7i0/OmRUWW1ZUCUJ8oBni0/tW5FjCEO/NDfZ15Ky+nUN8abm+4n29Ed94DRgC8c3KvQth8amfzn1hjq/KmRXG4m5yjiWMVb03N9i3IscShnhvbrCvI2f17RziS8v1Fe/rjfjGa8AQiG9W7l0Ii2cfb+/lLhfODfatyJkVxuJuco4ljFW9NzfYtyLHEoZ4b26wryNn9e0c4kvL9RXv6434xmvAEFuJzzkjXHTuuBlbibelv2r1d+/lxCvN8RPEs48vzh3q21c8q3pv7lBfxF8321J8LAfx4+Hvyw32jecvJ97XG/G51fvsCbYUXymnj7oYwuLZx9t7ucuFc4f69l3Vj8Hiztm3r3hW9d7cob6Iv262pfhYDuLHw9+XG+wbz19OvK834nOr99kTbCmeffw1wuLZx9t7ucuFc4f69l3Vj8Hiztm3r3hW9d7cob6Iv262pfhYDuLHw9+XG+wbz19OvK/3IuLHTkQP/sDmzFX9YMkJbCJ+qMPgmFLFhy5Xgnhjs+XEbz3HzxefentZ3I32RXx2DcQPlkJ8ce7zvojProH4wVJ9xft6I95Wytia7VwwGvFmEG9stpz4V9NJ0fcU1cT3neMRj/iHv0a8rdk24lPC35f7vC/is2sgfrBUX/G+3oi3lTK2ZjsXjEa8GcQbmy0nnjledI5HPOINvSeKf/mNBMRbWi0n/rWGZ+KHvgs1+M0qxI+HF+SeNfzx3cQJ4sfCRj9kUsefGWZm+yd+7AWmzi4TdiV2tp/jEe/KX39Vj3hXPuLLSiL+dBXx1yFhED+rJOJPVxF/HRIG8bNKIv50FfHXIWEQP6sk4k9XEX8dEgbxs0oi/nQV8dchYRA/qyTiT1cRfx0SBvGzSiL+dBXx1yFhED+rJOJPVxF/HRIG8bNKIv50FfHXIWFWFp9wJPNbfMoxUOP4h1pVgfiRLMQHoxE//DIR72zGHD82ioLyiM8IqwLxs0oi/nQV8dchYRA/qyTiT1cRfx0SBvGzSiL+dBXx1yFhED+rJOJPVxF/HRIG8bNKIv50FfHXIWEQP6sk4k9XEX8dEgbxs0oi/nQV8dchYRA/qyTiT1cRfx0SBvGzSiL+dBXx1yFh9hc/dEByQsnBk5tVtBSfcZgV8X/TUbw//8lVxP89WN9la1+X+FedmOMjIN7QCvHeaMSbw6pAvKEV4r3RiDeHVbGAeF9zxI+NoqA84jPCqkC8oRXivdHM8eawKhBvaIV4bzTizWFVIN7QCvHeaMSbw6pYQLyvOeLHRlFQHvEZYVUg3tAK8d5o5nhzWBWIN7RCvDca8eawKhBvaIV4bzTizWFj2A9uvll85sHSwbOsQ4O8yPoOy2hlC0u5F+ZnMFt8YvpomO8Fjo0ss1XsZtjfRIj39CpoVT6p28p1EB+7cYh3lVtIvK93SHzKCCpKxsupit+fqeLfkYP45+wjPnWOD5VcggXEx8qxuHOV6zDHx8oh3lUO8Y7OrlaI944B8Sb2Ee/rzT7edTnYt6/4/VlgVY/4CvYRzz7exALiY+VY3LnKdZjjY+UQ7yqHeEdnVyvEe8eAeBP7iPf1Zh/vuhzs21f8/iywqkd8BZ3F2w4cv/rQzjzFPFZyCTqLryiXOuGyuHP2fcd2zlcS8XXRwXRnGOLHyiG+Wck09hGfCvv4uuhgOsTYZ1UPJvYR/45vA1aGvRnEl4cxx6emO8MQP1YO8c1KpoH48jDEp6bXwj6+LjqYDjH2WdWDiX3Es483gfjysE3n+H8tXD9Cb6iFAcSbyBB/PG+J+IKSaSC+PGxX8UcT8amwjx+JOI6HhtcHWFOPuoKLfVb1YGIf8ezjTeSIf9psZfEs7gIpvV6JqRXiEd+sZBrM8eVhiF8I9vF10TAVxIuyj3j28SYQXx7GHF8L4k0gvjwM8bUg3sQ+4lNhH18XDVNBvCj7iGcfbwLx5WHM8bUg3gTiy8MQXwviTewjPoXUc99jYZPOmiNeFMSLso949vEmEF9esieILy/ZE8SXl+wJ4stL9mQf8WAC8aIgXpR9xDPHm0B8ecmeIL68ZE8QX16yJ4gvL9mTfcSDCcSLgnhR9hHPHG8C8eUle4L48pI9QXx5yZ6sL37weHLmIeYdfvr2+uLBBeJFQbwoiBcF8aIgXhTEi4J4URAvCuJFQbwoiBcF8aIgXhTEi4J4URAvCuJFQbwoiBcF8X7GTlkOnsV895FNxLs5biOvcazVaLM8EO8G8QV9VwDxBX2XgDk+vy9Ug3hREC8K4kVBvCiIFwXxoiBeFMSLgnhREC9KpXjoTJ34gbdGYqu+YX3HXxmQkN73xrUtifgOYX3HXxmQkN73xrUtifgOYX3HXxmQkN73xrUtifgOYX3HXxkAa4J4URAvCuJFQbwoiBcF8aIgXhTEi4J4UfLFf579OL7zf/402v+v8yOHdcwv08xJ94m3n87enK/X+dP5dM8KSa9w3H09lDBU+qupecB/vYVc3L+vwznP/uYtn8LZRY6vX4/b12Px/2+HVfzd19cDdnz++SPw4/5f/0/n3w/mcR/58djaku4DPzJut2jO7f7+eF+ihxrxt9vt80Ps51+3+G/9j4F3v42M6LHH4Un69RK/3KfkfCr3vUQPdeJv5xdhCjk+//mt7PdduQz79aifw6yT6k/ic/GGmOPUORBoYgXxP2ugu8+Pz5s//FH/Uvx40q/Ux7eTPefxiT+L9w1slBrxL969ppCHJ/72JPCh4tWI/nziB5MeR/fkiXfkvB6VPdBEeubx+OUX/yTp6edggnjbCF+Ld+T8RAVeoof8zLt9/N0rMH1gPYr/tR6Prepvd/OGd/H8Pcd//upd1R+/x+J9iR5KQsHBm00gvgO2D8Sckm+uB01AvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBeFMSLgnhREC8K4kVBvCiIFwXxoiBelP8ARM/H40t6T48AAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-15"/> </p>
+
+<pre><code class="r"> table(hanp$AgeRange)
+</code></pre>
+
+<pre><code>## 
+##     Child   Teenage  Twenties  Thirties  Fourties   Fifties   Sixties 
+##        13        18        49        46        38        76        86 
+## Seventies  Eighties   Over 90 
+##        26         4         1
+</code></pre>
+
+<p>From this we see the 80-90 age range is tiny in number, and it seems likely
+a generational shift at an age breakpoint (over XX) is where the real shift 
+begins.  Interestingly, the  data in Pittsburgh had twice as many people
+in their 20s as Houston, and Houston had twice as many people in their 60s
+as Pittsburgh.  This is likely the source of the differences in neg-pos seen
+in the overall data as the &ldquo;under 30&rdquo; responded differently than &ldquo;60+&rdquo; in both
+studies.</p>
+
+<h3>Linear Model Negative to Positive by Age Breakpoint, adjusting for FirstViewed</h3>
+
+<p>Lets try to narrow this breakpoint further.  Right now we&#39;re seeing
+significance between &ldquo;under 30&rdquo; and &ldquo;over 30&rdquo; in one Houston and
+&ldquo;Under 50&rdquo; and &ldquo;Over 50&rdquo; in Pittsburgh. We&#39;ll go back to the student
+T test to see where we get the best P-Values</p>
+
+<pre><code class="r">## Pittsburgh might actually have 3 ranges, with a strangely
+# positive reagion in the 40s.  We&#39;ll start with binary cutoffs.
+
+t.test(pdata[pdata$Age &lt; 30, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 30, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 29, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 29, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.05935096
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 40, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 40, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 39, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 39, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.06034751
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 50, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 50, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 49, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 49, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.0005047428
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 60, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 60, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 59, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 59, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.103055
+</code></pre>
+
+<pre><code class="r"># That looks more like a real cutoff around 50, lets narrow the range
+t.test(pdata[pdata$Age &lt; 45, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 45, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 44, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 44, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.01839536
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 48, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 48, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 47, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 47, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.005460162
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 49, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 49, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 48, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 48, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.003147098
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 51, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 51, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 50, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 50, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.0003473893
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 53, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 53, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 52, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 52, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.002473579
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pdata$Age &lt; 55, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &lt; 55, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age &gt; 54, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age &gt; 54, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.0493101
+</code></pre>
+
+<pre><code class="r">## Now Houston, which showed a sharper cutoff at 30, 
+t.test(hdata[hdata$Age &lt; 25, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &lt; 25, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age &gt; 24, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &gt; 24, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.03482323
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 28, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &lt; 28, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age &gt; 27, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &gt; 27, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.01137495
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 29, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &lt; 29, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age &gt; 28, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &gt; 28, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.008632932
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 30, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &lt; 30, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age &gt; 29, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &gt; 29, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.009706141
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 31, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &lt; 31, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age &gt; 32, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &gt; 32, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.01396597
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 32, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &lt; 32, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age &gt; 33, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &gt; 33, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.02073108
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Age &lt; 35, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &lt; 35, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age &gt; 34, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age &gt; 34, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1389649
+</code></pre>
+
+<p>For Houston, the breakpoint really is right at about 30 years old
+and for Pittsburgh it seems to be 51 years old, within our limits
+of measurement 50 remains a solid cutoff.</p>
+
+<p>The age range factor might explain why art seemed significant in one study
+and not in the other:</p>
+
+<pre><code class="r"> table(pdata$Art, pdata$AgeRange)
+</code></pre>
+
+<pre><code>##      
+##       Child Teenage Twenties Thirties Fourties Fifties Sixties Seventies
+##   Yes    12      16       38       21       22      35      30         8
+##   No      9      18       41       21       22      45      21         5
+##      
+##       Eighties Over 90
+##   Yes        1       0
+##   No         0       0
+</code></pre>
+
+<pre><code class="r"> table(hdata$Art, hdata$AgeRange)
+</code></pre>
+
+<pre><code>##      
+##       Child Teenage Twenties Thirties Fourties Fifties Sixties Seventies
+##   Yes     8      11       37       26       19      40      53        14
+##   No      5       9       15       24       19      40      36        14
+##      
+##       Eighties Over 90
+##   Yes        4       1
+##   No         0       0
+</code></pre>
+
+<p>In most age groups, the two studies had similar percentages of &ldquo;Art = Yes&rdquo;,
+but in the &ldquo;under 30s&rdquo; age group, Pittsburgh had about a 50-50 mix of Art Yes/No,
+where in Houston, this mix was about 70% yes, 30% no.  </p>
+
+<p>Testing this hypothesis, now that we can correct for First Viewed and
+Age bias</p>
+
+<pre><code class="r">t.test(pdata[pdata$Art == &quot;Yes&quot; &amp; pdata$Age &lt; 50, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Art == &quot;Yes&quot; &amp; pdata$Age &lt; 50, ]$Photo_Neg_Pos, 
+       pdata[pdata$Art == &quot;No&quot;  &amp; pdata$Age &lt; 50, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Art == &quot;No&quot;  &amp; pdata$Age &lt; 50, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.446564
+</code></pre>
+
+<pre><code class="r">t.test(hdata[pdata$Art == &quot;Yes&quot; &amp; pdata$Age &gt; 49, ]$Weave_Adj_Neg_Pos - 
+       hdata[pdata$Art == &quot;Yes&quot; &amp; pdata$Age &gt; 49, ]$Photo_Neg_Pos, 
+       hdata[pdata$Art == &quot;No&quot;  &amp; pdata$Age &gt; 49, ]$Weave_Adj_Neg_Pos - 
+       hdata[pdata$Art == &quot;No&quot;  &amp; pdata$Age &gt; 49, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.667305
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Art == &quot;Yes&quot; &amp; hdata$Age &lt; 30, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Art == &quot;Yes&quot; &amp; hdata$Age &lt; 30, ]$Photo_Neg_Pos, 
+       hdata[hdata$Art == &quot;No&quot;  &amp; hdata$Age &lt; 30, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Art == &quot;No&quot;  &amp; hdata$Age &lt; 30, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.7874481
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hdata$Art == &quot;Yes&quot; &amp; hdata$Age &gt; 29, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Art == &quot;Yes&quot; &amp; hdata$Age &gt; 29, ]$Photo_Neg_Pos, 
+       hdata[hdata$Art == &quot;No&quot;  &amp; hdata$Age &gt; 29, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Art == &quot;No&quot;  &amp; hdata$Age &gt; 29, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.04276522
+</code></pre>
+
+<p>Art still seems like it might be significant in the older cohort of Houston, </p>
+
+<pre><code class="r">par(bg = &quot;snow2&quot;, mfcol = c(2,2), las=1, col = &quot;Black&quot;,
+  col.main = &quot;Black&quot;,col.axis = &quot;Black&quot;,col.lab = &quot;Black&quot;,tcl = 0)
+lc.dhist(hdata[hdata$Art == &quot;Yes&quot; &amp; hdata$Age &lt; 30, ]$Weave_Adj_Neg_Pos - 
+  hdata[hdata$Art == &quot;Yes&quot; &amp; hdata$Age &lt; 30, ]$Photo_Neg_Pos, 
+  hdata[hdata$Art == &quot;No&quot;  &amp; hdata$Age &lt; 30, ]$Weave_Adj_Neg_Pos - 
+  hdata[hdata$Art == &quot;No&quot;  &amp; hdata$Age &lt; 30, ]$Photo_Neg_Pos, &quot;Art Yes&quot;, &quot;Art No&quot;, 
+         &quot;Houston &lt; 30&quot;)
+
+boxplot(hdata[!is.na(hdata$Age &lt; 30) &amp; !is.na(hdata$Weave_Adj_Neg_Pos) &amp; 
+              !is.na(hdata$Photo_Neg_Pos), ]$Weave_Adj_Neg_Pos - 
+        hdata[!is.na(hdata$Age &lt; 30) &amp; !is.na(hdata$Weave_Adj_Neg_Pos) &amp; 
+              !is.na(hdata$Photo_Neg_Pos), ]$Photo_Neg_Pos ~ 
+        hdata[!is.na(hdata$Age &lt; 30) &amp; !is.na(hdata$Weave_Adj_Neg_Pos) &amp; 
+              !is.na(hdata$Photo_Neg_Pos), ]$Art) 
+
+lc.dhist(hdata[hdata$Art == &quot;Yes&quot; &amp; hdata$Age &gt; 29, ]$Weave_Adj_Neg_Pos - 
+  hdata[hdata$Art == &quot;Yes&quot; &amp; hdata$Age &gt; 29, ]$Photo_Neg_Pos, 
+  hdata[hdata$Art == &quot;No&quot;  &amp; hdata$Age &gt; 29, ]$Weave_Adj_Neg_Pos - 
+  hdata[hdata$Art == &quot;No&quot;  &amp; hdata$Age &gt; 29, ]$Photo_Neg_Pos, &quot;Art Yes&quot;, &quot;Art No&quot;,
+         &quot;Houston &gt;= 30 &quot;)
+
+boxplot(hdata[!is.na(hdata$Age &gt; 29) &amp; !is.na(hdata$Weave_Adj_Neg_Pos) &amp; 
+              !is.na(hdata$Photo_Neg_Pos), ]$Weave_Adj_Neg_Pos - 
+        hdata[!is.na(hdata$Age &gt; 29) &amp; !is.na(hdata$Weave_Adj_Neg_Pos) &amp; 
+              !is.na(hdata$Photo_Neg_Pos), ]$Photo_Neg_Pos ~ 
+        hdata[!is.na(hdata$Age &gt; 29) &amp; !is.na(hdata$Weave_Adj_Neg_Pos) &amp; 
+              !is.na(hdata$Photo_Neg_Pos), ]$Art)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-19"/> </p>
+
+<p>While the student T test thinks there might be significance, the boxplot
+shows that it isn&#39;t enough to be visually interesting even in the over 30
+cohort.  Lets see how good the linear model is without including art but
+including the age cutoffs observed.  For comparison, we&#39;ll show over 30 and
+over 50 in both data sets</p>
+
+<pre><code class="r">panp$Under30 &lt;- ifelse(panp$Age &lt; 30, &quot;Yes&quot;, &quot;No&quot;)
+panp$Under50 &lt;- ifelse(panp$Age &lt; 50, &quot;Yes&quot;, &quot;No&quot;)
+hanp$Under30 &lt;- ifelse(hanp$Age &lt; 30, &quot;Yes&quot;, &quot;No&quot;)
+hanp$Under50 &lt;- ifelse(hanp$Age &lt; 50, &quot;Yes&quot;, &quot;No&quot;)
+pa30npfit &lt;- lm(formula = wmp ~ Under30 - 1, data = panp)
+summary(pa30npfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ Under30 - 1, data = panp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.0226 -1.5194 -0.0226  1.4806  8.9774 
+## 
+## Coefficients:
+##            Estimate Std. Error t value Pr(&gt;|t|)    
+## Under30No   -0.9774     0.1680  -5.817 1.36e-08 ***
+## Under30Yes  -0.4806     0.2199  -2.185   0.0295 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.498 on 348 degrees of freedom
+## Multiple R-squared:  0.09988,    Adjusted R-squared:  0.09471 
+## F-statistic: 19.31 on 2 and 348 DF,  p-value: 1.117e-08
+</code></pre>
+
+<pre><code class="r">pa50npfit &lt;- lm(formula = wmp ~ Under50 - 1, data = panp)
+summary(pa50npfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ Under50 - 1, data = panp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.5956 -1.5935  0.4044  1.4065  9.4044 
+## 
+## Coefficients:
+##            Estimate Std. Error t value Pr(&gt;|t|)    
+## Under50No   -1.4044     0.2111  -6.654 1.11e-10 ***
+## Under50Yes  -0.4065     0.1683  -2.416   0.0162 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.461 on 348 degrees of freedom
+## Multiple R-squared:  0.1259, Adjusted R-squared:  0.1209 
+## F-statistic: 25.06 on 2 and 348 DF,  p-value: 6.819e-11
+</code></pre>
+
+<pre><code class="r">ha30npfit &lt;- lm(formula = wmp ~ Under30 - 1, data = hanp)
+summary(ha30npfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ Under30 - 1, data = hanp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.5668 -1.5668  0.4332  1.4332  7.4750 
+## 
+## Coefficients:
+##            Estimate Std. Error t value Pr(&gt;|t|)    
+## Under30No   -1.4332     0.1675  -8.558 3.51e-16 ***
+## Under30Yes  -0.4750     0.3116  -1.524    0.128    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.787 on 355 degrees of freedom
+## Multiple R-squared:  0.1755, Adjusted R-squared:  0.1709 
+## F-statistic: 37.78 on 2 and 355 DF,  p-value: 1.331e-15
+</code></pre>
+
+<pre><code class="r">ha50npfit &lt;- lm(formula = wmp ~ Under50 - 1, data = hanp)
+summary(ha50npfit)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = wmp ~ Under50 - 1, data = hanp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.5544 -1.5544 -0.0488  1.4456  7.9512 
+## 
+## Coefficients:
+##            Estimate Std. Error t value Pr(&gt;|t|)    
+## Under50No   -1.4456     0.2019  -7.159 4.69e-12 ***
+## Under50Yes  -0.9512     0.2190  -4.343 1.84e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.805 on 355 degrees of freedom
+## Multiple R-squared:  0.1649, Adjusted R-squared:  0.1602 
+## F-statistic: 35.06 on 2 and 355 DF,  p-value: 1.274e-14
+</code></pre>
+
+<p>The linear model is very happy both the Under 30 and Under 50
+breakpoints as a way of fitting the data.  A boxplot though, 
+will show why the T-test thought Pittsburgh 50 and Houston 30
+were better, because of the shift in Means - the linear model
+recognizes that the distributions are different between the two
+categories but doesn&#39;t care as much about the mean.  The T-test
+is strictly a &ldquo;if this is a roughly normal distribution, are 
+the means different&rdquo; test.</p>
+
+<pre><code class="r">par(mfcol=c(2,2))
+boxplot(panp$wmp ~ panp$Under30, main = &quot;Pitt Under 30&quot;)
+boxplot(panp$wmp ~ panp$Under50, main = &quot;Pitt Under 50&quot;)
+boxplot(hanp$wmp ~ hanp$Under30, main = &quot;Houst Under 30&quot;)
+boxplot(hanp$wmp ~ hanp$Under50, main = &quot;Houst Under 50&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-21"/> </p>
+
+<p>At this point we have some distributions sufficiently different to
+show as interesting in an artistic visualization.  We&#39;ll use the
+following categories in the visualizations for each of Pittsburgh
+and Houston.</p>
+
+<ul>
+<li> Total population for a location</li>
+<li> Population below key age for location (30 Houston, 50 Pittsburgh)</li>
+<li> Population above key age for location</li>
+</ul>
+
+<h2>Appendix - the lc.dhist function</h2>
+
+<p>This was a function designed to quickly graph pairs that showed statistical differences.  Their main use was to check the
+assumption of a normal distribution, which seemed justified.  I applied this graph to all of the tests which did not show
+significance as well, and the assumption of normality and similar variance (required for T-tests) appeared to hold up well. </p>
+
+<pre><code>lc.dhist &lt;- function(x, y, xleg = &quot;x&quot; , yleg = &quot;y&quot;,
+                    hmain = &quot;&quot;,  hpair = FALSE) {
+ p &lt;-  t.test(x, y, paired = hpair)
+ if (hpair) {
+   hmtx &lt;- matrix(replicate(22,0), nrow = 2, ncol = 11, 
+           dimnames = list(c(yleg, xleg), as.character(0:10)))
+   hmtx[xleg, names(table(x))] &lt;- table(x)
+   hmtx[yleg, names(table(y))] &lt;- table(y)
+   hmatcol &lt;- c(&quot;Red&quot;, &quot;Yellow&quot;)
+   barplot(hmtx, beside = TRUE, col = hmatcol, 
+           main = paste(hmain, &quot;P = &quot;, round(p$p.value, 3)))
+ } else {
+
+   hmtx &lt;- matrix(replicate(42,0), nrow = 2, ncol = 21, 
+           dimnames = list(c(yleg, xleg), as.character(10:-10)))
+   hmtx[xleg, names(table(x))] &lt;- table(x)
+   hmtx[yleg, names(table(y))] &lt;- table(y)
+   hmatcol &lt;- c(&quot;Red&quot;, &quot;Yellow&quot;)
+   barplot(hmtx, beside = TRUE, col = hmatcol, 
+           main = paste(hmain, &quot;P = &quot;, round(p$p.value, 3)))
+ } # end paired true
+ legend(x=&quot;topleft&quot;, legend = rownames(hmtx), fill = hmatcol)
+}
+</code></pre>
+
+</body>
+
+</html>

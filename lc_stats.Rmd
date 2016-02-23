@@ -1,0 +1,994 @@
+---
+title: "Lia Cook Weave vs Photo: Statistics"
+output: lc_stats.md
+  html_document: lc_stats.HTML
+    keep_md: true
+---
+
+Lia Cook Weave vs Photo: Statistics
+===========================================
+
+### By Bradley Shanrock-Solberg 3-Jan-2016
+
+Synopsis
+--------
+
+The primary goal of the study was to look for whether a print of the photo vs a weave of the photo caused changes in emotional intensity (0-10 scale, 10 = high) and whether the emotion felt was a negative or positive emotion (negative = 0, positive = 10).
+
+The experiment was controlled so that roughly half of the subjects saw the photo first, and the other half the weave first.
+
+The subjects varied widely in experience with science, art, weaving and photography, and had a broad range of age and education, although of course all were the sort of people who would show up to an art exhibit and participate in a survey.
+
+The tests showed that the most consistent factor was that if Photo was viewed first, a larger relative negative emotion would be felt when the Weave was viewed.  The reverse was not true.
+
+The Pittsburgh test showed an increase in emotional intensity for the Weave for age groups 30-50.
+
+The Houston test showed an increase in positive response to the Weave for age groups 30-50, and an increase in negative emotional response to the Weave for people with prior Art experience.
+
+When these significant effects were fitted to a model attempting to explain the response, the Pittsburgh intensity response by age showed no patterns between tests and did not provide a satisfactory model compared to "noise".  The negative-positive response, by contrast seemed to provide a better fit if age was considered in addition to the First Viewed factor.  In both tests, the Child and Age 40-49 cohorts showed stronger positive emotions to Weave compared to all other age groups.
+
+After adjusting the data for the bias caused by First Viewed, key age breakpoints emerged in both studies,
+* In Pittsburgh, subjects over 50 responded more negatively to the Weave than those under 50
+* In Houston, subjects over 30 responded more negatively to the Weave than those under 30
+* The Pittsburgh subjects had significantly more under 30 than Houston, and Houston had significantly more over 50 than Pittsburgh, explaining the differences seen in their overall reaction
+* As the art was different in Pittsburgh vs Houston, there is no way to generalize results further across both location
+
+The three key populations of each study will be used as a basis for data visualizations:
+* Total population by location
+* Population Older Than Key Age Breakpoint for Location
+* Population Younger than Key Age Breakpoint for location
+
+Approach
+--------
+First, a small series of paired student T-tests were done to establish whether there was any significant difference in responses for individuals between the photo and the weave.  
+
+Second the difference in Weave response minus Photo response was measured, as that captures the individual response, with a positive number indicating a better response to the Weave, negative a better response for Photo.  This number allows a unpaired t-tests  of change in response among subsets, comparing different age groups, or experience to see if the response was different.
+
+Finally a linear model attempting to fit the responses to a curve was created, eliminating parameters that did not show any impact in the T-tests and the fit was checked using Analysis of Variance (ANOVA) to see if adding parameters improved the fit.
+
+
+Student T-Test of Equivalence
+-----------------------------
+
+When significant differences were found, a histogram of the views is shown.
+pdata = Pittsburgh data, hdata = Houston Data.  Different photographs were used in both, the same image is used in Photo and Weave for the test.
+
+If p-value is below .05, the hypothesis that both values are the same is considered to be disproved.
+
+The function lc.dhist is shown in the appendix at the end of this document.
+```{R echo = FALSE}
+lc.dhist <- function(x, y, xleg = "x" , yleg = "y",
+                    hmain = "",  hpair = FALSE) {
+ p <-  t.test(x, y, paired = hpair)
+ if (hpair) {
+   hmtx <- matrix(replicate(22,0), nrow = 2, ncol = 11, 
+           dimnames = list(c(yleg, xleg), as.character(0:10)))
+   hmtx[xleg, names(table(x))] <- table(x)
+   hmtx[yleg, names(table(y))] <- table(y)
+   hmatcol <- c("Red", "Yellow")
+   barplot(hmtx, beside = TRUE, col = hmatcol, 
+           main = paste(hmain, "P = ", round(p$p.value, 3)))
+ } else {
+
+   hmtx <- matrix(replicate(42,0), nrow = 2, ncol = 21, 
+           dimnames = list(c(yleg, xleg), as.character(10:-10)))
+   hmtx[xleg, names(table(x))] <- table(x)
+   hmtx[yleg, names(table(y))] <- table(y)
+   hmatcol <- c("Red", "Yellow")
+   barplot(hmtx, beside = TRUE, col = hmatcol, 
+           main = paste(hmain, "P = ", round(p$p.value, 3)))
+ } # end paired true
+ legend(x="topleft", legend = rownames(hmtx), fill = hmatcol)
+}
+```
+### Photo vs Weave Paired Tests, Entire Population
+```{R}
+t.test(pdata$Photo_Intensity, pdata$Weave_Intensity, 
+       paired = TRUE)$p.value
+t.test(hdata$Photo_Intensity, hdata$Weave_Intensity, 
+       paired = TRUE)$p.value
+t.test(pdata$Photo_Neg_Pos, pdata$Weave_Neg_Pos, 
+       paired = TRUE)$p.value
+t.test(hdata$Photo_Neg_Pos, hdata$Weave_Neg_Pos, 
+       paired = TRUE)$p.value
+par(bg = "snow2", mfcol = c(2,1), las=1, col = "Black",
+  col.main = "Black",col.axis = "Black",col.lab = "Black",tcl = 0)
+lc.dhist(pdata$Photo_Neg_Pos, pdata$Weave_Neg_Pos, "Photo", 
+  "Weave", "Pittsburgh Negative to Positive", hpair = TRUE)
+lc.dhist(hdata$Photo_Neg_Pos, hdata$Weave_Neg_Pos, "Photo", 
+  "Weave", "Houston Negative to Positive", hpair = TRUE)
+```
+
+### Photo vs Weave Tests, by First Viewed 
+Negative to Positive emotions were significantly different by First Viewed in both tests.
+
+Note that the Intensity had a better P-value in Houston even though it isn't considered significant.  We will see this again in some of the age numbers.
+```{R}
+t.test(pdata[pdata$FirstViewed == "Weave", ]$Weave_Intensity - 
+  pdata[pdata$FirstViewed == "Weave", ]$Photo_Intensity, 
+  pdata[pdata$FirstViewed == "Photo", ]$Weave_Intensity - 
+  pdata[pdata$FirstViewed == "Photo", ]$Photo_Intensity)$p.value
+t.test(hdata[hdata$FirstViewed == "Weave", ]$Weave_Intensity - 
+  hdata[hdata$FirstViewed == "Weave", ]$Photo_Intensity, 
+  hdata[hdata$FirstViewed == "Photo", ]$Weave_Intensity - 
+  hdata[hdata$FirstViewed == "Photo", ]$Photo_Intensity)$p.value
+t.test(pdata[pdata$FirstViewed == "Weave", ]$Weave_Neg_Pos - 
+  pdata[pdata$FirstViewed == "Weave", ]$Photo_Neg_Pos, 
+  pdata[pdata$FirstViewed == "Photo", ]$Weave_Neg_Pos - 
+  pdata[pdata$FirstViewed == "Photo", ]$Photo_Neg_Pos)$p.value
+t.test(hdata[hdata$FirstViewed == "Weave", ]$Weave_Neg_Pos - 
+  hdata[hdata$FirstViewed == "Weave", ]$Photo_Neg_Pos, 
+  hdata[hdata$FirstViewed == "Photo", ]$Weave_Neg_Pos - 
+  hdata[hdata$FirstViewed == "Photo", ]$Photo_Neg_Pos)$p.value
+par(bg = "snow2", mfcol = c(2,1), las=1, col = "Black",
+  col.main = "Black",col.axis = "Black",col.lab = "Black",tcl = 0)
+lc.dhist(pdata[pdata$FirstViewed == "Weave", ]$Weave_Neg_Pos - 
+  pdata[pdata$FirstViewed == "Weave", ]$Photo_Neg_Pos, 
+  pdata[pdata$FirstViewed == "Photo", ]$Weave_Neg_Pos - 
+  pdata[pdata$FirstViewed == "Photo", ]$Photo_Neg_Pos, "Photo First",
+  "Weave First", "Pittsburgh Negative to Positive (Weave# - Photo#)")
+lc.dhist(hdata[hdata$FirstViewed == "Weave", ]$Weave_Neg_Pos - 
+  hdata[hdata$FirstViewed == "Weave", ]$Photo_Neg_Pos, 
+  hdata[hdata$FirstViewed == "Photo", ]$Weave_Neg_Pos - 
+  hdata[hdata$FirstViewed == "Photo", ]$Photo_Neg_Pos, "Photo First",
+  "Weave First", "Houston Negative to Positive (Weave# - Photo#)")
+```
+### Photo vs Weave Tests, by Art Experience 
+In the Houston test only, the Art experience showed as significant for positive/negative.
+
+
+The Houston sample was slightly biased in favor of Photo for Art=Yes, but probably not enough to explain the difference.
+
+For comparison, a graph of the Pittsburgh pos-neg test is shown, even though it was not significant.
+
+```{R}
+t.test(pdata[pdata$Art == "Yes", ]$Weave_Intensity - 
+         pdata[pdata$Art == "Yes", ]$Photo_Intensity, 
+         pdata[pdata$Art == "No", ]$Weave_Intensity - 
+         pdata[pdata$Art == "No", ]$Photo_Intensity)$p.value
+t.test(hdata[hdata$Art == "Yes", ]$Weave_Intensity - 
+         hdata[hdata$Art == "Yes", ]$Photo_Intensity, 
+         hdata[hdata$Art == "No", ]$Weave_Intensity - 
+         hdata[hdata$Art == "No", ]$Photo_Intensity)$p.value
+t.test(pdata[pdata$Art == "Yes", ]$Weave_Intensity - 
+         pdata[pdata$Art == "Yes", ]$Photo_Intensity, 
+         pdata[pdata$Art == "No", ]$Weave_Intensity - 
+         pdata[pdata$Art == "No", ]$Photo_Intensity)$p.value
+t.test(hdata[hdata$Art == "Yes", ]$Weave_Neg_Pos - 
+         hdata[hdata$Art == "Yes", ]$Photo_Neg_Pos, 
+         hdata[hdata$Art == "No", ]$Weave_Neg_Pos - 
+         hdata[hdata$Art == "No", ]$Photo_Neg_Pos)$p.value
+table(hdata$FirstViewed, hdata$Art)
+par(bg = "snow2", mfcol = c(2,1), las=1, col = "Black",
+  col.main = "Black",col.axis = "Black",col.lab = "Black",tcl = 0)
+lc.dhist(pdata[pdata$Art == "Yes", ]$Weave_Intensity - 
+  pdata[pdata$Art == "Yes", ]$Photo_Intensity, 
+  pdata[pdata$Art == "No", ]$Weave_Intensity - 
+  pdata[pdata$Art == "No", ]$Photo_Intensity, "Art Yes", "Art No", 
+         "Pittsburgh Negative to Positive (Weave# - Photo#)")
+lc.dhist(hdata[hdata$Art == "Yes", ]$Weave_Neg_Pos - 
+  hdata[hdata$Art == "Yes", ]$Photo_Neg_Pos, 
+  hdata[hdata$Art == "No", ]$Weave_Neg_Pos - 
+  hdata[hdata$Art == "No", ]$Photo_Neg_Pos, "Art Yes", "Art No",
+         "Houston Negative to Positive (Weave# - Photo#)")
+```
+### Photo vs Weave Tests, by Other Experience or Gender
+No significant results were found by Gender or experience other than Art, above. 
+```{R}
+t.test(pdata[pdata$Science == "Yes", ]$Weave_Intensity - 
+         pdata[pdata$Science == "Yes", ]$Photo_Intensity, 
+         pdata[pdata$Science == "No", ]$Weave_Intensity - 
+         pdata[pdata$Science == "No", ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Science == "Yes", ]$Weave_Intensity - 
+         hdata[hdata$Science == "Yes", ]$Photo_Intensity, 
+         hdata[hdata$Science == "No", ]$Weave_Intensity - 
+         hdata[hdata$Science == "No", ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Science == "Yes", ]$Weave_Neg_Pos - 
+         pdata[pdata$Science == "Yes", ]$Photo_Neg_Pos, 
+         pdata[pdata$Science == "No", ]$Weave_Neg_Pos - 
+         pdata[pdata$Science == "No", ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Science == "Yes", ]$Weave_Neg_Pos - 
+         hdata[hdata$Science == "Yes", ]$Photo_Neg_Pos, 
+         hdata[hdata$Science == "No", ]$Weave_Neg_Pos - 
+         hdata[hdata$Science == "No", ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Photography == "Yes", ]$Weave_Intensity - 
+         pdata[pdata$Photography == "Yes", ]$Photo_Intensity, 
+         pdata[pdata$Photography == "No", ]$Weave_Intensity - 
+         pdata[pdata$Photography == "No", ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Photography == "Yes", ]$Weave_Intensity - 
+         hdata[hdata$Photography == "Yes", ]$Photo_Intensity, 
+         hdata[hdata$Photography == "No", ]$Weave_Intensity - 
+         hdata[hdata$Photography == "No", ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Photography == "Yes", ]$Weave_Neg_Pos - 
+         pdata[pdata$Photography == "Yes", ]$Photo_Neg_Pos, 
+         pdata[pdata$Photography == "No", ]$Weave_Neg_Pos - 
+         pdata[pdata$Photography == "No", ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Photography == "Yes", ]$Weave_Neg_Pos - 
+         hdata[hdata$Photography == "Yes", ]$Photo_Neg_Pos, 
+         hdata[hdata$Photography == "No", ]$Weave_Neg_Pos - 
+         hdata[hdata$Photography == "No", ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Weaving == "Yes", ]$Weave_Intensity - 
+         pdata[pdata$Weaving == "Yes", ]$Photo_Intensity, 
+         pdata[pdata$Weaving == "No", ]$Weave_Intensity - 
+         pdata[pdata$Weaving == "No", ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Weaving == "Yes", ]$Weave_Intensity - 
+         hdata[hdata$Weaving == "Yes", ]$Photo_Intensity, 
+         hdata[hdata$Weaving == "No", ]$Weave_Intensity - 
+         hdata[hdata$Weaving == "No", ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Weaving == "Yes", ]$Weave_Neg_Pos - 
+         pdata[pdata$Weaving == "Yes", ]$Photo_Neg_Pos, 
+         pdata[pdata$Weaving == "No", ]$Weave_Neg_Pos - 
+         pdata[pdata$Weaving == "No", ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Weaving == "Yes", ]$Weave_Neg_Pos - 
+         hdata[hdata$Weaving == "Yes", ]$Photo_Neg_Pos, 
+         hdata[hdata$Weaving == "No", ]$Weave_Neg_Pos - 
+         hdata[hdata$Weaving == "No", ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Gender == "Female", ]$Weave_Intensity - 
+         pdata[pdata$Gender == "Female", ]$Photo_Intensity, 
+         pdata[pdata$Gender == "Male", ]$Weave_Intensity - 
+         pdata[pdata$Gender == "Male", ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Gender == "Female", ]$Weave_Intensity - 
+         hdata[hdata$Gender == "Female", ]$Photo_Intensity, 
+         hdata[hdata$Gender == "Male", ]$Weave_Intensity - 
+         hdata[hdata$Gender == "Male", ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Gender == "Female", ]$Weave_Neg_Pos - 
+         pdata[pdata$Gender == "Female", ]$Photo_Neg_Pos, 
+         pdata[pdata$Gender == "Male", ]$Weave_Neg_Pos - 
+         pdata[pdata$Gender == "Male", ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Gender == "Female", ]$Weave_Neg_Pos - 
+         hdata[hdata$Gender == "Female", ]$Photo_Neg_Pos, 
+         hdata[hdata$Gender == "Male", ]$Weave_Neg_Pos - 
+         hdata[hdata$Gender == "Male", ]$Photo_Neg_Pos)$p.value
+```
+
+### Photo vs Weave Tests, by Education
+This is a bit of a challenge using simple correlation.  The data was presented roughly in terms of years of education, but using years as a continuous variable is misleading, as education measures more of a kind of life experience, and High School, BA, MA and PhD experiences are all qualitatively different.  I chose to measure a sliding window of education, as in "less than BA_BS" or "BA_BS or greater".
+
+I did not find any breakpoint where education caused a meaningful difference in responses. 
+```{R}
+t.test(pdata[pdata$Education == "PHD_MD", ]$Weave_Intensity - 
+  pdata[pdata$Education == "PHD_MD", ]$Photo_Intensity, 
+  pdata[pdata$Education != "PHD_MD", ]$Weave_Intensity - 
+  pdata[pdata$Education != "PHD_MD", ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Education == "PHD_MD", ]$Weave_Intensity - 
+  hdata[hdata$Education == "PHD_MD", ]$Photo_Intensity, 
+  hdata[hdata$Education != "PHD_MD", ]$Weave_Intensity - 
+  hdata[hdata$Education != "PHD_MD", ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Education == "PHD_MD", ]$Weave_Neg_Pos - 
+  pdata[pdata$Education == "PHD_MD", ]$Photo_Neg_Pos, 
+  pdata[pdata$Education != "PHD_MD", ]$Weave_Neg_Pos - 
+  pdata[pdata$Education != "PHD_MD", ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Education == "PHD_MD", ]$Weave_Neg_Pos - 
+  hdata[hdata$Education == "PHD_MD", ]$Photo_Neg_Pos, 
+  hdata[hdata$Education != "PHD_MD", ]$Weave_Neg_Pos - 
+  hdata[hdata$Education != "PHD_MD", ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Education %in% c("PHD_MD",
+    "MA_MS"), ]$Weave_Intensity - 
+  pdata[pdata$Education %in% c("PHD_MD", 
+    "MA_MS"), ]$Photo_Intensity, 
+  pdata[!(hdata$Education %in% c("PHD_MD", 
+    "MA_MS")), ]$Weave_Intensity - 
+  pdata[!(hdata$Education %in% c("PHD_MD", 
+    "MA_MS")), ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Education %in% c("PHD_MD", 
+    "MA_MS"), ]$Weave_Intensity - 
+  hdata[hdata$Education %in% c("PHD_MD", 
+    "MA_MS"), ]$Photo_Intensity, 
+  hdata[!(hdata$Education %in% c("PHD_MD", 
+    "MA_MS")), ]$Weave_Intensity - 
+  hdata[!(hdata$Education %in% c("PHD_MD", 
+    "MA_MS")), ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Education %in% c("PHD_MD", 
+    "MA_MS"), ]$Weave_Neg_Pos - 
+  pdata[pdata$Education %in% c("PHD_MD", 
+    "MA_MS"), ]$Photo_Neg_Pos, 
+  pdata[!(hdata$Education %in% c("PHD_MD", 
+    "MA_MS")), ]$Weave_Neg_Pos - 
+  pdata[!(hdata$Education %in% c("PHD_MD", 
+    "MA_MS")), ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Education %in% c("PHD_MD", 
+    "MA_MS"), ]$Weave_Neg_Pos - 
+  hdata[hdata$Education %in% c("PHD_MD", 
+    "MA_MS"), ]$Photo_Neg_Pos, 
+  hdata[!(hdata$Education %in% c("PHD_MD", 
+    "MA_MS")), ]$Weave_Neg_Pos - 
+  hdata[!(hdata$Education %in% c("PHD_MD", 
+    "MA_MS")), ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Education %in% c("PHD_MD", "MA_MS", 
+   "BA_BS"), ]$Weave_Intensity - 
+ pdata[pdata$Education %in% c("PHD_MD", "MA_MS",
+   "BA_BS"), ]$Photo_Intensity, 
+ pdata[!(hdata$Education %in% c("PHD_MD", "MA_MS",
+   "BA_BS")), ]$Weave_Intensity - 
+ pdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", 
+   "BA_BS")), ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Education %in% c("PHD_MD", "MA_MS", 
+   "BA_BS"), ]$Weave_Intensity - 
+  hdata[hdata$Education %in% c("PHD_MD", "MA_MS", 
+   "BA_BS"), ]$Photo_Intensity, 
+  hdata[!(hdata$Education %in% c("PHD_MD", "MA_MS",
+   "BA_BS")), ]$Weave_Intensity - 
+  hdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", 
+   "BA_BS")), ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Education %in% c("PHD_MD", "MA_MS",
+    "BA_BS"), ]$Weave_Neg_Pos - 
+  pdata[pdata$Education %in% c("PHD_MD", "MA_MS",
+    "BA_BS"), ]$Photo_Neg_Pos, 
+  pdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", 
+    "BA_BS")), ]$Weave_Neg_Pos - 
+  pdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", 
+    "BA_BS")), ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Education %in% c("PHD_MD", "MA_MS",
+   "BA_BS"), ]$Weave_Neg_Pos - 
+  hdata[hdata$Education %in% c("PHD_MD", "MA_MS", 
+   "BA_BS"), ]$Photo_Neg_Pos, 
+  hdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", 
+   "BA_BS")), ]$Weave_Neg_Pos - 
+  hdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", 
+   "BA_BS")), ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS", 
+    "AA_Degree", "Some_College"), ]$Weave_Intensity - 
+  pdata[pdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College"), ]$Photo_Intensity, 
+  pdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College")), ]$Weave_Intensity - 
+  pdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College")), ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College"), ]$Weave_Intensity - 
+  hdata[hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS", 
+    "AA_Degree", "Some_College"), ]$Photo_Intensity, 
+  hdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS", 
+    "AA_Degree", "Some_College")), ]$Weave_Intensity - 
+  hdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College")), ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College"), ]$Weave_Neg_Pos - 
+  pdata[pdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS", 
+    "AA_Degree", "Some_College"), ]$Photo_Neg_Pos, 
+  pdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS", 
+    "AA_Degree", "Some_College")), ]$Weave_Neg_Pos - 
+  pdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College")), ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College"), ]$Weave_Neg_Pos -
+  hdata[hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College"), ]$Photo_Neg_Pos,
+  hdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College")), ]$Weave_Neg_Pos -
+  hdata[!(hdata$Education %in% c("PHD_MD", "MA_MS", "BA_BS",
+    "AA_Degree", "Some_College")), ]$Photo_Neg_Pos)$p.value
+```
+
+### Photo vs Weave Tests, by Age
+As with Education, I chose to use floating age ranges.  Age did show some windows where responses were significantly different, in Intensity during the Houston study and Negative to Positive in the Pittsburgh study.
+
+Where differences were found, I graphed the distribution.  
+
+ 
+```{R}
+t.test(pdata[pdata$Age < 13, ]$Weave_Intensity - 
+         pdata[pdata$Age < 13, ]$Photo_Intensity, 
+         pdata[pdata$Age >= 13, ]$Weave_Intensity - 
+         pdata[pdata$Age >= 13, ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Age < 13, ]$Weave_Intensity - 
+         hdata[hdata$Age < 13, ]$Photo_Intensity, 
+         hdata[hdata$Age >= 13, ]$Weave_Intensity - 
+         hdata[hdata$Age >= 13, ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Age < 13, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age < 13, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age >= 13, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age >= 13, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 13, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age < 13, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age >= 13, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age >= 13, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 20, ]$Weave_Intensity - 
+         pdata[pdata$Age < 20, ]$Photo_Intensity, 
+         pdata[pdata$Age >= 20, ]$Weave_Intensity - 
+         pdata[pdata$Age >= 20, ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Age < 20, ]$Weave_Intensity - 
+         hdata[hdata$Age < 20, ]$Photo_Intensity, 
+         hdata[hdata$Age >= 20, ]$Weave_Intensity - 
+         hdata[hdata$Age >= 20, ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Age < 20, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age < 20, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age >= 20, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age >= 20, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 20, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age < 20, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age >= 20, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age >= 20, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 30, ]$Weave_Intensity - 
+         pdata[pdata$Age < 30, ]$Photo_Intensity, 
+         pdata[pdata$Age >= 30, ]$Weave_Intensity - 
+         pdata[pdata$Age >= 30, ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Age < 30, ]$Weave_Intensity - 
+         hdata[hdata$Age < 30, ]$Photo_Intensity, 
+         hdata[hdata$Age >= 30, ]$Weave_Intensity - 
+         hdata[hdata$Age >= 30, ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Age < 30, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age < 30, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age >= 30, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age >= 30, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 30, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age < 30, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age >= 30, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age >= 30, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 40, ]$Weave_Intensity - 
+         pdata[pdata$Age < 40, ]$Photo_Intensity, 
+         pdata[pdata$Age >= 40, ]$Weave_Intensity - 
+         pdata[pdata$Age >= 40, ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Age < 40, ]$Weave_Intensity - 
+         hdata[hdata$Age < 40, ]$Photo_Intensity, 
+         hdata[hdata$Age >= 40, ]$Weave_Intensity - 
+         hdata[hdata$Age >= 40, ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Age < 40, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age < 40, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age >= 40, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age >= 40, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 40, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age < 40, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age >= 40, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age >= 40, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 50, ]$Weave_Intensity - 
+         pdata[pdata$Age < 50, ]$Photo_Intensity, 
+         pdata[pdata$Age >= 50, ]$Weave_Intensity - 
+         pdata[pdata$Age >= 50, ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Age < 50, ]$Weave_Intensity - 
+         hdata[hdata$Age < 50, ]$Photo_Intensity, 
+         hdata[hdata$Age >= 50, ]$Weave_Intensity - 
+         hdata[hdata$Age >= 50, ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Age < 50, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age < 50, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age >= 50, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age >= 50, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 50, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age < 50, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age >= 50, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age >= 50, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 60, ]$Weave_Intensity - 
+         pdata[pdata$Age < 60, ]$Photo_Intensity, 
+         pdata[pdata$Age >= 60, ]$Weave_Intensity - 
+         pdata[pdata$Age >= 60, ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Age < 60, ]$Weave_Intensity - 
+         hdata[hdata$Age < 60, ]$Photo_Intensity, 
+         hdata[hdata$Age >= 60, ]$Weave_Intensity - 
+         hdata[hdata$Age >= 60, ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Age < 60, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age < 60, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age >= 60, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age >= 60, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 60, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age < 60, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age >= 60, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age >= 60, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 70, ]$Weave_Intensity - 
+         pdata[pdata$Age < 70, ]$Photo_Intensity, 
+         pdata[pdata$Age >= 70, ]$Weave_Intensity - 
+         pdata[pdata$Age >= 70, ]$Photo_Intensity)$p.value
+
+t.test(hdata[hdata$Age < 70, ]$Weave_Intensity - 
+         hdata[hdata$Age < 70, ]$Photo_Intensity, 
+         hdata[hdata$Age >= 70, ]$Weave_Intensity - 
+         hdata[hdata$Age >= 70, ]$Photo_Intensity)$p.value
+
+t.test(pdata[pdata$Age < 70, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age < 70, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age >= 70, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age >= 70, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 70, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age < 70, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age >= 70, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age >= 70, ]$Photo_Neg_Pos)$p.value
+
+```
+The interesting ranges are between age 30-50.  
+Intensity increases only in the Houston test, with no "Weave < Photo" outliers and several "Photo > Weave" outliers.
+
+```{R}
+par(bg = "snow2", mfcol = c(2,1), las=1, col = "Black",
+  col.main = "Black",col.axis = "Black",col.lab = "Black", tcl = 0)
+lc.dhist(pdata[pdata$Age < 50 & pdata$Age >= 30, ]$Weave_Intensity - 
+         pdata[pdata$Age < 50 & pdata$Age >= 30, ]$Photo_Intensity, 
+         pdata[pdata$Age >= 50 | pdata$Age < 30,  ]$Weave_Intensity - 
+         pdata[pdata$Age >= 50 | pdata$Age < 30,  ]$Photo_Intensity,  
+           "30 to 49", "30- or 50+",
+           "Pittsburgh Intensity (Weave# - Photo#)")
+lc.dhist(hdata[hdata$Age < 50 & hdata$Age >= 30, ]$Weave_Intensity - 
+         hdata[hdata$Age < 50 & hdata$Age >= 30, ]$Photo_Intensity, 
+         hdata[hdata$Age >= 50 | hdata$Age < 30, ]$Weave_Intensity - 
+         hdata[hdata$Age >= 50 | hdata$Age < 30, ]$Photo_Intensity,  
+           "30 to 49", "30- or 50+",
+           "Houston Intensity (Weave# - Photo#)")
+```
+
+By contrast, the Negative to Positive response only shows significant in the Pittsburgh test, with a stronger positive reaction to the Weave in that range.
+```{R}
+par(bg = "snow2", mfcol = c(2,1), las=1, col = "Black",
+  col.main = "Black",col.axis = "Black",col.lab = "Black", tcl = 0)
+lc.dhist(pdata[pdata$Age < 50 & pdata$Age >= 30, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age < 50 & pdata$Age >= 30, ]$Photo_Neg_Pos, 
+         pdata[pdata$Age >= 50 | pdata$Age < 30, ]$Weave_Neg_Pos - 
+         pdata[pdata$Age >= 50 | pdata$Age < 30, ]$Photo_Neg_Pos,  
+          "30 to 49", "30- or 50+",
+           "Pittsburgh Negative to Positive (Weave# - Photo#)")
+lc.dhist(hdata[hdata$Age < 50 & hdata$Age >= 30, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age < 50 & hdata$Age >= 30, ]$Photo_Neg_Pos, 
+         hdata[hdata$Age >= 50 | hdata$Age < 30, ]$Weave_Neg_Pos - 
+         hdata[hdata$Age >= 50 | hdata$Age < 30, ]$Photo_Neg_Pos,  
+           "30 to 49", "30- or 50+",  
+           "Houston Negative to Positive (Weave# - Photo#)")
+
+```
+
+Linear Models
+-------------
+
+To explore further the effects noticed in the correlation, we'll try to fit a curve using the significant factors discovered in the T-tests.
+
+In the linear models below, "wmp" means "Weave Number minus Photo Number".
+
+### Linear Model Intensity by Age Range
+This effect was only noticed in the Houston study.  Rather than using the sliding windows, we'll attempt to fit it using the AgeRange
+factors (generally 10 year chunks, except for Child and Teen, which have a breakpoint at 13 years).
+```{R}
+pint <- pdata[, c("Age", "AgeRange")]
+pint$wmp <- pdata$Weave_Intensity - pdata$Photo_Intensity
+pint <- pint[!is.na(pint$wmp) & !is.na(pint$AgeRange), ]
+pifit <- lm(formula = wmp ~ AgeRange -1, data = pint)
+summary(pifit)
+```
+While this model can't be used to fit the graph (overall P = .2899), there is some interesting structure in the 40s - there is a big shift from negative intensity for Weave compared to Photo to a positive intensity.  This effect also exists in the Teen and 70s, but the number of subjects is much smaller in those age ranges.
+```{R}
+hint <- hdata[, c("Age", "AgeRange")]
+hint$wmp <- hdata$Weave_Intensity - hdata$Photo_Intensity
+hint <- hint[!is.na(hint$wmp) & !is.na(hint$AgeRange), ]
+hifit <- lm(formula = wmp ~ AgeRange -1, data = hint)
+summary(hifit)
+```
+This model works better for Houston, but still doesn't quite make the 90% mark (p = .1084) but again there are some interesting shifts in intensity, stronger for Weave in the 30s and weaker for Weave in the 50s.
+
+There does seem to be some variation in response by age, but it is not consistent or predictable.
+
+### Linear Model Negative to Positive by FirstViewed, Art and AgeRange
+
+There were 3 factors that affected Positive to Negative, so models based on each as primary and in combination must be tested.
+For combinations, an Analysis of Variance (ANOVA) test will be done to see if adding either or both of the other factors improves the overall model.
+
+
+```{R}
+# FirstViewed and Art have no NA values, but when 
+#   combining with AgeRange must filter out NA values 
+pnp <- pdata[, c("FirstViewed", "Art", "AgeRange")]
+pnp$wmp <- pdata$Weave_Neg_Pos - pdata$Photo_Neg_Pos
+pnp <- pnp[!is.na(pnp$wmp), ]
+pnpR <- pnp[!is.na(pnp$AgeRange), ]
+
+pFfit <- lm(formula = wmp ~ FirstViewed -1, data = pnp)
+summary(pFfit)$coefficients
+pAfit <- lm(formula = wmp ~ Art -1, data = pnp)
+summary(pAfit)$coefficients
+## pFfit is better than PA fit
+#   see if adding Art to First Viewed improves the model
+pFAfit <- lm(formula = wmp ~ FirstViewed + Art -1, data = pnp)
+anova(pFfit, pFAfit)
+pRfit <- lm(formula = wmp ~ AgeRange -1, data = pnpR)
+summary(pRfit)
+
+# This is actually pretty good, but still not as good as pFFit 
+# (overall P-value is .005 vs about .001, similar std error).
+pF1fit <-   lm(formula = wmp ~ FirstViewed -1, data = pnpR)
+pFRfit <-   lm(formula = wmp ~ FirstViewed + 
+                               AgeRange -1, data = pnpR)
+pFRAfit <-   lm(formula = wmp ~ FirstViewed + 
+                               AgeRange + Art -1, data = pnpR)
+anova(pF1fit, pFRfit, pFRAfit)
+
+# best model is a combination of First Viewed and Age Range. 
+# In order to see the coeffiecients of the age factor more clearly,
+# make the Age Range the first parameter in the lm call
+pFRfit <- lm(formula = wmp ~ AgeRange + FirstViewed -1, data = pnpR)
+summary(pFRfit)
+```
+For Pittsburgh, age range improved the model without increasing the standard error.  Lets see if the same is true for Houston, and whether Art has an impact.
+
+```{R}
+hnp <- hdata[, c("FirstViewed", "Art", "AgeRange")]
+hnp$wmp <- hdata$Weave_Neg_Pos - hdata$Photo_Neg_Pos
+hnp <- pnp[!is.na(hnp$wmp), ]
+hnpR <- pnp[!is.na(hnp$AgeRange), ]
+
+hFfit <- lm(formula = wmp ~ FirstViewed -1, data = hnp)
+summary(hFfit)
+hAfit <- lm(formula = wmp ~ Art -1, data = hnp)
+summary(hAfit)
+hRfit <- lm(formula = wmp ~ AgeRange -1, data = hnpR)
+summary(hRfit)
+
+# similar pattern to Pittsburgh.  
+# Lets just jump ahead and look at the stats for FirstViewed+Age)
+hFRfit <-   lm(formula = wmp ~ AgeRange + FirstViewed -1, 
+               data = hnpR)
+summary(hFRfit)
+```
+
+What's interesting about the models is that FirstViewed is clearly biasing the results, 
+but that there clearly a significant age factor.  This level of resolution indicates
+a much more negative response to Weave by people in their 50s and 60s, inboth the Houston
+and Pittsburgh studies than other age groups. There might be some other age groups or 
+better age categories that would more clearly nail down this difference, but to see it
+in the data, we need to correct for the FirstViewedWeave bias.
+
+Given the integer scale of 0-11, the data is only reliable to one significant digit,
+so we will shift the FirstViewedWeave "wmp"  data by -1 (as it showed as +.75388 in 
+Pittsburgh and +.9418 in Houston)
+
+### Linear Model Negative to Positive by AgeRange, adjusting for FirstViewed
+
+```{R}
+# Adjust the values of the Weave_Neg_Pos by 1 when FirstViewed == "Weave", but not lower than 0
+# This must be done in the raw data first if we want to graph relationships that the linear model
+# exposes later, and also allows for the floor of zero on negative/positive before looking at 
+# the difference between photo and weave.  Just in case the age ranges aren't the best groupings,
+# the raw age will also be pulled for the adjusted model.
+
+pAdj_Neg_Pos <- pdata[pdata$FirstViewed == "Weave", ]$Weave_Neg_Pos - 1
+pAdj_Neg_Pos[pAdj_Neg_Pos < 0 & !is.na(pAdj_Neg_Pos)] <- 0
+pdata$Weave_Adj_Neg_Pos <- pdata$Weave_Neg_Pos
+pdata[pdata$FirstViewed == "Weave", ]$Weave_Adj_Neg_Pos <- pAdj_Neg_Pos
+panp <- pdata[, c("Age", "AgeRange")]
+panp$wmp <- pdata$Weave_Adj_Neg_Pos - pdata$Photo_Neg_Pos
+panp <- panp[!is.na(panp$wmp), ]
+panp <- panp[!is.na(panp$AgeRange), ]
+pAdjfit <- lm(formula = wmp ~ AgeRange -1, data = panp)
+
+# do the same for Houston
+hAdj_Neg_Pos <- hdata[hdata$FirstViewed == "Weave", ]$Weave_Neg_Pos - 1
+hAdj_Neg_Pos[hAdj_Neg_Pos < 0 & !is.na(hAdj_Neg_Pos)] <- 0
+hdata$Weave_Adj_Neg_Pos <- hdata$Weave_Neg_Pos
+hdata[hdata$FirstViewed == "Weave", ]$Weave_Adj_Neg_Pos <- hAdj_Neg_Pos
+hanp <- hdata[, c("Age", "AgeRange")]
+hanp$wmp <- hdata$Weave_Adj_Neg_Pos - hdata$Photo_Neg_Pos
+hanp <- hanp[!is.na(hanp$wmp), ]
+hanp <- hanp[!is.na(hanp$AgeRange), ]
+hAdjfit <- lm(formula = wmp ~ AgeRange -1, data = hanp)
+
+summary(pAdjfit)
+summary(hAdjfit)
+```
+ 
+With this adjustment, the differences are more dramatic.
+
+In Pittsburgh, there was a strong and significant negative reaction to Weave in 
+the age 50-70 range relative to the other age groups, where in Houston this band
+of ages extended to the thirties. 
+
+The following plot is intended to get a sense of how much data we have for each date
+range, vs the differences we are seeing in the model.
+
+```{R}
+ boxplot(panp$wmp ~ panp$AgeRange)
+ table(panp$AgeRange)
+ boxplot(hanp$wmp ~ hanp$AgeRange)
+ table(hanp$AgeRange)
+```
+From this we see the 80-90 age range is tiny in number, and it seems likely
+a generational shift at an age breakpoint (over XX) is where the real shift 
+begins.  Interestingly, the  data in Pittsburgh had twice as many people
+in their 20s as Houston, and Houston had twice as many people in their 60s
+as Pittsburgh.  This is likely the source of the differences in neg-pos seen
+in the overall data as the "under 30" responded differently than "60+" in both
+studies.
+
+
+### Linear Model Negative to Positive by Age Breakpoint, adjusting for FirstViewed
+
+Lets try to narrow this breakpoint further.  Right now we're seeing
+significance between "under 30" and "over 30" in one Houston and
+"Under 50" and "Over 50" in Pittsburgh. We'll go back to the student
+T test to see where we get the best P-Values
+```{R}
+
+## Pittsburgh might actually have 3 ranges, with a strangely
+# positive reagion in the 40s.  We'll start with binary cutoffs.
+
+t.test(pdata[pdata$Age < 30, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 30, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 29, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 29, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 40, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 40, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 39, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 39, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 50, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 50, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 49, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 49, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 60, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 60, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 59, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 59, ]$Photo_Neg_Pos)$p.value
+
+# That looks more like a real cutoff around 50, lets narrow the range
+t.test(pdata[pdata$Age < 45, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 45, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 44, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 44, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 48, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 48, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 47, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 47, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 49, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 49, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 48, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 48, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 51, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 51, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 50, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 50, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 53, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 53, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 52, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 52, ]$Photo_Neg_Pos)$p.value
+
+t.test(pdata[pdata$Age < 55, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age < 55, ]$Photo_Neg_Pos, 
+       pdata[pdata$Age > 54, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Age > 54, ]$Photo_Neg_Pos)$p.value
+
+## Now Houston, which showed a sharper cutoff at 30, 
+t.test(hdata[hdata$Age < 25, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age < 25, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age > 24, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age > 24, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 28, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age < 28, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age > 27, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age > 27, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 29, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age < 29, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age > 28, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age > 28, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 30, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age < 30, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age > 29, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age > 29, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 31, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age < 31, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age > 32, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age > 32, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 32, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age < 32, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age > 33, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age > 33, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Age < 35, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age < 35, ]$Photo_Neg_Pos, 
+       hdata[hdata$Age > 34, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Age > 34, ]$Photo_Neg_Pos)$p.value
+
+```
+
+For Houston, the breakpoint really is right at about 30 years old
+and for Pittsburgh it seems to be 51 years old, within our limits
+of measurement 50 remains a solid cutoff.
+
+
+The age range factor might explain why art seemed significant in one study
+and not in the other:
+
+```{R}
+ table(pdata$Art, pdata$AgeRange)
+ table(hdata$Art, hdata$AgeRange)
+```
+In most age groups, the two studies had similar percentages of "Art = Yes",
+but in the "under 30s" age group, Pittsburgh had about a 50-50 mix of Art Yes/No,
+where in Houston, this mix was about 70% yes, 30% no.  
+
+Testing this hypothesis, now that we can correct for First Viewed and
+Age bias
+```{R}
+t.test(pdata[pdata$Art == "Yes" & pdata$Age < 50, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Art == "Yes" & pdata$Age < 50, ]$Photo_Neg_Pos, 
+       pdata[pdata$Art == "No"  & pdata$Age < 50, ]$Weave_Adj_Neg_Pos - 
+       pdata[pdata$Art == "No"  & pdata$Age < 50, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[pdata$Art == "Yes" & pdata$Age > 49, ]$Weave_Adj_Neg_Pos - 
+       hdata[pdata$Art == "Yes" & pdata$Age > 49, ]$Photo_Neg_Pos, 
+       hdata[pdata$Art == "No"  & pdata$Age > 49, ]$Weave_Adj_Neg_Pos - 
+       hdata[pdata$Art == "No"  & pdata$Age > 49, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Art == "Yes" & hdata$Age < 30, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Art == "Yes" & hdata$Age < 30, ]$Photo_Neg_Pos, 
+       hdata[hdata$Art == "No"  & hdata$Age < 30, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Art == "No"  & hdata$Age < 30, ]$Photo_Neg_Pos)$p.value
+
+t.test(hdata[hdata$Art == "Yes" & hdata$Age > 29, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Art == "Yes" & hdata$Age > 29, ]$Photo_Neg_Pos, 
+       hdata[hdata$Art == "No"  & hdata$Age > 29, ]$Weave_Adj_Neg_Pos - 
+       hdata[hdata$Art == "No"  & hdata$Age > 29, ]$Photo_Neg_Pos)$p.value
+```
+
+Art still seems like it might be significant in the older cohort of Houston, 
+
+```{R}
+par(bg = "snow2", mfcol = c(2,2), las=1, col = "Black",
+  col.main = "Black",col.axis = "Black",col.lab = "Black",tcl = 0)
+lc.dhist(hdata[hdata$Art == "Yes" & hdata$Age < 30, ]$Weave_Adj_Neg_Pos - 
+  hdata[hdata$Art == "Yes" & hdata$Age < 30, ]$Photo_Neg_Pos, 
+  hdata[hdata$Art == "No"  & hdata$Age < 30, ]$Weave_Adj_Neg_Pos - 
+  hdata[hdata$Art == "No"  & hdata$Age < 30, ]$Photo_Neg_Pos, "Art Yes", "Art No", 
+         "Houston < 30")
+
+boxplot(hdata[!is.na(hdata$Age < 30) & !is.na(hdata$Weave_Adj_Neg_Pos) & 
+              !is.na(hdata$Photo_Neg_Pos), ]$Weave_Adj_Neg_Pos - 
+        hdata[!is.na(hdata$Age < 30) & !is.na(hdata$Weave_Adj_Neg_Pos) & 
+              !is.na(hdata$Photo_Neg_Pos), ]$Photo_Neg_Pos ~ 
+        hdata[!is.na(hdata$Age < 30) & !is.na(hdata$Weave_Adj_Neg_Pos) & 
+              !is.na(hdata$Photo_Neg_Pos), ]$Art) 
+
+lc.dhist(hdata[hdata$Art == "Yes" & hdata$Age > 29, ]$Weave_Adj_Neg_Pos - 
+  hdata[hdata$Art == "Yes" & hdata$Age > 29, ]$Photo_Neg_Pos, 
+  hdata[hdata$Art == "No"  & hdata$Age > 29, ]$Weave_Adj_Neg_Pos - 
+  hdata[hdata$Art == "No"  & hdata$Age > 29, ]$Photo_Neg_Pos, "Art Yes", "Art No",
+         "Houston >= 30 ")
+
+boxplot(hdata[!is.na(hdata$Age > 29) & !is.na(hdata$Weave_Adj_Neg_Pos) & 
+              !is.na(hdata$Photo_Neg_Pos), ]$Weave_Adj_Neg_Pos - 
+        hdata[!is.na(hdata$Age > 29) & !is.na(hdata$Weave_Adj_Neg_Pos) & 
+              !is.na(hdata$Photo_Neg_Pos), ]$Photo_Neg_Pos ~ 
+        hdata[!is.na(hdata$Age > 29) & !is.na(hdata$Weave_Adj_Neg_Pos) & 
+              !is.na(hdata$Photo_Neg_Pos), ]$Art)
+```
+
+
+While the student T test thinks there might be significance, the boxplot
+shows that it isn't enough to be visually interesting even in the over 30
+cohort.  Lets see how good the linear model is without including art but
+including the age cutoffs observed.  For comparison, we'll show over 30 and
+over 50 in both data sets
+
+
+```{R}
+
+panp$Under30 <- ifelse(panp$Age < 30, "Yes", "No")
+panp$Under50 <- ifelse(panp$Age < 50, "Yes", "No")
+hanp$Under30 <- ifelse(hanp$Age < 30, "Yes", "No")
+hanp$Under50 <- ifelse(hanp$Age < 50, "Yes", "No")
+pa30npfit <- lm(formula = wmp ~ Under30 - 1, data = panp)
+summary(pa30npfit)
+pa50npfit <- lm(formula = wmp ~ Under50 - 1, data = panp)
+summary(pa50npfit)
+ha30npfit <- lm(formula = wmp ~ Under30 - 1, data = hanp)
+summary(ha30npfit)
+ha50npfit <- lm(formula = wmp ~ Under50 - 1, data = hanp)
+summary(ha50npfit)
+````
+
+The linear model is very happy both the Under 30 and Under 50
+breakpoints as a way of fitting the data.  A boxplot though, 
+will show why the T-test thought Pittsburgh 50 and Houston 30
+were better, because of the shift in Means - the linear model
+recognizes that the distributions are different between the two
+categories but doesn't care as much about the mean.  The T-test
+is strictly a "if this is a roughly normal distribution, are 
+the means different" test.
+
+```{R}
+par(mfcol=c(2,2))
+boxplot(panp$wmp ~ panp$Under30, main = "Pitt Under 30")
+boxplot(panp$wmp ~ panp$Under50, main = "Pitt Under 50")
+boxplot(hanp$wmp ~ hanp$Under30, main = "Houst Under 30")
+boxplot(hanp$wmp ~ hanp$Under50, main = "Houst Under 50")
+```
+
+At this point we have some distributions sufficiently different to
+show as interesting in an artistic visualization.  We'll use the
+following categories in the visualizations for each of Pittsburgh
+and Houston.
+
+-  Total population for a location
+-  Population below key age for location (30 Houston, 50 Pittsburgh)
+-  Population above key age for location
+
+
+Appendix - the lc.dhist function
+--------
+
+This was a function designed to quickly graph pairs that showed statistical differences.  Their main use was to check the
+assumption of a normal distribution, which seemed justified.  I applied this graph to all of the tests which did not show
+significance as well, and the assumption of normality and similar variance (required for T-tests) appeared to hold up well. 
+
+```
+lc.dhist <- function(x, y, xleg = "x" , yleg = "y",
+                    hmain = "",  hpair = FALSE) {
+ p <-  t.test(x, y, paired = hpair)
+ if (hpair) {
+   hmtx <- matrix(replicate(22,0), nrow = 2, ncol = 11, 
+           dimnames = list(c(yleg, xleg), as.character(0:10)))
+   hmtx[xleg, names(table(x))] <- table(x)
+   hmtx[yleg, names(table(y))] <- table(y)
+   hmatcol <- c("Red", "Yellow")
+   barplot(hmtx, beside = TRUE, col = hmatcol, 
+           main = paste(hmain, "P = ", round(p$p.value, 3)))
+ } else {
+ 
+   hmtx <- matrix(replicate(42,0), nrow = 2, ncol = 21, 
+           dimnames = list(c(yleg, xleg), as.character(10:-10)))
+   hmtx[xleg, names(table(x))] <- table(x)
+   hmtx[yleg, names(table(y))] <- table(y)
+   hmatcol <- c("Red", "Yellow")
+   barplot(hmtx, beside = TRUE, col = hmatcol, 
+           main = paste(hmain, "P = ", round(p$p.value, 3)))
+ } # end paired true
+ legend(x="topleft", legend = rownames(hmtx), fill = hmatcol)
+}
+```

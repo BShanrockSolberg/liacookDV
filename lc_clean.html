@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Lia Cook Weave vs Photo: Data Cleansing</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Lia Cook Weave vs Photo: Data Cleansing</h1>
+
+<h3>By Bradley Shanrock-Solberg 20-December 2015</h3>
+
+<h2>Synopsis</h2>
+
+<p>Surveys from the Houston and Pittsburgh Weave vs Photo experiments were entered into three spreadsheets and, in the case of Houston emotion words, a large series of text files.</p>
+
+<p>Formats were inconsistent and in some cases the data was not transcribed correctly.  The two Houston spreadsheets were identical, so only one was used.  When data was not entered in the survey, it is captured as NA.</p>
+
+<p>The following R code was used to clean up the data and reduce it to two data frames (pdata for Pittsburgh, hdata for Houston)</p>
+
+<h2>Data Processing</h2>
+
+<p>Load data, ensure that only one houston data matters,
+compare format to Pittsburgh</p>
+
+<pre><code class="r">houston1 &lt;- read.csv(skip=1, &quot;rawdata/Houston Data-1csv.csv&quot;)
+houston2 &lt;- read.csv(skip=1, &quot;rawdata/Houston Data-resizecsv.csv&quot;)
+identical(houston1,houston2)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">str(houston1)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    428 obs. of  18 variables:
+##  $ ID.Number                              : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ First.piece                            : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ First_Image_Rate_Intensity_Emotion     : num  7 7 6 7 6 8 5 7 8 5 ...
+##  $ First_Image_Rate_Intensity_NegPosReact : int  9 7 8 5 7 8 5 9 8 3 ...
+##  $ Second_Image_Rate_Intensity_Emotion    : num  8 5 8 8 5 6 3 9 9 7 ...
+##  $ Second_Image_Rate_Intensity_NegPosReact: num  3 7 4 4 5 7 4 2 4 5 ...
+##  $ Art_Experience                         : int  1 2 2 1 2 1 1 2 2 1 ...
+##  $ Number.of.Years                        : int  70 NA NA 10 NA 2 8 NA NA 15 ...
+##  $ Scientific_Experiments                 : int  2 1 2 2 2 1 1 1 2 1 ...
+##  $ Number.of.Years.1                      : int  NA 7 NA NA NA 3 4 30 NA 3 ...
+##  $ Photography_Experience                 : int  1 2 1 2 2 2 1 2 1 1 ...
+##  $ Number.of.Years.2                      : num  45 NA 10 NA NA NA 10 NA 20 28 ...
+##  $ Weaving_Experience                     : int  2 2 2 NA 2 2 2 2 2 1 ...
+##  $ Number.of.Years.3                      : int  NA NA NA NA NA NA NA NA NA 6 ...
+##  $ Age                                    : int  77 26 38 29 42 21 23 56 46 51 ...
+##  $ Gender                                 : int  2 2 2 2 1 2 2 2 1 2 ...
+##  $ education                              : int  16 16 16 18 16 16 16 16 13 18 ...
+##  $ X                                      : logi  NA NA NA NA NA NA ...
+</code></pre>
+
+<pre><code class="r">pitt1 &lt;- read.csv(skip=1, &quot;rawdata/LiaCookPittsburghDataPhotovWovenFace-1csv.csv&quot;,
+                  stringsAsFactors = FALSE)
+str(pitt1)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    396 obs. of  19 variables:
+##  $ ID                 : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ X1st.piece.1.A..2.B: int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ A_EmotionWord      : chr  &quot;beauty&quot; &quot;caring&quot; &quot;crackle&quot; &quot;concern&quot; ...
+##  $ A_EmotionIntensity : num  6 8 6 7 7 8 7 6 8 5 ...
+##  $ A_Neg_Pos          : num  3 6 5 3 7 0 7 3 3 7 ...
+##  $ B_EmotionWord      : chr  &quot;disappointed&quot; &quot;confused&quot; &quot;clean&quot; &quot;fear&quot; ...
+##  $ B_EmotionIntensity : num  7 7 1 7 6 8 7 8 9 7 ...
+##  $ B_Neg_Pos          : num  1 9 5 1 4 0 7 3 2 4 ...
+##  $ ArtExperience      : int  1 2 1 2 1 1 2 2 1 2 ...
+##  $ X.years            : num  8 NA 20 NA 33 6 NA NA 1 NA ...
+##  $ ScientificExpts    : int  1 1 2 1 1 2 1 2 1 2 ...
+##  $ X.years.1          : num  3 6 NA 6 2 NA 2 NA 1 NA ...
+##  $ Photography        : int  1 1 1 2 1 2 2 2 1 1 ...
+##  $ X.years.2          : num  2 8 5 NA 15 NA NA NA 2 20 ...
+##  $ Weaving            : int  2 1 2 2 1 1 2 2 2 2 ...
+##  $ X.years.3          : num  NA 8 NA NA 1 10 NA NA NA NA ...
+##  $ Age                : int  NA 23 38 25 33 60 36 21 23 61 ...
+##  $ Gender             : int  2 2 1 2 2 2 1 2 2 2 ...
+##  $ education          : int  16 16 18 16 16 18 18 16 18 16 ...
+</code></pre>
+
+<p>Merge formats into consistent, eliminate columns with lots of NA data, change numbers to factors where appropriate,</p>
+
+<pre><code class="r">pdata &lt;- pitt1[, c(1:9, 11, 13, 15, 17:19)]
+names(pdata) &lt;- c(&quot;ID&quot;, &quot;FirstViewed&quot;, &quot;Photo_Word&quot;, &quot;Photo_Intensity&quot;,
+                  &quot;Photo_Neg_Pos&quot;, &quot;Weave_Word&quot;, &quot;Weave_Intensity&quot;,
+                  &quot;Weave_Neg_Pos&quot;, &quot;Art&quot;, &quot;Science&quot;, 
+                  names(pdata[11:14]),&quot;Education&quot;)
+# subject ID was repeated for FirstViewed = 2, instead of getting a unique
+# value (unlike Houston data).  Fix
+length(unique(pdata$ID))
+</code></pre>
+
+<pre><code>## [1] 199
+</code></pre>
+
+<pre><code class="r">table(pdata$FirstViewed,pdata$ID)
+</code></pre>
+
+<pre><code>##    
+##     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+##   1 1 1 1 1 1 1 1 1 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+##   2 1 1 1 1 1 1 1 1 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+##    
+##     27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49
+##   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+##   2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+##    
+##     50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72
+##   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+##   2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+##    
+##     73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95
+##   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+##   2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+##    
+##     96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113
+##   1  1  1  1  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##   2  1  1  1  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##    
+##     114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130
+##   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##   2   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##    
+##     131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147
+##   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##   2   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##    
+##     148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164
+##   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##   2   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##    
+##     165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181
+##   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##   2   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##    
+##     182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198
+##   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+##   2   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+##    
+##     199
+##   1   1
+##   2   0
+</code></pre>
+
+<pre><code class="r">pdata[pdata$FirstViewed == 2, &quot;ID&quot;] &lt;- 200:396
+dim(pdata)[1] ==  length(unique(pdata$ID))
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">pdata$FirstViewed &lt;- ifelse(pdata$FirstViewed == 1, &quot;Photo&quot;, &quot;Weave&quot;)
+pdata$FirstViewed &lt;- factor(pdata$FirstViewed, order &lt;- c(&quot;Photo&quot;, &quot;Weave&quot;))
+# Now just check the data ranges to be sure nothing is out of bounds,
+# and round partial values down to integers
+table(pdata$Photo_Intensity)
+</code></pre>
+
+<pre><code>## 
+##   0   1   2   3   4   5   6   7   8 8.5   9  10 
+##   7   3  11  39  27  34  68 101  74   1  21   4
+</code></pre>
+
+<pre><code class="r">pdata$Photo_Intensity &lt;- floor(pdata$Photo_Intensity)
+table(pdata$Weave_Intensity)
+</code></pre>
+
+<pre><code>## 
+##   0   1   2   3   4   5   6   7   8   9 9.5  10 
+##   4   6  17  28  30  52  66  72  55  28   1  16
+</code></pre>
+
+<pre><code class="r">pdata$Weave_Intensity &lt;- floor(pdata$Weave_Intensity)
+table(pdata$Photo_Neg_Pos)
+</code></pre>
+
+<pre><code>## 
+##   0   1   2   3   4   5   6 6.5   7   8   9  10 
+##   7  23  45  58  36  65  47   1  45  36  18   9
+</code></pre>
+
+<pre><code class="r">pdata$Photo_Neg_Pos &lt;- floor(pdata$Photo_Neg_Pos)
+table(pdata$Weave_Neg_Pos)
+</code></pre>
+
+<pre><code>## 
+##   0   1   2   3   4 4.5   5   6   7   8   9  10 
+##  14  23  32  51  53   1  74  45  35  20  18   8
+</code></pre>
+
+<pre><code class="r">pdata$Weave_Neg_Pos &lt;- floor(pdata$Weave_Neg_Pos)
+# for the experience questions, treat no response as a &quot;No&quot;
+table(pdata$Art)
+</code></pre>
+
+<pre><code>## 
+##   1   2 
+## 189 178
+</code></pre>
+
+<pre><code class="r">pdata$Art &lt;- ifelse(pdata$Art == 1, &quot;Yes&quot;, &quot;No&quot;)
+pdata$Art &lt;- factor(pdata$Art, ordered &lt;- c(&quot;Yes&quot;, &quot;No&quot;))
+pdata[is.na(pdata$Art), &quot;Art&quot;] &lt;- &quot;No&quot;
+table(pdata$Science)
+</code></pre>
+
+<pre><code>## 
+##   1   2 
+## 126 236
+</code></pre>
+
+<pre><code class="r">pdata$Science &lt;- ifelse(pdata$Science == 1, &quot;Yes&quot;, &quot;No&quot;)
+pdata$Science &lt;- factor(pdata$Science, ordered &lt;- c(&quot;Yes&quot;, &quot;No&quot;))
+pdata[is.na(pdata$Science), &quot;Science&quot;] &lt;- &quot;No&quot;
+table(pdata$Photography)
+</code></pre>
+
+<pre><code>## 
+##   1   2 
+## 165 200
+</code></pre>
+
+<pre><code class="r">pdata$Photography &lt;- ifelse(pdata$Photography == 1, &quot;Yes&quot;, &quot;No&quot;)
+pdata$Photography &lt;- factor(pdata$Photography, ordered &lt;- c(&quot;Yes&quot;, &quot;No&quot;))
+pdata[is.na(pdata$Photography), &quot;Photography&quot;] &lt;- &quot;No&quot;
+table(pdata$Weaving)
+</code></pre>
+
+<pre><code>## 
+##   1   2 
+##  52 311
+</code></pre>
+
+<pre><code class="r">pdata$Weaving &lt;- ifelse(pdata$Weaving == 1, &quot;Yes&quot;, &quot;No&quot;)
+pdata$Weaving &lt;- factor(pdata$Weaving, ordered &lt;- c(&quot;Yes&quot;, &quot;No&quot;))
+pdata[is.na(pdata$Weaving), &quot;Weaving&quot;] &lt;- &quot;No&quot;
+# The age is a very wide spread, and there are 31 unknown entries.  Rather
+# than make assumptions such as mean or median, which will might fuzz the
+# results in the age 41 range I&#39;d rather leave out the observations which
+# are NA in any analysis involving age
+table(pdata$Age)
+</code></pre>
+
+<pre><code>## 
+##  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 
+##  3  4  3  4  7  4  2  3  3  9  6  7  3  7  8  9  9  8 10  8 11  6  6  6  6 
+## 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 
+##  8  4  2  2  1  4  3  4  5  4  4  3  4  3  6  7  4 11  4 10  6  8 11  6  7 
+## 58 59 60 61 62 63 64 65 66 67 68 69 70 71 73 75 80 
+## 12  5 12  5  8  3  8  5  2  3  4  1  9  1  1  2  1
+</code></pre>
+
+<pre><code class="r">sum(is.na(pdata$Age))
+</code></pre>
+
+<pre><code>## [1] 31
+</code></pre>
+
+<pre><code class="r">mean(pdata$Age[!is.na(pdata$Age)])
+</code></pre>
+
+<pre><code>## [1] 40.28493
+</code></pre>
+
+<pre><code class="r">median(pdata$Age[!is.na(pdata$Age)])
+</code></pre>
+
+<pre><code>## [1] 41
+</code></pre>
+
+<pre><code class="r"># Gender might be left blank by intent (eg, a transgendered person), but again
+# I&#39;d rather leave it out of gender-based analysis because the unknown value
+# is nearly 10% of the total and could skew results if assigned incorrectly
+ sum(is.na(pdata$Gender))
+</code></pre>
+
+<pre><code>## [1] 34
+</code></pre>
+
+<pre><code class="r"> sum(is.na(pdata$Gender))/dim(pdata)[1]
+</code></pre>
+
+<pre><code>## [1] 0.08585859
+</code></pre>
+
+<pre><code class="r"># The gender entry of &quot;7&quot;, by contrast is almost certainly a data entry error
+# checking the paper, it looks like this should be &quot;F&quot;
+# (7 can look like a 1 or a 7, but I&#39;ll flag it as NA until we get paper confirmation
+ table(pdata$Gender)
+</code></pre>
+
+<pre><code>## 
+##   1   2   7 
+## 102 259   1
+</code></pre>
+
+<pre><code class="r"> pdata$Gender &lt;- ifelse(pdata$Gender == 1, &quot;Male&quot;, ifelse(pdata$Gender %in% c(2,7), &quot;Female&quot;, NA))
+ pdata$Gender &lt;- factor(pdata$Gender, ordered &lt;- c(&quot;Male&quot;, &quot;Female&quot;))
+# Education is a coded value that corresponds roughly to years, with 12 = High School
+ table(pdata$Education)
+</code></pre>
+
+<pre><code>## 
+##   1   2   4   5   6   7   8   9  10  11  12  13  14  16  18  21  31 
+##   2   2   4   4   5   6   2   2   1   4  27  27   5 107 118  36   1
+</code></pre>
+
+<pre><code class="r"> table(pdata$Age[is.na(pdata$Education)])
+</code></pre>
+
+<pre><code>## 
+##  9 28 38 41 46 48 56 57 58 62 70 
+##  2  1  1  1  1  1  1  2  1  1  1
+</code></pre>
+
+<pre><code class="r"> table(pdata$Education[pdata$Age == 9])
+</code></pre>
+
+<pre><code>## 
+## 4 
+## 2
+</code></pre>
+
+<pre><code class="r"># Set education for the two 9 year olds to 4
+ pdata$Education[pdata$Age == 9] &lt;- 4
+ table(pdata$Education)
+</code></pre>
+
+<pre><code>## 
+##   1   2   4   5   6   7   8   9  10  11  12  13  14  16  18  21  31 
+##   2   2   6   4   5   6   2   2   1   4  27  27   5 107 118  36   1
+</code></pre>
+
+<pre><code class="r"> table(pdata$Age[is.na(pdata$Education)])
+</code></pre>
+
+<pre><code>## 
+## 28 38 41 46 48 56 57 58 62 70 
+##  1  1  1  1  1  1  2  1  1  1
+</code></pre>
+
+<pre><code class="r"># Reduce factors to the following:
+# &quot;Gr1-5&quot;, &quot;Gr6-8&quot;, &quot;Gr9-11&quot;, &quot;High_School&quot;, &quot;Some_College&quot;, 
+# &quot;AA_Degree&quot;, &quot;BA_BS&quot;, &quot;MA_MS&quot;, &quot;PHD_MD&quot;
+pdata$Education &lt;- ifelse(pdata$Education &lt; 6, &quot;Gr1-5&quot;,
+                   ifelse(pdata$Education &lt; 9, &quot;Gr6-8&quot;,
+                   ifelse(pdata$Education &lt; 12, &quot;Gr9-11&quot;,
+                   ifelse(pdata$Education &lt; 13, &quot;High_School&quot;,
+                   ifelse(pdata$Education &lt; 14, &quot;Some_College&quot;,
+                   ifelse(pdata$Education &lt; 16, &quot;AA_Degree&quot;,
+                   ifelse(pdata$Education &lt; 18, &quot;BA_BS&quot;,
+                   ifelse(pdata$Education &lt; 21, &quot;MA_MS&quot;,  &quot;PHD_MD&quot;))))))))
+pdata$Education &lt;- factor(pdata$Education, ordered &lt;- c(&quot;Gr1-5&quot;, &quot;Gr6-8&quot;, &quot;Gr9-11&quot;, 
+            &quot;High_School&quot;, &quot;Some_College&quot;, &quot;AA_Degree&quot;, &quot;BA_BS&quot;, &quot;MA_MS&quot;, &quot;PHD_MD&quot;))
+table(pdata$Education)
+</code></pre>
+
+<pre><code>## 
+##        Gr1-5        Gr6-8       Gr9-11  High_School Some_College 
+##           14           13            7           27           27 
+##    AA_Degree        BA_BS        MA_MS       PHD_MD 
+##            5          107          118           37
+</code></pre>
+
+<pre><code class="r">## now group ages into factors of 10 years each
+pdata$AgeRange &lt;- ifelse(pdata$Age &lt;13 , &quot;Child&quot;,
+                  ifelse(pdata$Age &lt;20 , &quot;Teenage&quot;,
+                  ifelse(pdata$Age &lt;30 , &quot;Twenties&quot;,
+                  ifelse(pdata$Age &lt;40 , &quot;Thirties&quot;,
+                  ifelse(pdata$Age &lt;50 , &quot;Fourties&quot;,
+                  ifelse(pdata$Age &lt;60 , &quot;Fifties&quot;,
+                  ifelse(pdata$Age &lt;70 , &quot;Sixties&quot;,
+                  ifelse(pdata$Age &lt;80 , &quot;Seventies&quot;,
+                  ifelse(pdata$Age &lt;90 , &quot;Eighties&quot;, &quot;Over 90&quot;)))))))))
+pdata$AgeRange &lt;- factor(pdata$AgeRange, ordered &lt;- c(&quot;Child&quot;, &quot;Teenage&quot;,
+                  &quot;Twenties&quot;, &quot;Thirties&quot;, &quot;Fourties&quot;, &quot;Fifties&quot;, &quot;Sixties&quot;,
+                  &quot;Seventies&quot;, &quot;Eighties&quot;, &quot;Over 90&quot;))
+</code></pre>
+
+<p>Now create Houston data in same format.  As the word columns are missing we&#39;ll start by just cloning the structure of the pdata table, then add the emotion word columns later.</p>
+
+<pre><code class="r">hdata &lt;- pdata[1 == 2, ]
+dim(houston1)[1] == length(unique(houston1$ID.Number))
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">for (i in 1:dim(houston1)[1]){
+ hdata[i,&quot;ID&quot;] &lt;- houston1$ID.Number[i]
+} # end loop to create subject records
+## set First Piece
+table(houston1$First.piece)
+</code></pre>
+
+<pre><code>## 
+##   1   2 
+## 220 208
+</code></pre>
+
+<pre><code class="r">sum(is.na(houston1$First.piece))
+</code></pre>
+
+<pre><code>## [1] 0
+</code></pre>
+
+<pre><code class="r">hdata$FirstViewed &lt;- as.factor(ifelse(houston1$First.piece == 1, &quot;Photo&quot;, &quot;Weave&quot;))
+table(hdata$FirstViewed)
+</code></pre>
+
+<pre><code>## 
+## Photo Weave 
+##   220   208
+</code></pre>
+
+<pre><code class="r">## set Emotion Intensity
+# Check the data ranges to be sure nothing is out of bounds
+table(houston1$First_Image_Rate_Intensity_Emotion)
+</code></pre>
+
+<pre><code>## 
+##   0   1   2   3   4   5   6   7   8 8.5   9  10 
+##   4   6  12  30  27  46  86 107  54   1  38  13
+</code></pre>
+
+<pre><code class="r">table(houston1$Second_Image_Rate_Intensity_Emotion)
+</code></pre>
+
+<pre><code>## 
+##   0   1   2   3   4 4.5   5   6   7 7.5   8   9  10  12 
+##   5   4  20  21  36   1  56  70  70   3  63  33  12   1
+</code></pre>
+
+<pre><code class="r"># Reorganize the data by A and B, rather than First and Second
+
+hdata[hdata$FirstViewed == &quot;Photo&quot;, 
+      &quot;Photo_Intensity&quot;] &lt;- houston1[houston1$First.piece == 1, 
+                                        &quot;First_Image_Rate_Intensity_Emotion&quot;]
+hdata[hdata$FirstViewed == &quot;Weave&quot;, 
+      &quot;Photo_Intensity&quot;] &lt;- houston1[houston1$First.piece == 2, 
+                                        &quot;Second_Image_Rate_Intensity_Emotion&quot;]
+hdata[hdata$FirstViewed == &quot;Weave&quot;, 
+      &quot;Weave_Intensity&quot;] &lt;- houston1[houston1$First.piece == 2, 
+                                        &quot;First_Image_Rate_Intensity_Emotion&quot;]
+hdata[hdata$FirstViewed == &quot;Photo&quot;, 
+      &quot;Weave_Intensity&quot;] &lt;- houston1[houston1$First.piece == 1, 
+                                        &quot;Second_Image_Rate_Intensity_Emotion&quot;]
+sum(is.na(hdata$Photo_Intensity)) + sum(is.na(hdata$Weave_Intensity)) ==
+  sum(is.na(houston1$First_Image_Rate_Intensity_Emotion)) + 
+    sum(is.na(houston1$Second_Image_Rate_Intensity_Emotion))
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">## set Neg/Pos ratio
+# Check the data ranges to be sure nothing is out of bounds
+table(houston1$First_Image_Rate_Intensity_NegPosReact)
+</code></pre>
+
+<pre><code>## 
+##  0  1  2  3  4  5  6  7  8  9 10 
+## 26 11 16 44 37 53 43 62 63 45 19
+</code></pre>
+
+<pre><code class="r">table(houston1$Second_Image_Rate_Intensity_NegPosReact)
+</code></pre>
+
+<pre><code>## 
+##   0   1   2   3   4   5   6   7 7.5   8   9  10 
+##  12  20  24  47  72  66  33  48   1  33  24  11
+</code></pre>
+
+<pre><code class="r">hdata[hdata$FirstViewed == &quot;Photo&quot;, 
+      &quot;Photo_Neg_Pos&quot;] &lt;- houston1[houston1$First.piece == 1, 
+                                        &quot;First_Image_Rate_Intensity_NegPosReact&quot;]
+hdata[hdata$FirstViewed == &quot;Weave&quot;, 
+      &quot;Photo_Neg_Pos&quot;] &lt;- houston1[houston1$First.piece == 2, 
+                                        &quot;Second_Image_Rate_Intensity_NegPosReact&quot;]
+hdata[hdata$FirstViewed == &quot;Weave&quot;, 
+      &quot;Weave_Neg_Pos&quot;] &lt;- houston1[houston1$First.piece == 2, 
+                                        &quot;First_Image_Rate_Intensity_NegPosReact&quot;]
+hdata[hdata$FirstViewed == &quot;Photo&quot;, 
+      &quot;Weave_Neg_Pos&quot;] &lt;- houston1[houston1$First.piece == 1, 
+                                        &quot;Second_Image_Rate_Intensity_NegPosReact&quot;]
+sum(is.na(hdata$Photo_Neg_Pos)) + sum(is.na(hdata$Weave_Neg_Pos)) ==
+  sum(is.na(houston1$First_Image_Rate_Intensity_NegPosReact)) + 
+    sum(is.na(houston1$Second_Image_Rate_Intensity_NegPosReact))
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r"># There is one value in data set to intensity = 12.  Reduce to 10
+hdata[hdata$Weave_Intensity == 12 &amp; 
+      !(is.na(hdata$Weave_Intensity )), ]$Weave_Intensity &lt;- 10
+# reduce partial values to integers
+hdata$Photo_Intensity &lt;- floor(hdata$Photo_Intensity)
+hdata$Weave_Intensity &lt;- floor(hdata$Weave_Intensity)
+hdata$Photo_Neg_Pos &lt;- floor(hdata$Photo_Neg_Pos)
+hdata$Weave_Neg_Pos &lt;- floor(hdata$Weave_Neg_Pos)
+# for the experience questions, treat no response as a &quot;No&quot;
+table(houston1$Art_Experience)
+</code></pre>
+
+<pre><code>## 
+##   1   2   8 
+## 217 152   1
+</code></pre>
+
+<pre><code class="r"># the &quot;8&quot; is an outlier.  Look at the whole record
+ houston1[houston1$Art_Experience == 8 &amp; !is.na(houston1$Art_Experience), ]
+</code></pre>
+
+<pre><code>##     ID.Number First.piece First_Image_Rate_Intensity_Emotion
+## 137       137           1                                  6
+##     First_Image_Rate_Intensity_NegPosReact
+## 137                                      6
+##     Second_Image_Rate_Intensity_Emotion
+## 137                                   7
+##     Second_Image_Rate_Intensity_NegPosReact Art_Experience Number.of.Years
+## 137                                      NA              8               1
+##     Scientific_Experiments Number.of.Years.1 Photography_Experience
+## 137                      3                 2                     NA
+##     Number.of.Years.2 Weaving_Experience Number.of.Years.3 Age Gender
+## 137                 1                  2                NA  24      2
+##     education  X
+## 137        16 NA
+</code></pre>
+
+<pre><code class="r"># it is clear that this record was shifted one column, starting with 
+# Second_Image_Rate_Intensity_NegPosReact and ending with Photography Years.  
+# correct values should be:
+hdata[hdata$ID == 137, &quot;Weave_Neg_Pos&quot;] &lt;- 8
+# then Art should be &quot;Yes&quot; (= 1 in &quot;years&quot;, set to 8 in database)
+hdata$Art &lt;- ifelse(houston1$Art_Experience %in% c(1,8), &quot;Yes&quot;, &quot;No&quot;)
+hdata$Art &lt;- factor(hdata$Art, ordered &lt;- c(&quot;Yes&quot;, &quot;No&quot;))
+hdata[is.na(hdata$Art), &quot;Art&quot;] &lt;- &quot;No&quot;
+# then Science should be &quot;NO&quot; if value = 3 (was 2 in &quot;years&quot; offset value)
+table(houston1$Scientific_Experiments)
+</code></pre>
+
+<pre><code>## 
+##   1   2   3 
+## 115 258   1
+</code></pre>
+
+<pre><code class="r"># the basic formula already sets values other than 1 to &quot;No&quot;
+hdata$Science &lt;- ifelse(houston1$Scientific_Experiments == 1, &quot;Yes&quot;, &quot;No&quot;)
+hdata$Science &lt;- factor(hdata$Science, ordered &lt;- c(&quot;Yes&quot;, &quot;No&quot;))
+hdata[is.na(hdata$Art), &quot;Science&quot;] &lt;- &quot;No&quot;
+# in Photography, the shifted value is NA, so we have to add it later
+table(houston1$Photography_Experience)
+</code></pre>
+
+<pre><code>## 
+##   1   2 
+## 176 200
+</code></pre>
+
+<pre><code class="r">hdata$Photography &lt;- ifelse(houston1$Photography_Experience == 1, &quot;Yes&quot;, &quot;No&quot;)
+hdata[hdata$ID == 137, &quot;Photography&quot;] &lt;- &quot;Yes&quot;
+hdata$Photography &lt;- factor(hdata$Photography, ordered &lt;- c(&quot;Yes&quot;, &quot;No&quot;))
+hdata[is.na(hdata$Photography), &quot;Photography&quot;] &lt;- &quot;No&quot;
+# the weaving entry was no longer shifted, so the rest will proceed normally
+table(houston1$Weaving_Experience)
+</code></pre>
+
+<pre><code>## 
+##   1   2 
+##  69 305
+</code></pre>
+
+<pre><code class="r">hdata$Weaving &lt;- ifelse(houston1$Weaving_Experience == 1, &quot;Yes&quot;, &quot;No&quot;)
+hdata$Weaving &lt;- factor(hdata$Weaving, ordered &lt;- c(&quot;Yes&quot;, &quot;No&quot;))
+hdata[is.na(hdata$Weaving), &quot;Weaving&quot;] &lt;- &quot;No&quot;
+# The age is a very wide spread, and there are 53 unknown entries.  Rather
+# than make assumptions such as mean or median, which will might fuzz the
+# results in the age 47-52 range I&#39;d rather leave out the observations which
+# are NA in any analysis involving age
+hdata$Age &lt;- houston1$Age
+table(hdata$Age)
+</code></pre>
+
+<pre><code>## 
+##   5   7   8   9  11  12  13  14  15  16  17  18  19  20  21  22  23  24 
+##   1   2   2   4   3   1   2   4   3   2   4   2   3   9   5   3  10   7 
+##  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42 
+##   3   3   2   4   6   6   5   5   8   5   5   1   5   9   1   3   1   4 
+##  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60 
+##   5   3   5   4   3   7   3   8   5   5   7   9   6   9   7  10  14  16 
+##  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75  76  77  78 
+##   9   7  10   9  12   9   6   8   3   6   3   4   4   2   1   3   3   1 
+##  79  80  86  87  88 101 
+##   1   1   1   1   1   1
+</code></pre>
+
+<pre><code class="r">sum(is.na(hdata$Age))
+</code></pre>
+
+<pre><code>## [1] 53
+</code></pre>
+
+<pre><code class="r">mean(hdata$Age[!is.na(hdata$Age)])
+</code></pre>
+
+<pre><code>## [1] 47.13067
+</code></pre>
+
+<pre><code class="r">median(hdata$Age[!is.na(hdata$Age)])
+</code></pre>
+
+<pre><code>## [1] 52
+</code></pre>
+
+<pre><code class="r"># This time over 10% declined to state gender.  
+# I&#39;ll exclude those from gender-based statistics
+ hdata$Gender &lt;- houston1$Gender
+ sum(is.na(hdata$Gender))
+</code></pre>
+
+<pre><code>## [1] 49
+</code></pre>
+
+<pre><code class="r"> sum(is.na(hdata$Gender))/dim(hdata)[1]
+</code></pre>
+
+<pre><code>## [1] 0.114486
+</code></pre>
+
+<pre><code class="r"># The gender entry of &quot;7&quot;, by contrast is almost certainly a data entry error
+# Paper check showed &quot;7&quot; was actually &quot;F&quot;
+ table(hdata$Gender)
+</code></pre>
+
+<pre><code>## 
+##   1   2   7 
+## 107 271   1
+</code></pre>
+
+<pre><code class="r"> hdata$Gender &lt;- ifelse(hdata$Gender == 1, &quot;Male&quot;, 
+                       ifelse(hdata$Gender %in% c(2,7), &quot;Female&quot;, NA))
+ hdata$Gender &lt;- factor(hdata$Gender, ordered &lt;- c(&quot;Male&quot;, &quot;Female&quot;))
+
+# Education has nobody in the age range where I can predict education by age,
+# so will leave the NA records alone and ignore when doing statistics by education
+ hdata$Education &lt;- houston1$education
+ table(hdata$Education)
+</code></pre>
+
+<pre><code>## 
+##   1   2   3   5   6   7   8   9  10  11  12  13  14  16  18  21  28 
+##   3   1   5   2   2   3   2   4   3   2   8  68  10 107  75  74   2
+</code></pre>
+
+<pre><code class="r"> table(hdata$Age[is.na(hdata$Education)])
+</code></pre>
+
+<pre><code>## 
+## 20 34 54 58 61 62 65 71 
+##  1  1  1  1  1  1  1  1
+</code></pre>
+
+<pre><code class="r"># Categories are otherwise the same as with the Pittsburgh data
+# Reduce factors to the following:
+# &quot;Gr1-5&quot;, &quot;Gr6-8&quot;, &quot;Gr9-11&quot;, &quot;High_School&quot;, &quot;Some_College&quot;, &quot;AA_Degree&quot;, 
+# &quot;BA_BS&quot;, &quot;MA_MS&quot;, &quot;PHD_MD&quot;
+hdata$Education &lt;- ifelse(hdata$Education &lt; 6, &quot;Gr1-5&quot;,
+                   ifelse(hdata$Education &lt; 9, &quot;Gr6-8&quot;,
+                   ifelse(hdata$Education &lt; 12, &quot;Gr9-11&quot;,
+                   ifelse(hdata$Education &lt; 13, &quot;High_School&quot;,
+                   ifelse(hdata$Education &lt; 14, &quot;Some_College&quot;,
+                   ifelse(hdata$Education &lt; 16, &quot;AA_Degree&quot;,
+                   ifelse(hdata$Education &lt; 18, &quot;BA_BS&quot;,
+                   ifelse(hdata$Education &lt; 21, &quot;MA_MS&quot;,  &quot;PHD_MD&quot;))))))))
+hdata$Education &lt;- factor(hdata$Education, ordered &lt;- c(&quot;Gr1-5&quot;, &quot;Gr6-8&quot;, &quot;Gr9-11&quot;,  
+           &quot;High_School&quot;, &quot;Some_College&quot;, &quot;AA_Degree&quot;, &quot;BA_BS&quot;, &quot;MA_MS&quot;, &quot;PHD_MD&quot;))
+table(hdata$Education)
+</code></pre>
+
+<pre><code>## 
+##        Gr1-5        Gr6-8       Gr9-11  High_School Some_College 
+##           11            7            9            8           68 
+##    AA_Degree        BA_BS        MA_MS       PHD_MD 
+##           10          107           75           76
+</code></pre>
+
+<pre><code class="r"># add in date range information
+hdata$AgeRange &lt;- ifelse(hdata$Age &lt;13 , &quot;Child&quot;,
+                  ifelse(hdata$Age &lt;20 , &quot;Teenage&quot;,
+                  ifelse(hdata$Age &lt;30 , &quot;Twenties&quot;,
+                  ifelse(hdata$Age &lt;40 , &quot;Thirties&quot;,
+                  ifelse(hdata$Age &lt;50 , &quot;Fourties&quot;,
+                  ifelse(hdata$Age &lt;60 , &quot;Fifties&quot;,
+                  ifelse(hdata$Age &lt;70 , &quot;Sixties&quot;,
+                  ifelse(hdata$Age &lt;80 , &quot;Seventies&quot;,
+                  ifelse(hdata$Age &lt;90 , &quot;Eighties&quot;, &quot;Over 90&quot;)))))))))
+hdata$AgeRange &lt;- factor(hdata$AgeRange, ordered &lt;- c(&quot;Child&quot;, &quot;Teenage&quot;,
+                  &quot;Twenties&quot;, &quot;Thirties&quot;, &quot;Fourties&quot;, &quot;Fifties&quot;, &quot;Sixties&quot;,
+                  &quot;Seventies&quot;, &quot;Eighties&quot;, &quot;Over 90&quot;))
+## basic processing of the Word variables to eliminate NA and case
+pdata$Photo_Word &lt;- ifelse(is.na(pdata$Photo_Word),  &quot;&quot;, 
+                           tolower(pdata$Photo_Word))
+pdata$Weave_Word &lt;- ifelse(is.na(pdata$Weave_Word),  &quot;&quot;, 
+                           tolower(pdata$Weave_Word))
+</code></pre>
+
+<p>Finally add in the emotion words, from the large number of text files in the raw data.</p>
+
+<pre><code class="r">for (i in hdata$ID) {
+ if (hdata$FirstViewed[i] == &quot;Photo&quot;) {
+  pfname &lt;- paste(&quot;rawdata/&quot;, i, &quot;_Photo_First_Question_3b.txt&quot;, sep=&quot;&quot;)
+  wfname &lt;- paste(&quot;rawdata/&quot;, i, &quot;_Photo_First_Question_6b.txt&quot;, sep=&quot;&quot;)
+ } else {
+  wfname &lt;- paste(&quot;rawdata/&quot;, i, &quot;_Weave_First_Question_3b.txt&quot;, sep=&quot;&quot;)
+  pfname &lt;- paste(&quot;rawdata/&quot;, i, &quot;_Weave_First_Question_6b.txt&quot;, sep=&quot;&quot;)
+ } # end set filename
+ if (file.exists(pfname)) {
+   hdata[hdata$ID ==i, &quot;Photo_Word&quot;] &lt;- scan(pfname, character(0))[1]
+ } # 
+ if (file.exists(wfname)) {
+     hdata[hdata$ID ==i, &quot;Weave_Word&quot;] &lt;- scan(wfname, character(0))[1]
+ } # 
+} # end loop through subjects
+## basic processing of the Word variables to eliminate NA and case
+hdata$Photo_Word &lt;- ifelse(is.na(hdata$Photo_Word),  &quot;&quot;, 
+                           tolower(hdata$Photo_Word))
+hdata$Weave_Word &lt;- ifelse(is.na(hdata$Weave_Word),  &quot;&quot;, 
+                           tolower(hdata$Weave_Word))
+</code></pre>
+
+<h3>Check for significance of printing errors</h3>
+
+<p>(see file &ldquo;rawdata/printing_errors.txt&rdquo;)
+in Pittsburgh, the referenced ID&#39;s go from 1-199 for A and
+001-197 for B.  The &ldquo;B&rdquo; are in range 200-396 in pdata, so
+we adjust by adding 199 to the number provided in the error file</p>
+
+<pre><code class="r">pperr &lt;- c(1:2,5:6,8:26,28:47,77,82,85:86,89,91:99,100:101,
+           103:108,114:118,122:129,132,141,146:148,158:159,
+           165:171,173:187,189,190,199:200,202:205,209:218,
+           220:221,233:238,240:267,281,298,302:325,331,339,
+           353,357,359:360,362:369,371:375,377:392,394:396)
+hperr &lt;- c(42:53,58:63,69,72:90,117,119:121,159:160,
+           307:313,315:328,330:335,342:359,381,393:399,391)
+
+t.test(pdata[pperr, ]$Photo_Intensity, pdata[-pperr, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.2503832
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pperr, ]$Weave_Intensity, pdata[-pperr, ]$Weave_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.6195411
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pperr, ]$Photo_Neg_Pos, pdata[-pperr, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.3589116
+</code></pre>
+
+<pre><code class="r">t.test(pdata[pperr, ]$Weave_Neg_Pos, pdata[-pperr, ]$Weave_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1681242
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hperr, ]$Photo_Intensity, hdata[-hperr, ]$Photo_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.4823887
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hperr, ]$Photo_Intensity, hdata[-hperr, ]$Weave_Intensity)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.1790151
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hperr, ]$Photo_Neg_Pos, hdata[-hperr, ]$Photo_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.8118441
+</code></pre>
+
+<pre><code class="r">t.test(hdata[hperr, ]$Weave_Neg_Pos, hdata[-hperr, ]$Weave_Neg_Pos)$p.value
+</code></pre>
+
+<pre><code>## [1] 0.8920258
+</code></pre>
+
+<p>Conclusion is we can include the recods from the printing error, as none of the
+emotional intensity or neg_pos values were significantly different in the population
+with the printing error and the population without the printing error.              </p>
+
+<h3>Add insights gained from Statistical Analysis</h3>
+
+<p>Correct for FirstViewed bias - statistical analysis shows that 
+Weave_Pos_Neg should be adjusted if FirstViewed = Weave in both
+Pittsburgh and Houston</p>
+
+<pre><code class="r">pAdj_Neg_Pos &lt;- pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Neg_Pos - 1
+pAdj_Neg_Pos[pAdj_Neg_Pos &lt; 0 &amp; !is.na(pAdj_Neg_Pos)] &lt;- 0
+pdata$Weave_Adj_Neg_Pos &lt;- pdata$Weave_Neg_Pos
+pdata[pdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Adj_Neg_Pos &lt;- pAdj_Neg_Pos
+hAdj_Neg_Pos &lt;- hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Neg_Pos - 1
+hAdj_Neg_Pos[hAdj_Neg_Pos &lt; 0 &amp; !is.na(hAdj_Neg_Pos)] &lt;- 0
+hdata$Weave_Adj_Neg_Pos &lt;- hdata$Weave_Neg_Pos
+hdata[hdata$FirstViewed == &quot;Weave&quot;, ]$Weave_Adj_Neg_Pos &lt;- hAdj_Neg_Pos
+</code></pre>
+
+<p>Merge Photo and Weave words that are similar.  In some cases I had to go to
+the detailed reactions on the survey to interpret the word.  wordmap.csv
+contains the relevant mappings</p>
+
+<pre><code class="r">wordmap &lt;- read.csv(&quot;rawdata/wordmap.csv&quot;, stringsAsFactors = FALSE)
+pdata$Adj_Photo_Word &lt;- pdata$Photo_Word
+ppidx &lt;- pdata[pdata$Photo_Word %in% wordmap$baseword, ]$ID
+for (i in ppidx) {
+  pdata[i, &quot;Adj_Photo_Word&quot;] &lt;- wordmap[wordmap$baseword == 
+                                        pdata[i, &quot;Photo_Word&quot;], &quot;adjword&quot;]
+}
+pdata$Adj_Weave_Word &lt;- pdata$Weave_Word
+pwidx &lt;- pdata[pdata$Weave_Word %in% wordmap$baseword, ]$ID
+for (i in pwidx) {
+  pdata[i, &quot;Adj_Weave_Word&quot;] &lt;- wordmap[wordmap$baseword == 
+                                        pdata[i, &quot;Weave_Word&quot;], &quot;adjword&quot;]
+}
+hdata$Adj_Photo_Word &lt;- hdata$Photo_Word
+hpidx &lt;- hdata[hdata$Photo_Word %in% wordmap$baseword, ]$ID
+for (i in hpidx) {
+  hdata[i, &quot;Adj_Photo_Word&quot;] &lt;- wordmap[wordmap$baseword == 
+                                        hdata[i, &quot;Photo_Word&quot;], &quot;adjword&quot;]
+}
+hdata$Adj_Weave_Word &lt;- hdata$Weave_Word
+hwidx &lt;- hdata[hdata$Weave_Word %in% wordmap$baseword, ]$ID
+for (i in hwidx) {
+  hdata[i, &quot;Adj_Weave_Word&quot;] &lt;- wordmap[wordmap$baseword == 
+                                        hdata[i, &quot;Weave_Word&quot;], &quot;adjword&quot;]
+}
+</code></pre>
+
+<p>Reduce the data set the positive and negative reactions, plus age factors
+for use in graphic visualisations (again based on statistical factor analysis)</p>
+
+<pre><code class="r">pgrdata &lt;- pdata[, c(&quot;Weave_Adj_Neg_Pos&quot;, &quot;Photo_Neg_Pos&quot;, &quot;Age&quot;, 
+                     &quot;Adj_Photo_Word&quot;, &quot;Adj_Weave_Word&quot;)]
+pgrdata &lt;- pgrdata[!is.na(pgrdata$Weave_Adj_Neg_Pos), ]
+pgrdata &lt;- pgrdata[!is.na(pgrdata$Photo_Neg_Pos), ]
+pgrdata &lt;- pgrdata[!is.na(pgrdata$Age), ]
+pgrdata$Weave_Minus_Photo &lt;- pgrdata$Weave_Adj_Neg_Pos - pgrdata$Photo_Neg_Pos
+pgrdata$Age_Breakpoint &lt;- as.factor(ifelse(pgrdata$Age &lt; 50, &quot;Under50&quot;, &quot;50+&quot;)) 
+
+hgrdata &lt;- hdata[, c(&quot;Weave_Adj_Neg_Pos&quot;, &quot;Photo_Neg_Pos&quot;, &quot;Age&quot;, 
+                     &quot;Adj_Photo_Word&quot;, &quot;Adj_Weave_Word&quot;)]
+hgrdata &lt;- hgrdata[!is.na(hgrdata$Weave_Adj_Neg_Pos), ]
+hgrdata &lt;- hgrdata[!is.na(hgrdata$Photo_Neg_Pos), ]
+hgrdata &lt;- hgrdata[!is.na(hgrdata$Age), ]
+hgrdata$Weave_Minus_Photo &lt;- hgrdata$Weave_Adj_Neg_Pos - hgrdata$Photo_Neg_Pos
+hgrdata$Age_Breakpoint &lt;- as.factor(ifelse(hgrdata$Age &lt; 30, &quot;Under30&quot;, &quot;30+&quot;))
+</code></pre>
+
+<h3>Data processing is complete</h3>
+
+<p>pdata and hdata are used by the statistical analysis
+pgrdata and hgrdata are used for the visualizations</p>
+
+<pre><code class="r">str(pdata)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    396 obs. of  19 variables:
+##  $ ID               : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ FirstViewed      : Factor w/ 2 levels &quot;Photo&quot;,&quot;Weave&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Photo_Word       : chr  &quot;beauty&quot; &quot;caring&quot; &quot;crackle&quot; &quot;concern&quot; ...
+##  $ Photo_Intensity  : num  6 8 6 7 7 8 7 6 8 5 ...
+##  $ Photo_Neg_Pos    : num  3 6 5 3 7 0 7 3 3 7 ...
+##  $ Weave_Word       : chr  &quot;disappointed&quot; &quot;confused&quot; &quot;clean&quot; &quot;fear&quot; ...
+##  $ Weave_Intensity  : num  7 7 1 7 6 8 7 8 9 7 ...
+##  $ Weave_Neg_Pos    : num  1 9 5 1 4 0 7 3 2 4 ...
+##  $ Art              : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 1 2 1 2 1 1 2 2 1 2 ...
+##  $ Science          : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 1 1 2 1 1 2 1 2 1 2 ...
+##  $ Photography      : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 1 1 1 2 1 2 2 2 1 1 ...
+##  $ Weaving          : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 2 1 2 2 1 1 2 2 2 2 ...
+##  $ Age              : int  NA 23 38 25 33 60 36 21 23 61 ...
+##  $ Gender           : Factor w/ 2 levels &quot;Male&quot;,&quot;Female&quot;: 2 2 1 2 2 2 1 2 2 2 ...
+##  $ Education        : Factor w/ 9 levels &quot;Gr1-5&quot;,&quot;Gr6-8&quot;,..: 7 7 8 7 7 8 8 7 8 7 ...
+##  $ AgeRange         : Factor w/ 10 levels &quot;Child&quot;,&quot;Teenage&quot;,..: NA 3 4 3 4 7 4 3 3 7 ...
+##  $ Weave_Adj_Neg_Pos: num  1 9 5 1 4 0 7 3 2 4 ...
+##  $ Adj_Photo_Word   : chr  &quot;beauty&quot; &quot;caring&quot; &quot;crackle&quot; &quot;concerned&quot; ...
+##  $ Adj_Weave_Word   : chr  &quot;disappointed&quot; &quot;confused&quot; &quot;clean&quot; &quot;fear&quot; ...
+</code></pre>
+
+<pre><code class="r">str(pgrdata)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    350 obs. of  7 variables:
+##  $ Weave_Adj_Neg_Pos: num  9 5 1 4 0 7 3 2 4 5 ...
+##  $ Photo_Neg_Pos    : num  6 5 3 7 0 7 3 3 7 3 ...
+##  $ Age              : int  23 38 25 33 60 36 21 23 61 39 ...
+##  $ Adj_Photo_Word   : chr  &quot;caring&quot; &quot;crackle&quot; &quot;concerned&quot; &quot;sad&quot; ...
+##  $ Adj_Weave_Word   : chr  &quot;confused&quot; &quot;clean&quot; &quot;fear&quot; &quot;curious&quot; ...
+##  $ Weave_Minus_Photo: num  3 0 -2 -3 0 0 0 -1 -3 2 ...
+##  $ Age_Breakpoint   : Factor w/ 2 levels &quot;50+&quot;,&quot;Under50&quot;: 2 2 2 2 1 2 2 2 1 2 ...
+</code></pre>
+
+<pre><code class="r">str(hdata)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    428 obs. of  19 variables:
+##  $ ID               : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ FirstViewed      : Factor w/ 2 levels &quot;Photo&quot;,&quot;Weave&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Photo_Word       : chr  &quot;warmth&quot; &quot;sad&quot; &quot;intrigued&quot; &quot;content&quot; ...
+##  $ Photo_Intensity  : num  7 7 6 7 6 8 5 7 8 5 ...
+##  $ Photo_Neg_Pos    : num  9 7 8 5 7 8 5 9 8 3 ...
+##  $ Weave_Word       : chr  &quot;awed&quot; &quot;curious&quot; &quot;stark&quot; &quot;intrigue&quot; ...
+##  $ Weave_Intensity  : num  8 5 8 8 5 6 3 9 9 7 ...
+##  $ Weave_Neg_Pos    : num  3 7 4 4 5 7 4 2 4 5 ...
+##  $ Art              : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 1 2 2 1 2 1 1 2 2 1 ...
+##  $ Science          : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 2 1 2 2 2 1 1 1 2 1 ...
+##  $ Photography      : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 1 2 1 2 2 2 1 2 1 1 ...
+##  $ Weaving          : Factor w/ 2 levels &quot;Yes&quot;,&quot;No&quot;: 2 2 2 2 2 2 2 2 2 1 ...
+##  $ Age              : int  77 26 38 29 42 21 23 56 46 51 ...
+##  $ Gender           : Factor w/ 2 levels &quot;Male&quot;,&quot;Female&quot;: 2 2 2 2 1 2 2 2 1 2 ...
+##  $ Education        : Factor w/ 9 levels &quot;Gr1-5&quot;,&quot;Gr6-8&quot;,..: 7 7 7 8 7 7 7 7 5 8 ...
+##  $ AgeRange         : Factor w/ 10 levels &quot;Child&quot;,&quot;Teenage&quot;,..: 8 3 4 3 5 3 3 6 5 6 ...
+##  $ Weave_Adj_Neg_Pos: num  3 7 4 4 5 7 4 2 4 5 ...
+##  $ Adj_Photo_Word   : chr  &quot;warmth&quot; &quot;sad&quot; &quot;intrigued&quot; &quot;content&quot; ...
+##  $ Adj_Weave_Word   : chr  &quot;awe&quot; &quot;curious&quot; &quot;stark&quot; &quot;intrigued&quot; ...
+</code></pre>
+
+<pre><code class="r">str(hgrdata)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    357 obs. of  7 variables:
+##  $ Weave_Adj_Neg_Pos: num  3 7 4 4 5 7 4 2 4 5 ...
+##  $ Photo_Neg_Pos    : num  9 7 8 5 7 8 5 9 8 3 ...
+##  $ Age              : int  77 26 38 29 42 21 23 56 46 51 ...
+##  $ Adj_Photo_Word   : chr  &quot;warmth&quot; &quot;sad&quot; &quot;intrigued&quot; &quot;content&quot; ...
+##  $ Adj_Weave_Word   : chr  &quot;awe&quot; &quot;curious&quot; &quot;stark&quot; &quot;intrigued&quot; ...
+##  $ Weave_Minus_Photo: num  -6 0 -4 -1 -2 -1 -1 -7 -4 2 ...
+##  $ Age_Breakpoint   : Factor w/ 2 levels &quot;30+&quot;,&quot;Under30&quot;: 1 2 1 2 1 2 2 1 1 1 ...
+</code></pre>
+
+</body>
+
+</html>
