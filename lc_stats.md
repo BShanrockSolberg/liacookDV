@@ -104,7 +104,7 @@ lc.dhist(hdata$Photo_Neg_Pos, hdata$Weave_Neg_Pos, "Photo",
   "Weave", "Houston Negative to Positive", hpair = TRUE)
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](sfigure/unnamed-chunk-2-1.png) 
 
 ### Photo vs Weave Tests, by First Viewed 
 Negative to Positive emotions were significantly different by First Viewed in both tests.
@@ -170,7 +170,7 @@ lc.dhist(hdata[hdata$FirstViewed == "Weave", ]$Weave_Neg_Pos -
   "Weave First", "Houston Negative to Positive (Weave# - Photo#)")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](sfigure/unnamed-chunk-3-1.png) 
 ### Photo vs Weave Tests, by Art Experience 
 In the Houston test only, the Art experience showed as significant for positive/negative.
 
@@ -250,7 +250,7 @@ lc.dhist(hdata[hdata$Art == "Yes", ]$Weave_Neg_Pos -
          "Houston Negative to Positive (Weave# - Photo#)")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](sfigure/unnamed-chunk-4-1.png) 
 ### Photo vs Weave Tests, by Other Experience or Gender
 No significant results were found by Gender or experience other than Art, above. 
 
@@ -994,7 +994,7 @@ lc.dhist(hdata[hdata$Age < 50 & hdata$Age >= 30, ]$Weave_Intensity -
            "Houston Intensity (Weave# - Photo#)")
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](sfigure/unnamed-chunk-8-1.png) 
 
 By contrast, the Negative to Positive response only shows significant in the Pittsburgh test, with a stronger positive reaction to the Weave in that range.
 
@@ -1015,7 +1015,7 @@ lc.dhist(hdata[hdata$Age < 50 & hdata$Age >= 30, ]$Weave_Neg_Pos -
            "Houston Negative to Positive (Weave# - Photo#)")
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](sfigure/unnamed-chunk-9-1.png) 
 
 Linear Models
 -------------
@@ -1504,7 +1504,7 @@ range, vs the differences we are seeing in the model.
  boxplot(panp$wmp ~ panp$AgeRange)
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
+![plot of chunk unnamed-chunk-15](sfigure/unnamed-chunk-15-1.png) 
 
 ```r
  table(panp$AgeRange)
@@ -1522,7 +1522,7 @@ range, vs the differences we are seeing in the model.
  boxplot(hanp$wmp ~ hanp$AgeRange)
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-2.png) 
+![plot of chunk unnamed-chunk-15](sfigure/unnamed-chunk-15-2.png) 
 
 ```r
  table(hanp$AgeRange)
@@ -1865,7 +1865,7 @@ boxplot(hdata[!is.na(hdata$Age > 29) & !is.na(hdata$Weave_Adj_Neg_Pos) &
               !is.na(hdata$Photo_Neg_Pos), ]$Art)
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png) 
+![plot of chunk unnamed-chunk-19](sfigure/unnamed-chunk-19-1.png) 
 
 
 While the student T test thinks there might be significance, the boxplot
@@ -2002,7 +2002,7 @@ boxplot(hanp$wmp ~ hanp$Under30, main = "Houst Under 30")
 boxplot(hanp$wmp ~ hanp$Under50, main = "Houst Under 50")
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png) 
+![plot of chunk unnamed-chunk-21](sfigure/unnamed-chunk-21-1.png) 
 
 At this point we have some distributions sufficiently different to
 show as interesting in an artistic visualization.  We'll use the
