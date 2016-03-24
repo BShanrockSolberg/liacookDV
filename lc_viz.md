@@ -12,8 +12,7 @@ could be more easily seen.  These graphs all enforce a 4/3 aspect ratio.
 
 ## Matplots
 
-I'm fairly happy with how the matplots turned out, you could tweak
-line thickness or color choices but the basic idea seems sound.
+The matplots are looking good, and have the option of tweaking aspect ratio of the image or thickness of lines as desired.
 
 ### Pittsburgh, full data set
 
@@ -52,7 +51,10 @@ and likely easier to weave.  I have a memory that diagonals are hard,
 so the square or "+" shapes might be of interest.  
 
 I believe the color coded tickmarks are superior than trying to put
-a grid on as well.
+a grid on as well, but as you had positive feedback from an artistic
+standpoint on a gridline, I've included my favorite take on a gridline,
+using the same color as the lighter portion of the photographic image,
+allowing the gridline to blend into the image instead of dominating it..
 
 Starts with just the spots like the original graphs, allowing focus on the
 data differences and see how that ties in with what
